@@ -67,30 +67,30 @@ def change_password(username, new_password):
         for row in reader:
             if row[0] == username:
                 row[1] = encrypt(new_password)
-                writer = csv.writer(open(account_file, 'w', newline=''))
+                writer = csv.writer(f)
                 writer.writerows(reader)
                 return True
     return False
 
 # 检查密码是否正确
 def check(username, password):
-    reader = csv.reader(open(account_file, encoding = codec))
-    if reader == None:
+    with open(account_file, encoding = codec) as f:
+        reader = csv.reader(f)
+        if reader == None:
+            return False
+        for row in reader:
+            if row[0] == username and row[1] == password:
+                return True
         return False
-    for row in reader:
-        if row[0] == username and row[1] == password:
-            return True
-    return False
 
 # 检查用户名是否存在
 def exist(username):
-    reader = csv.reader(open(account_file, encoding = codec))
-    if reader == None:
+    with open(account_file, 'r', newline='') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row[0] == username:
+                return True
         return False
-    for row in reader:
-        if row[0] == username:
-            return True
-    return False
 
 # 写入账户信息
 def write_account(username, password, usertype):
