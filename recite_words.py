@@ -9,6 +9,7 @@
 
 
 import random
+import csv
 
 
 """选择背诵单词数目"""
@@ -23,10 +24,17 @@ def choose_amount():
 
 
 def random_words():
-    amount = choose_amount()
-    with open('words.csv', "r", encoding='utf-8') as f:
+    amount = int(choose_amount())
+    with open('D:\Workspace\School_Projects\everyday-vocabulary\words.csv', "r", encoding='utf-8') as f:
         max_number = len(f.readlines())
-        random.sample(range(1, max_number), amount)
+        all_numbers = range(1, max_number)
+        words_list = f.readlines()
+        print(words_list)
+        lines_choices = random.sample(all_numbers, int(amount))
+        for lines in lines_choices:
+            lines_real = lines-1
+            print(lines_real)
+            print(words_list[int(lines_real)])
 
 
 """英译中给出单词及对应中文含义"""
@@ -34,3 +42,6 @@ def random_words():
 
 def english_translate_chinese():
     choose_amount()
+
+
+random_words()
