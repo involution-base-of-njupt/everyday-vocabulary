@@ -17,14 +17,19 @@ def admin_menu():
     choice = input('Please input your choice: ')
     if choice == '1':
         add_menu()
+        admin_menu()
     elif choice == '2':
         delete_menu()
+        admin_menu()
     elif choice == '3':
         change_menu()
+        admin_menu()
     elif choice == '4':
         search_menu()
+        admin_menu()
     elif choice == '5':
         print_menu()
+        admin_menu()
     elif choice == '6':
         exit()
     else:
@@ -43,12 +48,16 @@ def user_menu():
     choice = input('Please input your choice: ')
     if choice == '1':
         search_menu()
+        user_menu()
     elif choice == '2':
-        show_menu()
+        print_menu()
+        user_menu()
     elif choice == '3':
         recite_words.chinese_translate_english()
+        user_menu()
     elif choice == '4':
         recite_words.english_translate_chinese()
+        user_menu()
     elif choice == '5':
         exit()
     else:
