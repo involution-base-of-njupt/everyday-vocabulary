@@ -3,6 +3,7 @@
 
 import recite_words
 import word_manage
+import youdao
 
 # 管理员菜单
 def admin_menu():
@@ -70,7 +71,7 @@ def add_menu():
     while word_manage.exist(en):
         print('The word already exists!')
         en = input('Please input the English word: ')
-    zh = input('Please input the Chinese translation: ')
+    zh = input_zh(en)
     if word_manage.add(en, zh):
         print('Add successfully!')
     else:
@@ -96,12 +97,41 @@ def search_menu():
 # 修改单词菜单
 def change_menu():
     en = input('Please input the English word: ')
-    zh = input('Please input the new Chinese translation: ')
-    if word_manage.change(en, zh):
-        print('Change successfully!')
+    if word_manage.exist(en):
+        zh = input_zh(en)
+        if word_manage.change(en, zh):
+            print('Change successfully!')
+        else:
+            print('Change failed!')
     else:
-        print('Change failed!')
+        print('No such word!')
+        choice = input('Add this word? (Y/N)')
+        if choice == 'Y' or 'y':
+            add_menu()
+        else:
+            change_menu()
 
 # 展示单词菜单
 def print_menu():
     print(word_manage.get_all())
+
+# 输入中文菜单
+def input_zh(en):
+    print('''
+    1. Get translation from Youdao
+    2. Input the translation manually
+    ''')
+    choice = input()
+    if choice == '1':
+        zh = youdao.translate(en)
+        if zh:
+            return zh
+        else:
+            print('Failed to get translation from Youdao!')
+            input_zh()
+    elif choice == '2':
+        zh = input('Please input the new Chinese translation: ')
+        return zh
+    else:
+        print('Invalid input!')
+        input_zh(en)
