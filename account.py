@@ -25,8 +25,7 @@ def init():
 
 # 密码 SHA512 加密
 def encrypt(password):
-    sha512().update(password.encode(codec))
-    return sha512().hexdigest()
+    return sha512(password.encode(codec)).hexdigest()
 
 # 用户注册
 def register():
@@ -59,16 +58,22 @@ def login():
             print('The password is wrong!')
 
 # 修改密码
-def change_password(username, new_password):
+def change_password():
+    global account_username
+    current_password = input('Please input your current password: ')
+    while not check(account_username, encrypt(current_password)):
+        current_password = input('The password is wrong, please input again: ')
+    new_password = input('Please input your new password: ')
     with open(account_file, 'r', newline='') as f:
         reader = csv.reader(f)
         if reader == None:
             return False
         for row in reader:
-            if row[0] == username:
+            if row[0] == account_username:
                 row[1] = encrypt(new_password)
                 writer = csv.writer(f)
                 writer.writerows(reader)
+                print('Change password successfully!')
                 return True
     return False
 
