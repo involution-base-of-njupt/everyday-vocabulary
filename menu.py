@@ -3,6 +3,7 @@
 
 import recite_words
 
+# 管理员菜单
 def admin_menu():
     print('''
     1. Add a word
@@ -29,6 +30,7 @@ def admin_menu():
         print('Invalid input!')
         admin_menu()
 
+# 用户菜单
 def user_menu():
     print('''
     1. Search a word

@@ -16,11 +16,27 @@ account_type = None
 # 初始化，检查账户文件是否存在，不存在则创建并写入默认管理员账户
 def init():
     if not os.path.isfile(account_file):
-        with open(account_file, 'w', newline='') as f:
+        try:
+            f = open(account_file, 'w', newline='')
             writer = csv.writer(f)
             writer.writerow(['admin', encrypt('admin'), 'admin'])
             return True
+        except PermissionError:
+            print('You do not have access to the account file!')
+            raise
+            exit()
+        except:
+            print('Error!')
+            raise
+            exit()
     else:
+        if os.path.isdir(account_file):
+            choice = input('The account file is a directory! Remove it? (Y/N)')
+            if choice == 'y' or choice == 'Y':
+                os.remove(account_file)
+                init()
+            elif choice == 'n' or choice == 'N':
+                exit()
         return False
 
 # 密码 SHA512 加密

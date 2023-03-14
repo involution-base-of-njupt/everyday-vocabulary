@@ -3,8 +3,6 @@
 
 import account, menu
 
-dict_file = 'words.csv'
-
 def main():
     print('Welcome to the English Dictionary!')
     if account.init():
