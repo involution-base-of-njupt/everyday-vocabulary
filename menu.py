@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import recite_words
+import word_manage
 
 # 管理员菜单
 def admin_menu():
@@ -10,20 +11,20 @@ def admin_menu():
     2. Delete a word
     3. Change a word
     4. Search a word
-    5. Show words
+    5. Print wordlist
     6. Exit
     ''')
     choice = input('Please input your choice: ')
     if choice == '1':
-        add_word()
+        add_menu()
     elif choice == '2':
-        delete_word()
+        delete_menu()
     elif choice == '3':
-        change_word()
+        change_menu()
     elif choice == '4':
-        search_word()
+        search_menu()
     elif choice == '5':
-        show_word()
+        print_menu()
     elif choice == '6':
         exit()
     else:
@@ -41,9 +42,9 @@ def user_menu():
     ''')
     choice = input('Please input your choice: ')
     if choice == '1':
-        search_word()
+        search_menu()
     elif choice == '2':
-        show_word()
+        show_menu()
     elif choice == '3':
         recite_words.chinese_translate_english()
     elif choice == '4':
@@ -53,3 +54,42 @@ def user_menu():
     else:
         print('Invalid input!')
         user_menu()
+
+# 添加单词菜单
+def add_menu():
+    en = input('Please input the English word: ')
+    zh = input('Please input the Chinese translation: ')
+    if word_manage.add(en, zh):
+        print('Add successfully!')
+    else:
+        print('Add failed!')
+
+# 删除单词菜单
+def delete_menu():
+    en = input('Please input the English word: ')
+    if word_manage.delete(en):
+        print('Delete successfully!')
+    else:
+        print('Delete failed!')
+
+# 搜索单词菜单
+def search_menu():
+    en = input('Please input the English word: ')
+    result = word_manage.search(en)
+    if result[0]:
+        print('The Chinese translation is: ' + zh)
+    else:
+        print('No such word!')
+    
+# 修改单词菜单
+def change_menu():
+    en = input('Please input the English word: ')
+    zh = input('Please input the new Chinese translation: ')
+    if word_manage.change(en, zh):
+        print('Change successfully!')
+    else:
+        print('Change failed!')
+
+# 展示单词菜单
+def print_menu():
+    print(word_manage.get_all())

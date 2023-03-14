@@ -24,16 +24,20 @@ def init():
         except PermissionError:
             print('You do not have access to the account file!')
             raise
-            exit()
         except:
             print('Error!')
             raise
-            exit()
+        finally:
+            f.close()
     else:
         if os.path.isdir(account_file):
             choice = input('The account file is a directory! Remove it? (Y/N)')
             if choice == 'y' or choice == 'Y':
-                os.remove(account_file)
+                try:
+                    os.remove(account_file)
+                except:
+                    print('Error!')
+                    raise
                 init()
             elif choice == 'n' or choice == 'N':
                 exit()
@@ -60,27 +64,30 @@ def register():
 
 # 用户登录
 def login():
+    global account_type, account_username
     username = input('Please input your username: ')
     if not exist(username):
         print('The username does not exist!')
         return
     else:
         password = input('Please input your password: ')
-        encrypt_str = encrypt(password)
-        if check(username, encrypt_str):
-            account = username
+        check_result = check(username, password)
+        if check_result[0]:
+            account_username = username
+            account_type = check_result[1]
             print('Login successfully!')
         else:
-            print('The password is wrong!')
+            print('The password is wrong or error!')
 
 # 修改密码
 def change_password():
     global account_username
     current_password = input('Please input your current password: ')
-    while not check(account_username, encrypt(current_password)):
+    while not check(account_username, current_password)[0]:
         current_password = input('The password is wrong, please input again: ')
     new_password = input('Please input your new password: ')
-    with open(account_file, 'r', newline='') as f:
+    try:
+        f = open(account_file, 'r', newline='')
         reader = csv.reader(f)
         if reader == None:
             return False
@@ -91,18 +98,27 @@ def change_password():
                 writer.writerows(reader)
                 print('Change password successfully!')
                 return True
+    except:
+        print('Error when changing password!')
+        return False
+    finally:
+        f.close()
     return False
 
-# 检查密码是否正确
+# 检查密码是否正确以及用户权限
 def check(username, password):
-    with open(account_file, encoding = codec) as f:
+    try:
+        f = open(account_file, 'r', encoding = codec)
         reader = csv.reader(f)
-        if reader == None:
-            return False
         for row in reader:
-            if row[0] == username and row[1] == password:
-                return True
-        return False
+            if row[0] == username and row[1] == encrypt(password):
+                return True, row[2]
+        return False, None
+    except:
+        print('Error when checking account!')
+        return False, None
+    finally:
+        f.close()
 
 # 检查用户名是否存在
 def exist(username):
