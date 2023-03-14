@@ -26,7 +26,6 @@ def choose_amount():
 def random_words():
     amount = int(choose_amount())
     word_list = list(word_manage.get_all())
-    print(len(word_list))
     random_elements = random.sample(word_list, amount)
     print(random_elements)
 
