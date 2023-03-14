@@ -86,7 +86,7 @@ def search_menu():
     en = input('Please input the English word: ')
     result = word_manage.search(en)
     if result[0]:
-        print('The Chinese translation is: ' + zh)
+        print('The Chinese translation is: ' + result[1])
     else:
         print('No such word!')
     
