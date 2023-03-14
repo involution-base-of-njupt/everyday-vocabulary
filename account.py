@@ -25,8 +25,7 @@ def init():
 
 # 密码 SHA512 加密
 def encrypt(password):
-    sha512().update(password.encode(codec))
-    return sha512().hexdigest()
+    return sha512(password.encode(codec)).hexdigest()
 
 # 用户注册
 def register():
