@@ -78,7 +78,8 @@ def search(en):
     except:
         print('Error!')
         return False, None
-    
+    finally:
+        f.close()    
 # 修改单词
 def change(en,zh):
     try:

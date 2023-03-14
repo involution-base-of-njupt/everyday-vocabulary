@@ -67,6 +67,9 @@ def user_menu():
 # 添加单词菜单
 def add_menu():
     en = input('Please input the English word: ')
+    while word_manage.exist(en):
+        print('The word already exists!')
+        en = input('Please input the English word: ')
     zh = input('Please input the Chinese translation: ')
     if word_manage.add(en, zh):
         print('Add successfully!')
