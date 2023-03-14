@@ -26,22 +26,9 @@ def choose_amount():
 def random_words():
     amount = int(choose_amount())
     word_list = list(word_manage.get_all())
-    f = open('words.csv', 'r', encoding='utf-8')
-    count = 0
-    reader = csv.reader(f)
-    for row in reader:
-        count += 1
-    #print(count)
-    #words_list = f.readlines()
-    #print(words_list)
-    #max_number = len(f.readlines())
-    #print(max_number)
-    all_numbers = range(1, count)
-    lines_choices = random.sample(all_numbers, int(amount))
-    for lines in lines_choices:
-        lines_real = lines-1
-        print(lines_real)
-        print(word_list[int(lines_real)::])
+    print(len(word_list))
+    random_elements = random.sample(word_list, amount)
+    print(random_elements)
 
 
 """英译中给出单词及对应中文含义"""
