@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+import recite_words
+
 def admin_menu():
     print('''
     1. Add a word
@@ -31,7 +33,9 @@ def user_menu():
     print('''
     1. Search a word
     2. Show Words
-    3. Exit
+    3. Chinese to English
+    4. English to Chinese
+    5. Exit
     ''')
     choice = input('Please input your choice: ')
     if choice == '1':
@@ -39,6 +43,10 @@ def user_menu():
     elif choice == '2':
         show_word()
     elif choice == '3':
+        recite_words.chinese_translate_english()
+    elif choice == '4':
+        recite_words.english_translate_chinese()
+    elif choice == '5':
         exit()
     else:
         print('Invalid input!')
