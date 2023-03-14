@@ -111,4 +111,3 @@ def get_all():
         return None
     finally:
         f.close()
-

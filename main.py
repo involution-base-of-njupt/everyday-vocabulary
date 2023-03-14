@@ -23,10 +23,10 @@ def main():
             account.login()
             if account.account_username:
                 if account.account_type == 'admin':
-                    print('Logged in as an admin')
+                    print('Logged in as an admin.')
                     menu.admin_menu()
                 elif account.account_type == 'user':
-                    print('Logged in as a user')
+                    print('Logged in as a user.')
                     menu.user_menu()
                 else:
                     print('Unkonwn account type!')
@@ -39,7 +39,7 @@ def main():
                 elif account.account_type == 'user':
                     menu.user_menu()
                 else:
-                    print('Error when reading account type!')
+                    print('Unkonwn account type!')
                     exit()
         elif choice == '3':
             exit()
