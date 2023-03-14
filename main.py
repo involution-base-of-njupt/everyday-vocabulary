@@ -11,6 +11,5 @@ def main():
     print('Welcome to the English Dictionary!')
     if account.init():
         print('This is the first time you use this dictionary!\nDefault admin username: admin\nDefault admin password: admin')
-    account.user_register()
 
 main()

@@ -17,7 +17,7 @@ account_type = None
 def init():
     if not os.path.isfile(account_file):
         with open(account_file, 'w', newline='') as f:
-            writer = csv.writer(open(account_file, 'w', newline=''))
+            writer = csv.writer(f)
             writer.writerow(['admin', encrypt('admin'), 'admin'])
             return True
     else:
