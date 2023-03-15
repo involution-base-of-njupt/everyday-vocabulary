@@ -12,7 +12,8 @@ def translate(en):
     form_data['type'] = 'EN2ZH_CN'
     try:
         r = requests.post(request_url, data=form_data)
-    except:
+    except Exception as e:
+        print('Error when translating: ', e)
         return None
     finally:
         r.close()

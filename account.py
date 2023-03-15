@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 import os
-import csv
 import json
 import maskpass
 from hashlib import sha512
@@ -28,9 +27,8 @@ def init():
             if choice == ('y' or 'Y'):
                 try:
                     os.remove(account_file)
-                except:
-                    print('Error!')
-                    raise
+                except Exception as e:
+                    print('Error when removing the directory: ' + e)
                 init()
             elif choice == ('n' or 'N'):
                 exit()
@@ -40,12 +38,10 @@ def init():
                 accounts = json.load(f)
                 if accounts == None:
                     print('Error when reading the account file!')
-                    raise
                 else:
                     return True
-            except:
-                print('Error when opening the account file!')
-                raise
+            except Exception as e:
+                print('Error when opening the account file: ', e)
             finally:
                 f.close()
         return False
@@ -104,8 +100,8 @@ def check(username, password):
         if accounts[username]['password'] == encrypt(password):
             return True, accounts[username]['type']
         return False, None
-    except:
-        print('Error when checking account!')
+    except Exception as e:
+        print('Error when checking account: ', e)
         return False, None
     finally:
         f.close()
@@ -119,8 +115,8 @@ def exist(username):
             return True
         else:
             return False
-    except:
-        print('Error when checking account!')
+    except Exception as e:
+        print('Error when checking account, ', e)
         return False
     finally:
         f.close()
@@ -135,10 +131,10 @@ def write_account(username, encrypted_password, usertype):
             accounts = json.load(f)
         accounts.setdefault(username, {})['password'] = encrypted_password
         accounts.setdefault(username, {})['type'] = usertype
-        f.write(json.dumps(accounts))
+        json.dump(accounts, f)
         return True
-    except:
-        print('Error when writing account!')
+    except Exception as e:
+        print('Error when writing account: ', e)
         raise
         return False
     finally:

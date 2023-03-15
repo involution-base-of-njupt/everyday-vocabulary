@@ -4,8 +4,9 @@
 import account
 import menu
 
-def main():
-    print('Welcome to the English Dictionary!')
+def main(show_welcome=True):
+    if show_welcome:
+        print('Welcome to the English Dictionary!')
     if account.init():
         print('''
     This is the first time you use this dictionary!
@@ -46,6 +47,7 @@ def main():
             exit()
         else:
             print('Invalid input!')
+            main(False)
 
 
 if __name__ == '__main__':
