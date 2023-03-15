@@ -12,20 +12,36 @@ import random
 import csv
 import word_manage
 
+
+word_dict = word_manage.get_all() # 所有单词的字典
+amount_all = len(word_dict) # 单词总数
+word_list = list(word_dict.keys()) # 所有单词的列表，仅英文
+
+
 """选择背诵单词数目"""
 
 
 def choose_amount():
-    amount = input("请选择你想背的单词数量,请选择好后回车确定")
-    return amount
+    while True:
+        amount = input("请选择你想背的单词数量，请选择好后回车确定：")
+        try:
+            amount = int(amount)
+            if amount > amount_all or amount <= 0:
+                print("单词总数为%d，请重新输入" % amount_all)
+                continue
+            else:
+                return amount
+        except ValueError:
+            print("请输入数字")
+            continue
+        
 
 
 """用于生成随机数"""
 
 
 def random_words():
-    amount = int(choose_amount())
-    word_list = list(word_manage.get_all())
+    amount = choose_amount()
     random_elements = random.sample(word_list, amount)
     print(random_elements)
 
@@ -34,7 +50,11 @@ def random_words():
 
 
 def english_translate_chinese():
-    choose_amount()
+    amount = choose_amount()
+    print('你选择了%d个单词' % amount)
+    for i in range(amount):
+        print('请选择单词的正确中文含义')
 
 
-random_words()
+if __name__ == '__main__':
+    english_translate_chinese()
