@@ -10,7 +10,12 @@ def translate(en):
     form_data['i'] = en
     form_data['doctype'] = 'json'
     form_data['type'] = 'EN2ZH_CN'
-    r = requests.post(request_url, data=form_data)
+    try:
+        r = requests.post(request_url, data=form_data)
+    except:
+        return None
+    finally:
+        r.close()
     result = json.loads(r.text)
     if not result['translateResult']:
         return None
