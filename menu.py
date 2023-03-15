@@ -213,18 +213,22 @@ def import_menu(file_type):
         file = input('Please input the file path (example: D:\\folder\\words.csv/json): ')
    
     # 输入处理重复单词的方式
-    mode = input('How to deal with duplicate words? (1: Overwrite, 2: Skip, 3: Abort): ')
-    if mode == '3':
-        return
-    while mode != '1' and mode != '2' and mode != '3':
-        print('Invalid input!')
-        mode = input('How to deal with duplicate words? (1: Overwrite, 2: Skip, 3: Abort): ')
+    while True:
+        choice = input('Overwrite duplicate words? (Y/N): ')
+        if choice == ('Y' or 'y'):
+            overwrite = True
+            break
+        elif choice == ('N' or 'n'):
+            overwrite = False
+            break
+        else:
+            print('Invalid input!')
     
     # 调用导入文件函数
     if file_type == 'csv':
-        import_result = import_file.csv_import(file, mode)
+        import_result = import_file.csv_import(file, overwrite)
     elif file_type == 'json':
-        import_result = import_file.json_import(file, mode)
+        import_result = import_file.json_import(file, overwrite)
     else:
         print('Invalid file type: ' + file_type + '!')
         return

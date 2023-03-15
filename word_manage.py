@@ -21,22 +21,19 @@ def exist(en):
     finally:
         f.close()
 
-# 写入新的单词，传入的 mode 参数表示是否覆盖已有的单词，mode=1 表示覆盖（默认），mode=2 表示跳过
-def write(en, zh, mode='1'):
+# 写入单词，传入的 mode 参数表示是否覆盖已有的单词，mode=1 表示覆盖（默认），mode=2 表示跳过
+def write(en, zh, overwrite=True):
     try:
         f = open(word_file, 'a', newline='', encoding=codec)
         word_dict = json.load(f)
         if en in word_dict:
-            if mode == '1':
+            if overwrite:
                 word_dict[en] = zh
                 f.seek(0)
                 json.dump(word_dict, f, indent=4)
                 return True
-            elif mode == '2':
-                return True
             else:
-                print('Error when writing word: mode error!')
-                return False
+                return True
         return True
     except Exception as e:
         print('Error when writing word: ', e)
@@ -84,10 +81,7 @@ def change(en,zh):
     try:
         f = open(word_file, 'r+', newline='', encoding=codec)
         word_dict = json.load(f)
-        if en in word_dict:
-            return True, word_dict[en]
-        else:
-            return False
+        word_dict[en] = zh
     except Exception as e:
         print('Error when checking word: ', e)
         return False
