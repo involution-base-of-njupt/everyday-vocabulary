@@ -32,7 +32,7 @@ def choose_amount():
             else:
                 return amount
         except ValueError:
-            print("请输入数字")
+            print("请输入整数数字")
             continue
         
 
