@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-import account, menu
+import account
+import menu
 
 def main():
     print('Welcome to the English Dictionary!')
     if account.init():
         print('''
-        This is the first time you use this dictionary!
-        Default admin username: admin
-        Default admin password: admin
+    This is the first time you use this dictionary!
+    Default admin username: admin
+    Default admin password: admin
         ''')
     print('Please login or register!')
     while True:
         print('''
-        1. Login
-        2. Register
-        3. Exit
+    1. Login
+    2. Register
+    3. Exit
         ''')
         choice = input('Please input your choice: ')
         if choice == '1':

@@ -1,6 +1,8 @@
 import csv
 import json
 
+# csv文件转json文件
+# TODO: 异常处理
 def csv2json(csv_file, json_file):
     with open(csv_file, 'r', newline='',encoding='utf-8') as f:
         reader = csv.reader(f)
