@@ -32,14 +32,14 @@ def init():
     else:
         if os.path.isdir(account_file):
             choice = input('The account file is a directory! Remove it? (Y/N)')
-            if choice == 'y' or choice == 'Y':
+            if choice == ('y' or 'Y'):
                 try:
                     os.remove(account_file)
                 except:
                     print('Error!')
                     raise
                 init()
-            elif choice == 'n' or choice == 'N':
+            elif choice == ('n' or 'N'):
                 exit()
         return False
 

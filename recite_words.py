@@ -42,8 +42,8 @@ def choose_amount():
 
 def random_words():
     amount = choose_amount()
-    random_elements = random.sample(word_list, amount)
-    print(random_elements)
+    random_words = random.sample(word_list, amount)
+    print(random_words)
 
 
 """英译中给出单词及对应中文含义"""

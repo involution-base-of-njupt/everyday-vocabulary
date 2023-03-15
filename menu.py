@@ -68,14 +68,18 @@ def user_menu():
 # 添加单词菜单
 def add_menu():
     en = input('Please input the English word: ')
-    while word_manage.exist(en):
-        print('The word already exists!')
-        en = input('Please input the English word: ')
-    zh = input_zh(en)
-    if word_manage.add(en, zh):
-        print('Add successfully!')
+    exist_query = word_manage.exist(en)
+    if exist_query[0]:
+        while exist_query[1]:
+            print('The word already exists!')
+            en = input('Please input the English word: ')
+        zh = input_zh(en, False)
+        if word_manage.add(en, zh):
+            print('Add successfully!')
+        else:
+            print('Add failed!')
     else:
-        print('Add failed!')
+        add_menu()
 
 # 删除单词菜单
 def delete_menu():
@@ -97,30 +101,37 @@ def search_menu():
 # 修改单词菜单
 def change_menu():
     en = input('Please input the English word: ')
-    if word_manage.exist(en):
-        zh = input_zh(en)
-        if word_manage.change(en, zh):
-            print('Change successfully!')
+    exist_query = word_manage.exist(en)
+    if exist_query[0]:
+        if exist_query[1]:
+            zh = input_zh(en, True)
+            if word_manage.change(en, zh):
+                print('Change successfully!')
+            else:
+                print('Change failed!')
         else:
-            print('Change failed!')
+            print('No such word!')
+            choice = input('Add this word? (Y/N)')
+            if choice == ('Y' or 'y'):
+                add_menu()
+            else:
+                change_menu()
     else:
-        print('No such word!')
-        choice = input('Add this word? (Y/N)')
-        if choice == 'Y' or 'y':
-            add_menu()
-        else:
-            change_menu()
+        change_menu()
 
 # 展示单词菜单
 def print_menu():
     print(word_manage.get_all())
 
 # 输入中文菜单
-def input_zh(en):
-    print('''
+def input_zh(en, enable_compare):
+    choose_menu = '''
     1. Get translation from Youdao
     2. Input the translation manually
-    ''')
+    '''
+    if enable_compare:
+        choose_menu += '3. Compare Youdao and the database'
+    print(choose_menu)
     choice = input()
     if choice == '1':
         zh = youdao.translate(en)
@@ -128,10 +139,29 @@ def input_zh(en):
             return zh
         else:
             print('Failed to get translation from Youdao!')
-            input_zh()
+            return input_zh(en, enable_compare)
     elif choice == '2':
         zh = input('Please input the new Chinese translation: ')
         return zh
+    elif choice == '3' and enable_compare:
+        youdao_zh = youdao.translate(en)
+        if youdao_zh:
+            print('The Chinese translation from Youdao is: ' + youdao_zh)
+            db_zh = word_manage.search(en)[1]
+            if db_zh:
+                print('The Chinese translation from the database is: ' + word_manage.search(en)[1])
+            else:
+                print('No such word in the database!')
+                return input_zh(en, enable_compare)
+            choice = input('Use the translation from Youdao? (Y/N)')
+            if choice == ('Y' or 'y'):
+                return youdao_zh
+            else:
+                return input_zh(en, enable_compare)
+        else:
+            print('Failed to get translation from Youdao!')
+            return input_zh(en, enable_compare)
     else:
         print('Invalid input!')
-        input_zh(en)
+        return input_zh(en, enable_compare)
+    

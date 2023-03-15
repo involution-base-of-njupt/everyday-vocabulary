@@ -6,14 +6,17 @@ import csv
 word_file = 'words.csv'
 codec = 'utf-8'
 
-# 检查单词是否存在
+# 检查单词是否存在，返回两个值，第一个值表示是否查询成功，第二个值表示单词是否存在
 def exist(en):
     try:
         f = open(word_file, 'r', newline='', encoding=codec)
         reader = csv.reader(f)
+        if reader == None:
+            print('Error when reading database file!')
+            return False
         for row in reader:
             if row[0] == en:
-                return True
+                return True, True
         return False
     except:
         print('Error when checking word!')
@@ -66,7 +69,7 @@ def delete(en):
     else:
         return False
 
-# 搜索单词
+# 搜索单词，返回两个值，第一个是是否找到，第二个是中文意思
 def search(en):
     try:
         f = open(word_file, 'r', newline='', encoding=codec)
@@ -79,7 +82,8 @@ def search(en):
         print('Error!')
         return False, None
     finally:
-        f.close()    
+        f.close()   
+
 # 修改单词
 def change(en,zh):
     try:
