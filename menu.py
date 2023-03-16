@@ -62,7 +62,7 @@ def user_menu():
     3. Chinese to English
     4. English to Chinese
     5. Change my password
-    5. Exit
+    6. Exit
     ''')
     choice = input('Please input your choice: ')
     if choice == '1':
@@ -91,19 +91,18 @@ def add_menu(en = None):
     if en == None:
         en = input('Please input the English word: ')
     exist_query = word_manage.exist(en)
-    if exist_query[0]:
-        while exist_query[1]:
+    if exist_query[0]: # 查询失败，重新尝试添加
+        add_menu(en)
+    else: # 查询成功
+        while exist_query[1]: # 单词存在，重新输入
             print('The word already exists!')
-            en = input('Please input the English word: ')
+            add_menu()
         zh = input_zh(en, False)
-        if word_manage.add(en, zh)[0] == None:
+        result = word_manage.write(en, zh) # 强制写入
+        if result[0] == None:
             print('Add successfully!')
         else:
-            print('Add failed!')
-    else:
-        
-        # 查询失败，重新尝试添加
-        add_menu(en)
+            print('Add failed: ', result[0])
 
 # 删除单词菜单
 def delete_menu():
@@ -118,8 +117,8 @@ def delete_menu():
 # 搜索单词菜单
 def search_menu():
     en = input('Please input the English word: ')
-    result = word_manage.search(en)[1]
-    if result[0]:
+    result = word_manage.search(en)
+    if not result[0]:
         print('The Chinese translation is: ' + result[1])
     else:
         print('No such word!')
@@ -133,7 +132,7 @@ def change_menu():
     
     # 查询单词是否存在
     exist_query = word_manage.exist(en)
-    if exist_query[0]: # 查询成功
+    if not exist_query[0]: # 查询成功
         if exist_query[1]:# 如果存在，询问是否修改
             zh = input_zh(en, True)
             result = word_manage.change(en, zh)
@@ -144,7 +143,7 @@ def change_menu():
         else:# 如果不存在，询问是否添加
             print('No such word!')
             choice = input('Add this word (Y/N)? ')
-            if choice == ('Y' or 'y'):
+            if choice == 'Y' or choice == 'y':
                 add_menu(en)
             else:
                 change_menu()
@@ -171,7 +170,8 @@ def input_zh(en, enable_compare):
     2. Input the translation manually
     '''
     if enable_compare:
-        choose_menu += '3. Compare Youdao and the database'
+        choose_menu += '''3. Compare Youdao and the database
+    '''
     print(choose_menu)
     choice = input()
     if choice == '1':
@@ -188,14 +188,14 @@ def input_zh(en, enable_compare):
         youdao_zh = youdao.translate(en)
         if youdao_zh[1]:
             print('The Chinese translation from Youdao is: ' + youdao_zh[1])
-            db_zh = word_manage.search(en)[1]
-            if db_zh:
-                print('The Chinese translation from the database is: ' + word_manage.search(en)[1])
+            db_zh = word_manage.search(en)
+            if not db_zh[0]:
+                print('The Chinese translation from the database is: ' + db_zh[1])
             else:
                 print('Error occured: ', db_zh[0])
                 return input_zh(en, enable_compare)
-            choice = input('Use the translation from Youdao? (Y/N)')
-            if choice == ('Y' or 'y'):
+            choice = input('Use the translation from Youdao (Y/N)? ')
+            if choice == 'Y' or choice == 'y':
                 return youdao_zh[1]
             else:
                 return input_zh(en, enable_compare)
@@ -219,10 +219,10 @@ def import_menu(file_type):
     # 输入处理重复单词的方式
     while True:
         choice = input('Overwrite duplicate words? (Y/N): ')
-        if choice == ('Y' or 'y'):
+        if choice == 'Y' or choice == 'y':
             overwrite = True
             break
-        elif choice == ('N' or 'n'):
+        elif choice == 'N' or choice == 'n':
             overwrite = False
             break
         else:

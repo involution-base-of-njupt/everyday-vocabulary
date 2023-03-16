@@ -22,7 +22,7 @@ def main(show_welcome=True):
     1. Login
     2. Register
     3. Exit
-        ''')
+    ''')
         choice = input('Please input your choice: ')
         if choice == '1':
             account.login()
