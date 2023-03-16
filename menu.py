@@ -211,11 +211,20 @@ def input_zh(en, enable_compare):
 def import_menu(file_type):
     
     # 输入文件位置
-    file = input('Please input the file path (example: D:\\folder\\words.csv/json): ')
+    if file_type == 'csv':
+        file = input('Please input the file path (example: D:\\folder\\words.csv) (col1: word, col2: meaning): ')
+    elif file_type == 'json':
+        file = input('Please input the file path (example: D:\\folder\\words.json) (key: word, value: meaning): ')
+    else:
+        print('Invalid file type: ' + file_type + '!')
+        return
     while not os.path.isfile(file):
         print('No such file!')
         file = input('Please input the file path (example: D:\\folder\\words.csv/json): ')
-   
+    
+    # 输入文件编码方式
+    codec = input('Please input the file codec (example: utf-8, gbk): ')
+
     # 输入处理重复单词的方式
     while True:
         choice = input('Overwrite duplicate words? (Y/N): ')
@@ -230,9 +239,9 @@ def import_menu(file_type):
     
     # 调用导入文件函数
     if file_type == 'csv':
-        import_result = import_file.csv_import(file, overwrite)
+        import_result = import_file.csv_import(file, codec, overwrite)
     elif file_type == 'json':
-        import_result = import_file.json_import(file, overwrite)
+        import_result = import_file.json_import(file, codec, overwrite)
     else:
         print('Invalid file type: ' + file_type + '!')
         return
