@@ -16,7 +16,7 @@ Admin --> 单词搜索
 Admin --> 单词展示
 
 Admin --> 密码修改
-UIser --> 密码修改
+User --> 密码修改
 
 User --> 单词搜索
 User --> 单词展示
