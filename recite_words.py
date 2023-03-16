@@ -43,7 +43,7 @@ def choose_amount():
 
 def choice_choose():
     while True:
-        choice_number = input("请选择选项数量，默认为4个，如果不想改变，请输入0退出选择")
+        choice_number = input("请选择选项数量（数量在1到9之间），默认为4个，如果不想改变，请输入0退出选择")
         try:
             choice_number = int(choice_number)
         except Exception as e:
