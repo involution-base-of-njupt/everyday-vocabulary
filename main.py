@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+# 命令行交互模式入口菜单
+
 import account
 import menu
 
+# 传入参数show_welcome（默认为True），控制是否显示欢迎信息
 def main(show_welcome=True):
     if show_welcome:
         print('Welcome to the English Dictionary!')

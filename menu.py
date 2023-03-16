@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+# 命令行交互模式菜单
+
 import recite_words
 import word_manage
 import youdao
@@ -94,7 +96,7 @@ def add_menu(en = None):
             print('The word already exists!')
             en = input('Please input the English word: ')
         zh = input_zh(en, False)
-        if word_manage.add(en, zh):
+        if word_manage.add(en, zh)[0] == None:
             print('Add successfully!')
         else:
             print('Add failed!')
@@ -106,7 +108,7 @@ def add_menu(en = None):
 # 删除单词菜单
 def delete_menu():
     en = input('Please input the English word: ')
-    if word_manage.delete(en):
+    if word_manage.delete(en) == None:
         print('Delete successfully!')
     else:
         print('Delete failed!')
@@ -116,7 +118,7 @@ def delete_menu():
 # 搜索单词菜单
 def search_menu():
     en = input('Please input the English word: ')
-    result = word_manage.search(en)
+    result = word_manage.search(en)[1]
     if result[0]:
         print('The Chinese translation is: ' + result[1])
     else:
@@ -134,15 +136,16 @@ def change_menu():
     if exist_query[0]: # 查询成功
         if exist_query[1]:# 如果存在，询问是否修改
             zh = input_zh(en, True)
-            if word_manage.change(en, zh):
+            result = word_manage.change(en, zh)
+            if result == None:
                 print('Change successfully!')
             else:
-                print('Change failed!')
+                print('Change failed: ', result)
         else:# 如果不存在，询问是否添加
             print('No such word!')
-            choice = input('Add this word? (Y/N)')
+            choice = input('Add this word (Y/N)? ')
             if choice == ('Y' or 'y'):
-                add_menu()
+                add_menu(en)
             else:
                 change_menu()
     else: # 查询失败
@@ -151,13 +154,14 @@ def change_menu():
 
 # 展示单词菜单
 def print_menu():
-    word_dict = word_manage.get_all()
+    result = word_manage.get_all()
+    word_dict = result[1]
     if word_dict:
         # 逐个打印
         for word in word_dict:
-            print(word + ' : ' + word_dict[word])
+            print(word, ' : ', word_dict[word])
     else:
-        print('No word in the database!')
+        print('Error occured: ', result[0])
 
 
 # 输入中文菜单
@@ -172,31 +176,31 @@ def input_zh(en, enable_compare):
     choice = input()
     if choice == '1':
         zh = youdao.translate(en)
-        if zh:
-            return zh
+        if zh[1]:
+            return zh[1]
         else:
-            print('Failed to get translation from Youdao!')
+            print('Failed to get translation from Youdao: ', zh[0])
             return input_zh(en, enable_compare)
     elif choice == '2':
         zh = input('Please input the new Chinese translation: ')
         return zh
     elif choice == '3' and enable_compare:
         youdao_zh = youdao.translate(en)
-        if youdao_zh:
-            print('The Chinese translation from Youdao is: ' + youdao_zh)
+        if youdao_zh[1]:
+            print('The Chinese translation from Youdao is: ' + youdao_zh[1])
             db_zh = word_manage.search(en)[1]
             if db_zh:
                 print('The Chinese translation from the database is: ' + word_manage.search(en)[1])
             else:
-                print('No such word in the database!')
+                print('Error occured: ', db_zh[0])
                 return input_zh(en, enable_compare)
             choice = input('Use the translation from Youdao? (Y/N)')
             if choice == ('Y' or 'y'):
-                return youdao_zh
+                return youdao_zh[1]
             else:
                 return input_zh(en, enable_compare)
         else:
-            print('Failed to get translation from Youdao!')
+            print('Failed to get translation from Youdao: ', youdao_zh[0])
             return input_zh(en, enable_compare)
     else:
         print('Invalid input!')
@@ -234,7 +238,7 @@ def import_menu(file_type):
         return
     
     # 显示导入结果
-    if import_result:
+    if import_result == None:
         print('Import successfully!')
     else:
-        print('Import failed!')
+        print('Import failed: ', import_result)

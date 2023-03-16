@@ -128,8 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# IDEA files
+# IDE files
 .idea
+.vscode
 
 # account file
 account.csv

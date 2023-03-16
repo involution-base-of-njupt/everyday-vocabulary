@@ -4,6 +4,7 @@
 import json
 import requests
 
+# 有道翻译，返回值为发生的错误和翻译结果
 def translate(en):
     request_url = 'http://fanyi.youdao.com/translate'
     form_data = {}
@@ -14,11 +15,11 @@ def translate(en):
         r = requests.post(request_url, data=form_data)
     except Exception as e:
         print('Error when translating: ', e)
-        return None
+        return e, None
     finally:
         r.close()
     result = json.loads(r.text)
     if not result['translateResult']:
-        return None
+        return 'TranslateError', None
     else:
-        return result['translateResult'][0][0]['tgt']
+        return None, result['translateResult'][0][0]['tgt']

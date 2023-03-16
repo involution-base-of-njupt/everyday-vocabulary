@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+# 账户管理模块
+# 命令行界面和图形化界面都需要用到
+# 前4个函数为命令行交互模式下的函数，后4个函数都需要用到
+
 import os
 import json
 import maskpass
@@ -14,43 +18,40 @@ codec = 'utf-8'
 account_username = None
 account_type = None
 
-# TODO: 加密账户类型
+# TODO: 加密账户类型（需要换加密方式为对称加密方式）
 
-# 初始化，检查账户文件是否存在，不存在则创建并写入默认管理员账户
+# （命令行交互模式）初始化，检查账户文件是否存在，不存在则写入默认管理员账户，返回值为是否成功
 def init():
-    if not os.path.isfile(account_file) or not os.path.getsize(account_file):
-        write_account('admin', encrypt('admin'), 'admin')
-        return True
-    else:
-        if os.path.isdir(account_file):
-            choice = input('The account file is a directory! Remove it? (Y/N)')
+    if not os.path.isfile(account_file) or not os.path.getsize(account_file): # 账户文件对应的路径不是文件（是文件夹或者不存在）或文件为空
+        if os.path.isdir(account_file): # 账户文件对应的路径是文件夹
+            choice = input('The account file is a directory! Remove it (Y/N)? ')
             if choice == ('y' or 'Y'):
                 try:
                     os.remove(account_file)
                 except Exception as e:
-                    print('Error when removing the directory: ' + e)
+                    print('Error when removing the directory: ', e)
                 init()
             elif choice == ('n' or 'N'):
                 exit()
-        else:
-            try:
-                f = open(account_file, 'r', newline='', encoding=codec)
-                accounts = json.load(f)
-                if accounts == None:
-                    print('Error when reading the account file!')
-                else:
-                    return True
-            except Exception as e:
-                print('Error when opening the account file: ', e)
-            finally:
-                f.close()
-        return False
+        write_account('admin', encrypt('admin'), 'admin')
+        return True
+    else: # 账户文件对应的路径是文件
+        try:
+            f = open(account_file, 'r', newline='', encoding=codec)
+            accounts = json.load(f)
+            if accounts == None:
+                print('Error when reading the account file!')
+                return False
+            else:
+                return True
+        except Exception as e:
+            print('Error when opening the account file: ', e)
+            exit()
+        finally:
+            f.close()
+            
 
-# 密码 SHA512 加密
-def encrypt(password):
-    return sha512(password.encode(codec)).hexdigest()
-
-# 用户注册
+# （命令行交互模式）用户注册
 def register():
     username = input('Please input your username: ')
     if exist(username):
@@ -65,7 +66,7 @@ def register():
         account_type = 'user'
         print('Register successfully, logged in!')
 
-# 用户登录
+# （命令行交互模式）用户登录
 def login():
     global account_type, account_username
     username = input('Please input your username: ')
@@ -82,7 +83,7 @@ def login():
         else:
             print('The password is wrong or error!')
 
-# 修改密码
+# （命令行交互模式）修改密码
 def change_password():
     global account_username
     current_password = maskpass.askpass('Please input your current password: ')
@@ -92,37 +93,43 @@ def change_password():
     write_account(account_username, encrypt(new_password), account_type)
     return False
 
-# 检查密码是否正确以及用户权限
-def check(username, password):
+# 密码 SHA512 加密
+def encrypt(password):
+    return sha512(password.encode(codec)).hexdigest()
+
+# 检查密码是否正确以及用户权限，传入用户名和加密后的密码，返回值：0.错误信息，1. 密码是否正确，2.用户权限类型
+def check(username, encrypted_password):
     try:
         f = open(account_file, 'r', encoding = codec)
         accounts = json.load(f)
-        if accounts[username]['password'] == encrypt(password):
-            return True, accounts[username]['type']
-        return False, None
-    except Exception as e:
+        if accounts[username]['password'] == encrypted_password: # 密码正确
+            return None, True, accounts[username]['type']
+        else: # 密码错误
+            return None, False, None
+    except Exception as e: # 发生错误
         print('Error when checking account: ', e)
-        return False, None
+        return e, None, None
     finally:
         f.close()
 
-# 检查用户名是否存在
+# 检查用户名是否存在，传入用户名，返回错误信息和结果
 def exist(username):
     try:
         f = open(account_file, 'r', newline='', encoding=codec)
         accounts = json.load(f)
         if username in accounts:
-            return True
+            return None, True
         else:
-            return False
+            return None, False
     except Exception as e:
         print('Error when checking account, ', e)
-        return False
+        return e, None
     finally:
         f.close()
 
-# 写入账户信息
+# 写入账户信息，传入用户名、加密后的密码、用户权限类型，返回错误信息和结果
 def write_account(username, encrypted_password, usertype):
+    f = None
     try:
         f = open(account_file, 'r+', newline='', encoding=codec)
         if not os.path.getsize(account_file):
@@ -132,10 +139,10 @@ def write_account(username, encrypted_password, usertype):
         accounts.setdefault(username, {})['password'] = encrypted_password
         accounts.setdefault(username, {})['type'] = usertype
         json.dump(accounts, f)
-        return True
+        return None, True
     except Exception as e:
         print('Error when writing account: ', e)
-        raise
-        return False
+        return e, None
     finally:
-        f.close()
+        if f:
+            f.close()
