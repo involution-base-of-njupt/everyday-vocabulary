@@ -14,6 +14,9 @@
 import random
 import word_manage
 import time
+import os
+
+
 
 
 def get_dict():
@@ -130,16 +133,17 @@ def chinese_translate_english():
         time_left = int(input("请选择单词展示时间，展示时间过后单词会消失"))
         words_test = random.sample(word_list_chinese_ver, amount)
         for zh in words_test:
-            print(zh, end=' ')
-            print(word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"))
+            print(zh, end='\n')
+            print(word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"), end='')
             time_real = time_left
             while time_real > 0:
                 print('倒计时:', time_real, 's', end=' ')
                 time.sleep(1)
-                print('\r', end='')
+                print(9*'\b', end='')
                 time_real = time_real - 1
-            user_answer = input("请输入答案，按回车确定")
-            if user_answer == zh:
+            print('\r', end='')
+            user_answer = input("请输入答案，按回车确定\n")
+            if user_answer == word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"):
                 print('you are right')
             else:
                 print("you are wrong")
