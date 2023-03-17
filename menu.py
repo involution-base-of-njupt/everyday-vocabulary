@@ -101,16 +101,20 @@ def add_menu(en = None):
         result = word_manage.write(en, zh) # 强制写入
         if result[0] == None:
             print('Add successfully!')
+            return
         else:
             print('Add failed: ', result[0])
+            return
 
 # 删除单词菜单
 def delete_menu():
     en = input('Please input the English word: ')
     if word_manage.delete(en) == None:
         print('Delete successfully!')
+        return
     else:
         print('Delete failed!')
+        return
 
 
 
@@ -120,8 +124,10 @@ def search_menu():
     result = word_manage.search(en)
     if not result[0]:
         print('The Chinese translation is: ' + result[1])
+        return
     else:
         print('No such word!')
+        return
     
 
 # 修改单词菜单
@@ -138,8 +144,10 @@ def change_menu():
             result = word_manage.change(en, zh)
             if result == None:
                 print('Change successfully!')
+                return
             else:
                 print('Change failed: ', result)
+                return
         else:# 如果不存在，询问是否添加
             print('No such word!')
             choice = input('Add this word (Y/N)? ')
@@ -159,6 +167,7 @@ def print_menu():
         # 逐个打印
         for word in word_dict:
             print(word, ' : ', word_dict[word])
+        return
     else:
         print('Error occured: ', result[0])
 
