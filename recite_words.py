@@ -13,6 +13,7 @@
 
 import random
 import word_manage
+import time
 
 
 def get_dict():
@@ -26,7 +27,13 @@ def get_dict():
         return True
 
 
+def get_dict_chinese_ver():
+    global word_dict_chinese_ver, word_list_chinese_ver
+    word_dict_chinese_ver = {v: k for k, v in word_dict.items()}  #生成一个key为中文，valve为英文的字典
+    word_list_chinese_ver = list(word_dict_chinese_ver)  #生成全体单词中文的列表
 # 选择背诵单词数目
+
+
 def choose_amount():
     while True:
         amount = input('请选择你想背的单词数量，请选择好后回车确定：')
@@ -109,10 +116,36 @@ def english_translate_chinese():
                 except ValueError:
                     print('请输入数字')
                     continue
-    else: # 数据库为空
+    else:  # 数据库为空
         print('Dictionary is empty, please add words first.')
         return
 
 
+def chinese_translate_english():
+    if get_dict():
+        print("汉译英测试会展示你选择的单词及其中文含义，时间到后单词会消失，之后请根据汉语意思输入英文")
+        get_dict_chinese_ver()
+        amount = choose_amount()
+        print("你选择了%d个单词" % amount)
+        time_left = int(input("请选择单词展示时间，展示时间过后单词会消失"))
+        words_test = random.sample(word_list_chinese_ver, amount)
+        for zh in words_test:
+            print(zh, end=' ')
+            print(word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"))
+            time_real = time_left
+            while time_real > 0:
+                print('倒计时:', time_real, 's', end=' ')
+                time.sleep(1)
+                print('\r', end='')
+                time_real = time_real - 1
+            user_answer = input("请输入答案，按回车确定")
+            if user_answer == zh:
+                print('you are right')
+            else:
+                print("you are wrong")
+
+
+
+
 if __name__ == '__main__':
-    english_translate_chinese()
+    chinese_translate_english()
