@@ -52,8 +52,7 @@ def write(en, zh, overwrite=True):
             return None, False
     except Exception as e:
         print('Error when writing word: ', e)
-        raise
-        # return e, None
+        return e, None
     finally:
         if fr:
             fr.close()
