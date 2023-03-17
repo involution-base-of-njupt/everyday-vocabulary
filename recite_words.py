@@ -93,7 +93,6 @@ def english_translate_chinese():
                     correct_answer = ans + 1
                 print('''
     {}. {}'''.format(ans + 1, answer))
-            print('\n')
             while True:
                 answer = input('请输入你的答案：')
                 try:
