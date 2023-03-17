@@ -24,7 +24,7 @@ def csv2json(csv_file, json_file, codec):
         if f:
             f.close()
 
-# 导入CSV文件，返回值是发生的错误
+# 导入CSV文件，返回值是发生的错误 TODO: bug修复
 def csv_import(file, codec, mode):
     f = None
     try:

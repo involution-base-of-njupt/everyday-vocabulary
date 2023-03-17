@@ -29,36 +29,32 @@ def exist(en):
 
 # 写入单词，传入的 overwrite 参数表示是否覆盖已有的单词（默认覆盖），返回值为发生的错误和是否发生了覆盖
 def write(en, zh, overwrite=True):
-    fr = None
-    fw = None
+    f = None
     try:
         if not os.path.isfile(word_file) or not os.path.getsize(word_file):
             word_dict = {}
         else:
-            fr = open(word_file, 'r', newline='', encoding=codec)
-            word_dict = json.load(fr)
+            f = open(word_file, 'r', newline='', encoding=codec)
+            word_dict = json.load(f)
         if en in word_dict:
             if overwrite:
                 word_dict[en] = zh
-                fw = open(word_file, 'w', newline='', encoding=codec)
-                json.dump(word_dict, fw, ensure_ascii=False, indent=4)
+                f = open(word_file, 'w', newline='', encoding=codec)
+                json.dump(word_dict, f, ensure_ascii=False, indent=4)
                 return None, True
             else:
                 return None, False
         else:
             word_dict[en] = zh
-            fw = open(word_file, 'w', newline='', encoding=codec)
-            json.dump(word_dict, fw, ensure_ascii=False, indent=4)
+            f = open(word_file, 'w', newline='', encoding=codec)
+            json.dump(word_dict, f, ensure_ascii=False, indent=4)
             return None, False
     except Exception as e:
         print('Error when writing word: ', e)
-        raise
-        # return e, None
+        return e, None
     finally:
-        if fr:
-            fr.close()
-        if fw:
-            fw.close()
+        if f:
+            f.close()
 
 # 添加单词，与写入单词功能相同，但如果单词存在会报错
 def add(en, zh):
@@ -71,23 +67,20 @@ def add(en, zh):
 # 删除单词，传入英文，返回值为发生的错误
 def delete(en):
     if exist(en)[1]:
-        fr = None
-        fw = None
+        f = None
         try:
-            fr = open(word_file, 'r', newline='', encoding=codec)
-            word_dict = json.load(fr)
+            f = open(word_file, 'r', newline='', encoding=codec)
+            word_dict = json.load(f)
             del word_dict[en]
-            fw = open(word_file, 'w', newline='', encoding=codec)
-            json.dump(word_dict, fw, ensure_ascii=False, indent=4)
+            f = open(word_file, 'w', newline='', encoding=codec)
+            json.dump(word_dict, f, ensure_ascii=False, indent=4)
             return None
         except Exception as e:
             print('Error when deleting word: ', e)
             return e
         finally:
-            if fr:
-                fr.close()
-            if fw:
-                fw.close()
+            if f:
+                f.close()
     else:
         return 'WordNotExistError'
 
