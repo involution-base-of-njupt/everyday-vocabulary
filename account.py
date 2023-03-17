@@ -146,24 +146,21 @@ def exist(username):
 
 # 写入账户信息，传入用户名、加密后的密码、用户权限类型，返回错误信息
 def write(username, encrypted_password, usertype):
-    fr = None
-    fw = None
+    f = None
     try:
         if not os.path.isfile(account_file) or not os.path.getsize(account_file):
             accounts = {}
         else:
-            fr = open(account_file, 'r', newline='', encoding=codec)
-            accounts = json.load(fr)
+            f = open(account_file, 'r', newline='', encoding=codec)
+            accounts = json.load(f)
         accounts.setdefault(username, {})['password'] = encrypted_password
         accounts.setdefault(username, {})['type'] = usertype
-        fw = open(account_file, 'w', newline='', encoding=codec)
-        json.dump(accounts, fw, ensure_ascii=False)
+        f = open(account_file, 'w', newline='', encoding=codec)
+        json.dump(accounts, f, ensure_ascii=False)
         return None
     except Exception as e:
         print('Error when writing account: ', e)
         return e
     finally:
-        if fr:
-            fr.close()
-        if fw:
-            fw.close()
+        if f:
+            f.close()
