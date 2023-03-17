@@ -107,6 +107,51 @@ def read_wrong_zh_word(zh):
             f.close()
 
 
+# 删除错英文词，传入单词，返回发生错误
+def delete_wrong_en_word(en):
+    f = None
+    try:
+        if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
+            return 'No such word'
+        else:
+            f = open(wrong_words_file, 'r', newline='', encoding=codec)
+            word_dict = json.load(f)
+            wrong_en_words = word_dict['en']
+            del wrong_en_words[en]
+            f = open(wrong_words_file, 'w', newline='', encoding=codec)
+            json.dump(word_dict, f, ensure_ascii=False, indent=4)
+            return None
+    except Exception as e:
+        print('Error when deleting wrong word: ', e)
+        return e
+    finally:
+        if f:
+            f.close()
+
+
+# 删除错中文词，传入单词，返回发生错误
+def delete_wrong_zh_word(zh):
+    f = None
+    try:
+        if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
+            return 'No such word'
+        else:
+            f = open(wrong_words_file, 'r', newline='', encoding=codec)
+            word_dict = json.load(f)
+            wrong_zh_words = word_dict['zh']
+            del wrong_zh_words[zh]
+            f = open(wrong_words_file, 'w', newline='', encoding=codec)
+            json.dump(word_dict, f, ensure_ascii=False, indent=4)
+            return None
+    except Exception as e:
+        print('Error when deleting wrong word: ', e)
+        return e
+    finally:
+        if f:
+            f.close()
+
+
+
 # 获取所有错英文词，返回值是发生的错误、错词字典（key:单词，value:次数）
 def get_all_wrong_en_words():
     f = None
