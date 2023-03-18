@@ -20,6 +20,6 @@ def translate(en):
         r.close()
     result = json.loads(r.text)
     if not result['translateResult']:
-        return 'TranslateError', None
+        return 'Youdao Translate Error', None
     else:
         return None, result['translateResult'][0][0]['tgt']

@@ -17,8 +17,6 @@ import time
 import os
 
 
-
-
 def get_dict():
     global word_dict, amount_all, word_list
     word_dict = word_manage.get_all()[1]  # 所有单词的字典
@@ -82,6 +80,7 @@ def random_words():
 
 
 # 英译中
+# FIXME: 正确答案固定在最后
 def english_translate_chinese():
     if get_dict():
         amount = choose_amount()
@@ -142,14 +141,8 @@ def chinese_translate_english():
                 print(9*'\b', end='')
                 time_real = time_real - 1
             print('\r', end='')
-            user_answer = input("请输入答案，按回车确定\n")
+            user_answer = input("请输入答案，按回车确定：\n")
             if user_answer == word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"):
-                print('you are right')
+                print('回答正确')
             else:
-                print("you are wrong")
-
-
-
-
-if __name__ == '__main__':
-    chinese_translate_english()
+                print("回答错误")
