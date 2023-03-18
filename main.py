@@ -9,33 +9,33 @@ import menu
 # 传入参数show_welcome（默认为True），控制是否显示欢迎信息
 def main(show_welcome=True):
     if show_welcome:
-        print('Welcome to the English Dictionary!')
+        print('欢迎使用天天背单词！')
     if account.init():
         print('''
-    This is the first time you use this dictionary!
-    Default admin username: admin
-    Default admin password: admin
+    这是你第一次使用天天背单词！
+    默认管理员账号：admin
+    默认管理员密码：admin
         ''')
     print('Please login or register!')
     while True:
         print('''
-    1. Login
-    2. Register
-    3. Exit
+    1. 登录
+    2. 注册用户
+    3. 退出
     ''')
-        choice = input('Please input your choice: ')
+        choice = input('请输入：')
         if choice == '1':
             account.login()
             if account.account_username:
                 if account.account_type == 'admin':
-                    print('Logged in as an admin.')
+                    print('成功以管理员身份登录！')
                     menu.admin_menu()
                 elif account.account_type == 'user':
-                    print('Logged in as a user.')
+                    print('成功以用户身份登录！')
                     menu.user_menu()
                 else:
-                    print('Unkonwn account type!')
-                    account.login()
+                    print('未知账户类型！')
+                    return
         elif choice == '2':
             account.register()
             if account.account_username:
@@ -44,12 +44,12 @@ def main(show_welcome=True):
                 elif account.account_type == 'user':
                     menu.user_menu()
                 else:
-                    print('Unkonwn account type!')
-                    exit()
+                    print('未知账户类型！')
+                    return
         elif choice == '3':
             exit()
         else:
-            print('Invalid input!')
+            print('输入错误！')
             main(False)
 
 

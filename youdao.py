@@ -14,12 +14,11 @@ def translate(en):
     try:
         r = requests.post(request_url, data=form_data)
     except Exception as e:
-        print('Error when translating: ', e)
         return e, None
     finally:
         r.close()
     result = json.loads(r.text)
     if not result['translateResult']:
-        return 'Youdao Translate Error', None
+        return '有道翻译错误', None
     else:
         return None, result['translateResult'][0][0]['tgt']

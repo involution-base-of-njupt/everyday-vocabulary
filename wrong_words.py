@@ -33,9 +33,7 @@ def add_wrong_en_word(en, correct_answer, wrong_answers):
         json.dump(word_dict, f, ensure_ascii=False, indent=4)
         return None
     except Exception as e:
-        print('Error when adding wrong word: ', e)
-        raise
-        # return e
+        return e
     finally:
         if f:
             f.close()
@@ -61,9 +59,7 @@ def add_wrong_zh_word(zh, correct_answer):
         json.dump(word_dict, f, ensure_ascii=False, indent=4)
         return None
     except Exception as e:
-        print('Error when adding wrong word: ', e)
-        raise
-        # return e
+        return e
     finally:
         if f:
             f.close()
@@ -81,7 +77,6 @@ def read_wrong_en_word(en):
             wrong_en_word = word_dict['en'][en]
         return None, wrong_en_word['wrong_times'], wrong_en_word['correct_answer'], wrong_en_word['wrong_answers']
     except Exception as e:
-        print('Error when reading wrong word: ', e)
         return e, 0, '', []
     finally:
         if f:
@@ -100,7 +95,6 @@ def read_wrong_zh_word(zh):
             wrong_zh_word = word_dict['zh'][zh]
         return None, wrong_zh_word['wrong_times'], wrong_zh_word['correct_answer']
     except Exception as e:
-        print('Error when reading wrong word: ', e)
         return e, 0, ''
     finally:
         if f:
@@ -122,7 +116,6 @@ def delete_wrong_en_word(en):
             json.dump(word_dict, f, ensure_ascii=False, indent=4)
             return None
     except Exception as e:
-        print('Error when deleting wrong word: ', e)
         return e
     finally:
         if f:
@@ -144,7 +137,6 @@ def delete_wrong_zh_word(zh):
             json.dump(word_dict, f, ensure_ascii=False, indent=4)
             return None
     except Exception as e:
-        print('Error when deleting wrong word: ', e)
         return e
     finally:
         if f:
@@ -167,7 +159,6 @@ def get_all_wrong_en_words():
                 result[en] = en_wong_words[en]['wrong_times']
             return None, result
     except Exception as e:
-        print('Error when getting all wrong words: ', e)
         return e, {}
 
 
@@ -186,5 +177,4 @@ def get_all_wrong_zh_words():
                 result[zh] = zh_wong_words[zh]['wrong_times']
             return None, result
     except Exception as e:
-        print('Error when getting all wrong words: ', e)
         return e, {}
