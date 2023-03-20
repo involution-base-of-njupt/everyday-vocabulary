@@ -8,7 +8,7 @@ wrong_words_file = 'wrong_words.json'
 codec = 'utf-8'
 
 # 添加错英文词，传入英文单词（str），正确答案（str），错误答案列表（list），返回值是发生的错误
-def add_wrong_en_word(en, correct_answer, wrong_answers):
+def add_wrong_en_word(en, correct_answer, wrong_answers = ()):
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
