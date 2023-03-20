@@ -23,7 +23,9 @@ def add_wrong_en_word(en, correct_answer, wrong_answers):
             en_wong_word['wrong_times'] += 1
         else:
             en_wong_word['wrong_times'] = 1
+        # 正确答案
         en_wong_word['correct_answer'] = correct_answer
+        # 错误答案
         if 'wrong_answers' in en_wong_word:
             en_wong_word['wrong_answers'] += wrong_answers
         else:
