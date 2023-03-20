@@ -14,9 +14,7 @@
 import random
 import word_manage
 import time
-import os
-
-
+import wrong_words
 
 
 def get_dict():
@@ -34,10 +32,12 @@ def get_dict_chinese_ver():
     global word_dict_chinese_ver, word_list_chinese_ver
     word_dict_chinese_ver = {v: k for k, v in word_dict.items()}  #生成一个key为中文，valve为英文的字典
     word_list_chinese_ver = list(word_dict_chinese_ver)  #生成全体单词中文的列表
+
+
 # 选择背诵单词数目
 
 
-def choose_amount():
+def input_amount():
     while True:
         amount = input('请选择你想背的单词数量，请选择好后回车确定：')
         try:
@@ -53,85 +53,78 @@ def choose_amount():
 
 
 # 进行选项数量选择
-def choice_choose():
+def input_option_num():
     while True:
-        choice_number = input('请选择选项数量（数量在2到9之间），建议为4个')
+        option_num = input('请选择选项数量（数量在2到9之间），建议为4个：')
         try:
-            choice_number = int(choice_number)
+            option_num = int(option_num)
         except Exception as e:
             print('发生错误：', e, '请重新输入')
             continue
-        if choice_number < 0:
+        if option_num < 0:
             print('请重新输入')
             continue
-        elif choice_number < 2:
+        elif option_num < 2:
             print('请重新输入')
             continue
-        elif 1 < choice_number < 10:
+        elif 1 < option_num < 10:
             break
         else:
             continue
-    return choice_number
-
-
-# 用于生成随机数
-def random_words():
-    amount = choose_amount()
-    random_words = random.sample(word_list, amount)
-    print(random_words)
+    return option_num
 
 
 # 英译中
 def english_translate_chinese():
     if get_dict():
-        amount = choose_amount()
-        print('你选择了%d个单词' % amount)
-        choice_number = choice_choose()
-        words_test = random.sample(word_list, amount)
-        for en in words_test:
-            answer_list = {}
-            for ans in range(choice_number):
-                if not ans:
-                    answer_list[0] = word_dict[en]
-                else:
-                    answer_list[ans] = word_dict.popitem()[1]
-            print('请选择单词{}的正确中文含义：'.format(en))
-            # 设置答案选项
-            for ans in range(choice_number):
-                answer = answer_list.popitem()[1]
-                if answer == word_dict[en]:
-                    correct_answer = ans + 1
+        word_amount = input_amount() # 要背的单词数量
+        option_num = input_option_num() # 选项数量
+        print('你要背 {} 个单词，每个单词有 {} 个选项。'.format(word_amount, option_num))
+        test_words = random.sample(word_list, word_amount) # 抽取单词列表
+        for en in test_words: # 遍历每个要背的单词
+            correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
+            option_list = { correct_answer - 1 : word_dict[en] } # 选项字典，key为序号，value为选项内容，正确答案放入选项字典
+            print('请选择单词 {} 的正确中文含义：'.format(en))
+            for option_no in range(option_num): # 遍历每个选项
+                if option_no not in option_list: # 如果此选项不是正确选项则设置错误答案
+                    option_list[option_no] = random.choice(list(word_dict.values()))
+                    while option_list[option_no] == option_list[correct_answer - 1]: # 避免错误选项与正确选项重复
+                        option_list[option_no] = random.choice(list(word_dict.values()))
                 print('''
-    {}. {}'''.format(ans + 1, answer))
+    {}. {}'''.format(option_no + 1, option_list[option_no])) # 打印选项
             while True:
-                answer = input('请输入你的答案：')
+                choice = input('\n请输入你的答案：')
                 try:
-                    answer = int(answer)
-                    if answer == correct_answer:
+                    choice = int(choice)
+                    if choice == correct_answer:
                         print('回答正确')
                         break
-                    elif answer > choice_number or answer <= 0:
+                    elif choice > option_num or choice <= 0:
                         print('请重新输入')
                         continue
                     else:
                         print('回答错误')
+                        wrong_words.add_wrong_en_word(en, option_list[correct_answer - 1], ) # TODO: 把错误答案塞进去
                         break
                 except ValueError:
                     print('请输入数字')
                     continue
+                except Exception as e:
+                    print('发生错误：', e)
+                    continue
     else:  # 数据库为空
-        print('Dictionary is empty, please add words first.')
+        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
         return
 
 
+# TODO: 优雅的获取中文释义的英文的方法
 def chinese_translate_english():
     if get_dict():
         print("汉译英测试会展示你选择的单词及其中文含义，时间到后单词会消失，之后请根据汉语意思输入英文")
-        get_dict_chinese_ver()
-        amount = choose_amount()
+        amount = input_amount()
         print("你选择了%d个单词" % amount)
         time_left = int(input("请选择单词展示时间，展示时间过后单词会消失"))
-        words_test = random.sample(word_list_chinese_ver, amount)
+        words_test = random.sample(list(word_dict.values()), amount)
         for zh in words_test:
             print(zh, end='\n')
             print(word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"), end='')
@@ -142,14 +135,10 @@ def chinese_translate_english():
                 print(9*'\b', end='')
                 time_real = time_real - 1
             print('\r', end='')
-            user_answer = input("请输入答案，按回车确定\n")
+            user_answer = input("请输入答案，按回车确定：\n")
             if user_answer == word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"):
-                print('you are right')
+                print('回答正确')
             else:
-                print("you are wrong")
+                print("回答错误")
 
-
-
-
-if __name__ == '__main__':
-    chinese_translate_english()
+english_translate_chinese()

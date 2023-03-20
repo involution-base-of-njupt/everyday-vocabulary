@@ -21,7 +21,6 @@ def exist(en):
         else:
             return None, False
     except Exception as e:
-        print('Error when checking word: ', e)
         return e, None
     finally:
         if f:
@@ -50,7 +49,6 @@ def write(en, zh, overwrite=True):
             json.dump(word_dict, f, ensure_ascii=False, indent=4)
             return None, False
     except Exception as e:
-        print('Error when writing word: ', e)
         return e, None
     finally:
         if f:
@@ -61,8 +59,7 @@ def add(en, zh):
     if not exist(en)[1]:
         return write(en, zh)
     else:
-        print('This word already exists!')
-        return 'WordExistError', False
+        return '单词已存在', False
 
 # 删除单词，传入英文，返回值为发生的错误
 def delete(en):
@@ -76,13 +73,12 @@ def delete(en):
             json.dump(word_dict, f, ensure_ascii=False, indent=4)
             return None
         except Exception as e:
-            print('Error when deleting word: ', e)
             return e
         finally:
             if f:
                 f.close()
     else:
-        return 'WordNotExistError'
+        return '单词不存在'
 
 # 搜索单词，返回两个值，第一个是发生的错误，第二个是中文意思
 def search(en):
@@ -93,9 +89,8 @@ def search(en):
         if en in word_dict:
             return None, word_dict[en]
         else:
-            return 'WordNotExistError'
+            return '单词不存在'
     except Exception as e:
-        print('Error when checking word!')
         return e
     finally:
         if f:
@@ -106,7 +101,7 @@ def change(en,zh):
     if exist(en)[1]:
         return write(en, zh)[0]
     else:
-        return 'WordNotExistError'
+        return '单词不存在'
 
 # 获取所有单词，返回是否发生错误和获取的字典
 def get_all():
@@ -115,7 +110,6 @@ def get_all():
         f = open(word_file, 'r', newline='', encoding=codec)
         return None, json.load(f)
     except Exception as e:
-        print('Error when getting word dict: ', e)
         return e, None
     finally:
         if f:
