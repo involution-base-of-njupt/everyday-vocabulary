@@ -261,7 +261,7 @@ class MyWindow(QWidget):
     #     # 绑定信号与槽函数
     #     self.login_btn.clicked.connect(self.login)
     #
-    def login(self):
+          # def login(self):
     #     """登录按钮的槽函数"""
     #     user_name = self.user_name_qwidget.text()
     #     password = self.password_qwidget.text()
@@ -279,5 +279,9 @@ if __name__ == '__main__':
     w = MyWindow()
     # 展示窗口
     w.ui.show()
-
+    w.ui.setWindowOpacity(0.9)
+    #
+    #
+    # 哈哈哈哈哈哈哈哈哈哈透明啦哈哈哈哈哈哈
+    #
     app.exec()
