@@ -239,5 +239,3 @@ def chinese_translate_english_wrong():
         if word_data[0]:
             print('错误信息：', word_data[0])
         return
-
-chinese_translate_english_wrong()
