@@ -53,7 +53,7 @@ def cli_main(show_welcome=True):
             exit()
         else:
             print('输入错误！')
-            main(False)
+            cli_main(False)
 
 
 if __name__ == '__main__':

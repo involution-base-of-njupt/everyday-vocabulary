@@ -40,6 +40,7 @@ def csv_import(file, codec, mode):
 
 # 导入JSON文件，返回值是发生的错误
 def json_import(file, codec, overwrite):
+    f = None
     try:
         f = open(file, 'r', newline='',encoding=codec)
         word_dict = json.load(f)
@@ -49,4 +50,5 @@ def json_import(file, codec, overwrite):
     except Exception as e:
         return e
     finally:
-        f.close()
+        if f:
+            f.close()

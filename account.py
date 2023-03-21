@@ -90,6 +90,7 @@ def login():
 # （命令行交互模式）修改密码
 def change_password():
     current_password = maskpass.askpass('请输入当前密码：')
+    check_result = check(account_username, encrypt(current_password))
     while True:
         if check_result[0]: # 发生错误
             current_password = maskpass.askpass('请重新输入密码：')
