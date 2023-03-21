@@ -110,7 +110,7 @@ def english_translate_chinese():
                 except Exception as e:
                     print('发生错误：', e)
                     continue
-    else:  # 数据库为空
+    else: # 数据库为空
         print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
         return
 
@@ -145,6 +145,6 @@ def chinese_translate_english():
                 print('回答正确')
             else:
                 print("回答错误")
-
-
-chinese_translate_english()
+    else: # 数据库为空
+        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
+        return
