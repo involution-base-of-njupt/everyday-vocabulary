@@ -128,6 +128,9 @@ def english_translate_chinese_wrong():
         test_words = random.sample(list(wrong_en_words.keys()), word_amount) # 抽取单词列表
         for en in test_words: # 遍历每个要背的单词
             word_data = wrong_words.read_wrong_en_word(en)
+            if word_data[0]:
+                print('发生错误：', word_data[0])
+                break
             option_num = len(word_data[3]) + 1 # 选项数量
             correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
             option_list = { correct_answer - 1 : word_data[2] } # 选项字典，key为序号，value为选项内容，正确答案放入选项字典
@@ -204,3 +207,37 @@ def chinese_translate_english():
     else: # 数据库为空
         print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
         return
+
+
+# 中译英背错词
+def chinese_translate_english_wrong():
+    result = wrong_words.get_all_wrong_zh_words()
+    wrong_zh_words = result[1]
+    word_data = ('', 0, '', [])
+    if not wrong_zh_words == {}:
+        global amount_all
+        amount_all = len(wrong_zh_words)
+        word_amount = input_amount() # 要背的单词数量
+        print('你要背 {} 个单词。\n'.format(word_amount))
+        test_words = random.sample(list(wrong_zh_words.keys()), word_amount) # 抽取单词列表
+        for zh in test_words: # 遍历每个要背的单词
+            word_data = wrong_words.read_wrong_zh_word(zh)
+            if word_data[0]:
+                print('发生错误：', word_data[0])
+                continue
+            print('输入中文含义 {} 的正确英文单词，这个词之前错了 {} 次'.format(zh, word_data[1]))
+            answer = input('\n请输入你的答案：')
+            if answer == word_data[2]:
+                print('回答正确')
+            else:
+                print('回答错误')
+                wrong_words.add_wrong_zh_word(zh)
+    else: # 数据库为空或出错
+        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
+        if result[0]:
+            print('错误信息：', result[0])
+        if word_data[0]:
+            print('错误信息：', word_data[0])
+        return
+
+chinese_translate_english_wrong()

@@ -24,10 +24,10 @@ def add_wrong_en_word(en, correct_answer = '', wrong_answers = ()):
         else:
             en_wong_word['wrong_times'] = 1
         # 正确答案
-        if correct_answer == '':
+        if not correct_answer == '':
             en_wong_word['correct_answer'] = correct_answer
         # 错误答案
-        if 'wrong_answers' in en_wong_word:
+        if 'wrong_answers' in en_wong_word and not wrong_answers == ():
             en_wong_word['wrong_answers'] += wrong_answers
         else:
             en_wong_word['wrong_answers'] = wrong_answers
@@ -57,7 +57,7 @@ def add_wrong_zh_word(zh, correct_answer = ''):
             zh_wong_word['wrong_times'] += 1
         else:
             zh_wong_word['wrong_times'] = 1
-        if correct_answer == '':
+        if not correct_answer == '':
             zh_wong_word['correct_answer'] = correct_answer
         f = open(wrong_words_file, 'w', newline='', encoding=codec)
         json.dump(word_dict, f, ensure_ascii=False, indent=4)
@@ -174,7 +174,7 @@ def get_all_wrong_en_words():
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
-            return None, None
+            return None, {}
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
@@ -192,7 +192,7 @@ def get_all_wrong_zh_words():
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
-            return None
+            return None, {}
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
