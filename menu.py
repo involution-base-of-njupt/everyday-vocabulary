@@ -9,11 +9,13 @@ import youdao
 import account
 import import_file
 import os
+import wrong_words
 
 # 管理员菜单
 # TODO: 用户管理菜单
 def admin_menu():
-    print('''
+    while True:
+        print('''
     1. 添加单词
     2. 删除单词
     3. 修改单词
@@ -24,68 +26,60 @@ def admin_menu():
     8. 修改密码
     9. 返回上级菜单
     ''')
-    choice = input('请输入：')
-    if choice == '1':
-        add_menu()
-        admin_menu()
-    elif choice == '2':
-        delete_menu()
-        admin_menu()
-    elif choice == '3':
-        change_menu()
-        admin_menu()
-    elif choice == '4':
-        search_menu()
-        admin_menu()
-    elif choice == '5':
-        print_menu()
-        admin_menu()
-    elif choice == '6':
-        import_menu('csv')
-        admin_menu()
-    elif choice == '7':
-        import_menu('json')
-        admin_menu()
-    elif choice == '8':
-        account.change_password()
-        admin_menu()
-    elif choice == '9':
-        return
-    else:
-        print('输入错误！')
-        admin_menu()
+        choice = input('请输入：')
+        if choice == '1':
+            add_menu()
+        elif choice == '2':
+            delete_menu()
+        elif choice == '3':
+            change_menu()
+        elif choice == '4':
+            search_menu()
+        elif choice == '5':
+            print_menu()
+        elif choice == '6':
+            import_menu('csv')
+        elif choice == '7':
+            import_menu('json')
+        elif choice == '8':
+            account.change_password()
+        elif choice == '9':
+            return
+        else:
+            print('输入错误！')
 
 # 用户菜单
 def user_menu():
-    print('''
+    while True:
+        print('''
     1. 搜索单词
     2. 输出单词列表
-    3. 中译英测试
-    4. 英译中测试
-    5. 修改密码
-    6. 返回上级菜单
+    3. 英译中测试
+    4. 中译英测试
+    5. 英译中错词本管理
+    6. 中译英错词本管理
+    7. 修改密码
+    8. 返回上级菜单
     ''')
-    choice = input('请输入：')
-    if choice == '1':
-        search_menu()
-        user_menu()
-    elif choice == '2':
-        print_menu()
-        user_menu()
-    elif choice == '3':
-        recite_words.chinese_translate_english()
-        user_menu()
-    elif choice == '4':
-        recite_words.english_translate_chinese()
-        user_menu()
-    elif choice == '5':
-        account.change_password()
-        user_menu()
-    elif choice == '6':
-        return
-    else:
-        print('输入错误！')
-        user_menu()
+        choice = input('请输入：')
+        if choice == '1':
+            search_menu()
+        elif choice == '2':
+            print_menu()
+        elif choice == '3':
+            recite_words.english_translate_chinese()
+        elif choice == '4':
+            recite_words.chinese_translate_english()
+        elif choice == '5':
+            en2zh_wrong_words_menu()
+        elif choice == '6':
+            zh2en_wrong_words_menu()
+        elif choice == '7':
+            account.change_password()
+        elif choice == '8':
+            return
+        else:
+            print('输入错误！')
 
 # 添加单词菜单，可选传入英文单词
 def add_menu(en = None):
@@ -234,7 +228,7 @@ def import_menu(file_type):
         return
     
     # 输入文件编码方式
-    codec = input('请输入文件编码（如：utf-8，gbk（：')
+    codec = input('请输入文件编码（如：utf-8，gbk）：')
 
     # 输入处理重复单词的方式
     while True:
@@ -262,3 +256,89 @@ def import_menu(file_type):
         print('导入成功！')
     else:
         print('导入失败：', import_result)
+
+
+# 英译中错词本菜单
+def en2zh_wrong_words_menu():
+    while True:
+        print('''
+    1. 查看所有错词
+    2. 搜索错词
+    3. 删除错词
+    4. 返回上一级
+    ''')
+        choice = input()
+        
+        if choice == '1':
+            result = wrong_words.get_all_wrong_en_words()
+            if not result[0] == None:
+                # 逐个打印
+                for word, wrong_times in result[1]:
+                    print('{}：错误次数：{}'.format(word, wrong_times))
+            else:
+                print('发生错误：', result[0])
+        
+        elif choice == '2':
+            en = input('请输入要搜索的英文单词：')
+            result = wrong_words.read_wrong_en_word(en)
+            if not result[0] == None:
+                print('错词次数：{}，正确中文含义：{}，错误中文含义：{}'.format(result[1], result[2], result[3]))
+            else:
+                print('发生错误：', result[0])
+
+        elif choice == '3':
+            en = input('请输入要搜索的英文单词：')
+            result = wrong_words.delete_wrong_en_word(en)
+            if not result == None:
+                print('发生错误：', result)
+            else:
+                print('删除成功！')
+        elif choice == '4':
+            return
+        
+        else:
+            print('输入错误！')
+            continue
+
+
+# 中译英错词本菜单
+def zh2en_wrong_words_menu():
+    while True:
+        print('''
+    1. 查看所有错词
+    2. 搜索错词
+    3. 删除错词
+    4. 返回上一级
+    ''')
+        choice = input()
+        
+        if choice == '1':
+            result = wrong_words.get_all_wrong_zh_words()
+            if not result[0] == None:
+                # 逐个打印
+                for word, wrong_times in result[1]:
+                    print('{}：错误次数：{}'.format(word, wrong_times))
+            else:
+                print('发生错误：', result[0])
+        
+        elif choice == '2':
+            zh = input('请输入要搜索的中文释义：')
+            result = wrong_words.read_wrong_zh_word(zh)
+            if not result[0] == None:
+                print('错词次数：{}，正确英文单词：{}'.format(result[1], result[2]))
+            else:
+                print('发生错误：', result[0])
+
+        elif choice == '3':
+            zh = input('请输入要删除的中文释义：')
+            result = wrong_words.delete_wrong_zh_word(zh)
+            if not result == None:
+                print('发生错误：', result)
+            else:
+                print('删除成功！')
+        elif choice == '4':
+            return
+        
+        else:
+            print('输入错误！')
+            continue
