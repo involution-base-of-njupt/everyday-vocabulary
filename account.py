@@ -24,15 +24,8 @@ account_type = None
 def init():
     if not os.path.isfile(account_file) or not os.path.getsize(account_file): # 账户文件对应的路径不是文件（是文件夹或者不存在）或文件为空
         if os.path.isdir(account_file): # 账户文件对应的路径是文件夹
-            choice = input('账户文件对应路径是目录！是否删除(Y/N)？')
-            if choice == 'y' or choice == 'Y':
-                try:
-                    os.remove(account_file)
-                except Exception as e:
-                    print('删除目录时发生错误：', e)
-                init()
-            elif choice == 'n' or choice == 'N':
-                exit()
+            print('账户文件路径错误！')
+            exit()
         write('admin', encrypt('admin'), 'admin')
         return True
     else: # 账户文件对应的路径是文件
