@@ -16,7 +16,7 @@ def main(show_welcome=True):
     默认管理员账号：admin
     默认管理员密码：admin
         ''')
-    print('Please login or register!')
+    print('请登录或注册！')
     while True:
         print('''
     1. 登录
