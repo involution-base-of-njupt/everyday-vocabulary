@@ -51,7 +51,7 @@ def init():
         finally:
             if f:
                 f.close()
-            
+
 
 # （命令行交互模式）用户注册
 def register():
