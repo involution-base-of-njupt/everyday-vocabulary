@@ -79,17 +79,21 @@ def english_translate_chinese():
     if get_dict():
         word_amount = input_amount() # 要背的单词数量
         option_num = input_option_num() # 选项数量
-        print('你要背 {} 个单词，每个单词有 {} 个选项。'.format(word_amount, option_num))
+        print('你要背 {} 个单词，每个单词有 {} 个选项。\n'.format(word_amount, option_num))
         test_words = random.sample(word_list, word_amount) # 抽取单词列表
         for en in test_words: # 遍历每个要背的单词
             correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
             option_list = { correct_answer - 1 : word_dict[en] } # 选项字典，key为序号，value为选项内容，正确答案放入选项字典
+            word_dict_without_correct_answer = word_dict
+            del word_dict_without_correct_answer[en] # 获得不包含正确答案的字典
+            wrong_options = [] # 错误答案列表
+            wrong_options += random.sample(list(word_dict_without_correct_answer.values()), option_num - 1) # 添加错误答案
             print('请选择单词 {} 的正确中文含义：'.format(en))
+            i = 0
             for option_no in range(option_num): # 遍历每个选项
                 if option_no not in option_list: # 如果此选项不是正确选项则设置错误答案
-                    option_list[option_no] = random.choice(list(word_dict.values()))
-                    while option_list[option_no] == option_list[correct_answer - 1]: # 避免错误选项与正确选项重复
-                        option_list[option_no] = random.choice(list(word_dict.values()))
+                    option_list[option_no] = wrong_options[i]
+                    i += 1
                 print('''
     {}. {}'''.format(option_no + 1, option_list[option_no])) # 打印选项
             while True:
@@ -104,7 +108,7 @@ def english_translate_chinese():
                         continue
                     else:
                         print('回答错误')
-                        wrong_words.add_wrong_en_word(en, option_list[correct_answer - 1], ) # TODO: 把错误答案塞进去
+                        wrong_words.add_wrong_en_word(en, option_list[correct_answer - 1], wrong_options)
                         break
                 except ValueError:
                     print('请输入数字')
@@ -140,5 +144,3 @@ def chinese_translate_english():
                 print('回答正确')
             else:
                 print("回答错误")
-
-english_translate_chinese()
