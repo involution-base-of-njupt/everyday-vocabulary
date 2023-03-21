@@ -3,8 +3,9 @@
 
 import json
 import os
+import account
 
-wrong_words_file = 'wrong_words.json'
+wrong_words_file = 'wrong_words_{}.json'.format(account.account_username)
 codec = 'utf-8'
 
 # 添加错英文词，传入英文单词（str），正确答案（str），错误答案列表（list），返回值是发生的错误

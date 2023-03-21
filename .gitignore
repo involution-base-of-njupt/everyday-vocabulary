@@ -137,4 +137,4 @@ account.csv
 account.json
 
 # wrong words file
-wrong_words.json
+wrong_words_*.json
