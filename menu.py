@@ -265,7 +265,8 @@ def en2zh_wrong_words_menu():
     1. 查看所有错词
     2. 搜索错词
     3. 删除错词
-    4. 返回上一级
+    4. 背错词
+    5. 返回上一级
     ''')
         choice = input()
         
@@ -293,7 +294,11 @@ def en2zh_wrong_words_menu():
                 print('发生错误：', result)
             else:
                 print('删除成功！')
+        
         elif choice == '4':
+            recite_words.english_translate_chinese_wrong()
+
+        elif choice == '5':
             return
         
         else:
@@ -308,7 +313,8 @@ def zh2en_wrong_words_menu():
     1. 查看所有错词
     2. 搜索错词
     3. 删除错词
-    4. 返回上一级
+    4. 背错词
+    5. 返回上一级
     ''')
         choice = input()
         
@@ -336,7 +342,11 @@ def zh2en_wrong_words_menu():
                 print('发生错误：', result)
             else:
                 print('删除成功！')
+
         elif choice == '4':
+            recite_words.chinese_translate_english_wrong()
+
+        elif choice == '5':
             return
         
         else:
