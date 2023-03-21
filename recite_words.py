@@ -22,10 +22,10 @@ def get_dict():
     word_dict = word_manage.get_all()[1]  # 所有单词的字典
     amount_all = len(word_dict)  # 单词总数
     word_list = list(word_dict)  # 所有单词的列表，仅英文
-    if word_dict == {}:
-        return False
-    else:
+    if word_dict:
         return True
+    else:
+        return False
 
 
 # 选择背诵单词数目
@@ -71,7 +71,7 @@ def input_option_num():
 # 英译中
 def english_translate_chinese():
     if get_dict():
-        word_amount = input_amount(amount_all) # 要背的单词数量
+        word_amount = input_amount() # 要背的单词数量
         option_num = input_option_num() # 选项数量
         print('你要背 {} 个单词，每个单词有 {} 个选项。\n'.format(word_amount, option_num))
         test_words = random.sample(word_list, word_amount) # 抽取单词列表
