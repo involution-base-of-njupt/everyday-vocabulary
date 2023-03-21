@@ -250,18 +250,20 @@ class MyWindow(QWidget):
     def init_ui(self):
         self.ui = uic.loadUi("./account.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
+
+        # 提取要操作的控件
+        self.user_name_qwidget = self.ui.lineEdit_2  # 用户名输入框
+        self.password_qwidget = self.ui.lineEdit  # 密码输入框
+    #     self.login_btn = self.ui.pushButton_2  # 登陆按钮
+    #     self.register_btn = self.ui.pushButton_3  # 注册按钮
+    #     self.yes_btn = self.ui.pushButton  # 确认按钮
     #
-    #     # 提取要操作的控件
-    #     self.user_name_qwidget = self.ui.lineEdit  # 用户名输入框
-    #     self.password_qwidget = self.ui.lineEdit_2  # 密码输入框
-    #     self.login_btn = self.ui.pushButton  # 登录按钮
-    #     self.forget_password_btn = self.ui.pushButton_2  # 忘记密码按钮
-    #     self.textBrowser = self.ui.textBrowser  # 文本显示区域
-    #
+    # #
     #     # 绑定信号与槽函数
     #     self.login_btn.clicked.connect(self.login)
     #
-          # def login(self):
+    #     def login(self):
+    #           print(1111)
     #     """登录按钮的槽函数"""
     #     user_name = self.user_name_qwidget.text()
     #     password = self.password_qwidget.text()
