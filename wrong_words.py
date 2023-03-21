@@ -17,7 +17,6 @@ def add_wrong_en_word(en, correct_answer, wrong_answers = ()):
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
         en_wong_word = word_dict['en'].setdefault(en, {})
-        print(en_wong_word)
         # 错误次数
         if 'wrong_times' in en_wong_word:
             en_wong_word['wrong_times'] += 1
