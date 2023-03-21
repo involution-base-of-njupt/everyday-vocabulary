@@ -71,7 +71,7 @@ def input_option_num():
 # 英译中
 def english_translate_chinese():
     if get_dict():
-        word_amount = input_amount() # 要背的单词数量
+        word_amount = input_amount(amount_all) # 要背的单词数量
         option_num = input_option_num() # 选项数量
         print('你要背 {} 个单词，每个单词有 {} 个选项。\n'.format(word_amount, option_num))
         test_words = random.sample(word_list, word_amount) # 抽取单词列表
@@ -115,6 +115,61 @@ def english_translate_chinese():
         return
 
 
+# 英译中背错词
+def english_translate_chinese_wrong():
+    result = wrong_words.get_all_wrong_en_words()
+    wrong_en_words = result[1]
+    word_data = ('', 0, '', [])
+    if not wrong_en_words == {}:
+        global amount_all
+        amount_all = len(wrong_en_words)
+        word_amount = input_amount() # 要背的单词数量
+        print('你要背 {} 个单词。\n'.format(word_amount))
+        test_words = random.sample(list(wrong_en_words.keys()), word_amount) # 抽取单词列表
+        for en in test_words: # 遍历每个要背的单词
+            word_data = wrong_words.read_wrong_en_word(en)
+            option_num = len(word_data[3]) + 1 # 选项数量
+            correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
+            option_list = { correct_answer - 1 : word_data[2] } # 选项字典，key为序号，value为选项内容，正确答案放入选项字典
+            wrong_options = word_data[3] # 错误答案列表
+            print('请选择单词 {} 的正确中文含义：'.format(en))
+            print('这个词之前错了 {} 次'.format(word_data[1]))
+            i = 0
+            for option_no in range(option_num): # 遍历每个选项
+                if option_no not in option_list: # 如果此选项不是正确选项则设置错误答案
+                    option_list[option_no] = wrong_options[i]
+                    i += 1
+                print('''
+    {}. {}'''.format(option_no + 1, option_list[option_no])) # 打印选项
+            while True:
+                choice = input('\n请输入你的答案：')
+                try:
+                    choice = int(choice)
+                    if choice == correct_answer:
+                        print('回答正确')
+                        break
+                    elif choice > option_num or choice <= 0:
+                        print('请重新输入')
+                        continue
+                    else:
+                        print('回答错误')
+                        wrong_words.add_wrong_en_word(en)
+                        break
+                except ValueError:
+                    print('请输入数字')
+                    continue
+                except Exception as e:
+                    print('发生错误：', e)
+                    continue
+    else: # 数据库为空或出错
+        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
+        if result[0]:
+            print('错误信息：', result[0])
+        if word_data[0]:
+            print('错误信息：', word_data[0])
+        return
+
+
 # 中译英
 def chinese_translate_english():
     if get_dict():
@@ -123,7 +178,7 @@ def chinese_translate_english():
         amount = input_amount()
         print("你选择了%d个单词" % amount)
         while True:
-            print('请选择单词展示时间，展示时间过后单词会消失：')
+            print('请选择单词展示时间（秒），展示时间过后单词会消失：')
             try:
                 time_left = int(input(''))
                 break
@@ -145,6 +200,9 @@ def chinese_translate_english():
                 print('回答正确')
             else:
                 print("回答错误")
+                wrong_words.add_wrong_zh_word(zh, word_dict_chinese_ver[zh])
     else: # 数据库为空
         print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
         return
+
+english_translate_chinese_wrong()
