@@ -172,10 +172,10 @@ def get_all_wrong_zh_words():
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
-            zh_wong_words = word_dict['zh']
+            zh_wrong_words = word_dict['zh']
             result = {}
-            for zh in zh_wong_words:
-                result[zh] = zh_wong_words[zh]['wrong_times']
+            for zh in zh_wrong_words:
+                result[zh] = zh_wrong_words[zh]['wrong_times']
             return None, result
     except Exception as e:
         return e, {}
