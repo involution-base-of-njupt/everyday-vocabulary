@@ -122,16 +122,22 @@ def chinese_translate_english():
         print("汉译英测试会展示你选择的单词及其中文含义，时间到后单词会消失，之后请根据汉语意思输入英文")
         amount = input_amount()
         print("你选择了%d个单词" % amount)
-        time_left = int(input("请选择单词展示时间，展示时间过后单词会消失："))
+        while True:
+            print('请选择单词展示时间，展示时间过后单词会消失：')
+            try:
+                time_left = int(input(''))
+                break
+            except ValueError:
+                print("请输入数字")
+                continue
         words_test = random.sample(list(word_dict.values()), amount)
         for zh in words_test:
             print(zh, end='\n')
-            print(word_dict_chinese_ver[zh], end='')
             time_real = time_left
             while time_real > 0:
-                print(' 倒计时：', time_real, 's', end='')
+                print(word_dict_chinese_ver[zh], ' 倒计时：', time_real, 's', end='')
                 time.sleep(1)
-                print(13*'\b', end='')
+                print('\r', end='')
                 time_real = time_real - 1
             print('\r', end='')
             user_answer = input("请输入答案，按回车确定：\n")
@@ -139,5 +145,6 @@ def chinese_translate_english():
                 print('回答正确')
             else:
                 print("回答错误")
+
 
 chinese_translate_english()
