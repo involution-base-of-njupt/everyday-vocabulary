@@ -28,12 +28,6 @@ def get_dict():
         return True
 
 
-def get_dict_chinese_ver():
-    global word_dict_chinese_ver, word_list_chinese_ver
-    word_dict_chinese_ver = {v: k for k, v in word_dict.items()}  #生成一个key为中文，valve为英文的字典
-    word_list_chinese_ver = list(word_dict_chinese_ver)  #生成全体单词中文的列表
-
-
 # 选择背诵单词数目
 
 
@@ -121,26 +115,29 @@ def english_translate_chinese():
         return
 
 
-# TODO: 优雅的获取中文释义的英文的方法
+# 中译英
 def chinese_translate_english():
     if get_dict():
+        word_dict_chinese_ver = {v: k for k, v in word_dict.items()}  #生成一个key为中文，valve为英文的字典
         print("汉译英测试会展示你选择的单词及其中文含义，时间到后单词会消失，之后请根据汉语意思输入英文")
         amount = input_amount()
         print("你选择了%d个单词" % amount)
-        time_left = int(input("请选择单词展示时间，展示时间过后单词会消失"))
+        time_left = int(input("请选择单词展示时间，展示时间过后单词会消失："))
         words_test = random.sample(list(word_dict.values()), amount)
         for zh in words_test:
             print(zh, end='\n')
-            print(word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"), end='')
+            print(word_dict_chinese_ver[zh], end='')
             time_real = time_left
             while time_real > 0:
-                print('倒计时:', time_real, 's', end=' ')
+                print(' 倒计时：', time_real, 's', end='')
                 time.sleep(1)
-                print(9*'\b', end='')
+                print(13*'\b', end='')
                 time_real = time_real - 1
             print('\r', end='')
             user_answer = input("请输入答案，按回车确定：\n")
-            if user_answer == word_dict_chinese_ver.get(zh, "没有找到中文对应的含义"):
+            if user_answer == word_dict_chinese_ver[zh]:
                 print('回答正确')
             else:
                 print("回答错误")
+
+chinese_translate_english()
