@@ -204,5 +204,3 @@ def chinese_translate_english():
     else: # 数据库为空
         print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
         return
-
-english_translate_chinese_wrong()
