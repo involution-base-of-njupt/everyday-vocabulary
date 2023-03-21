@@ -8,7 +8,7 @@ wrong_words_file = 'wrong_words.json'
 codec = 'utf-8'
 
 # 添加错英文词，传入英文单词（str），正确答案（str），错误答案列表（list），返回值是发生的错误
-def add_wrong_en_word(en, correct_answer, wrong_answers = ()):
+def add_wrong_en_word(en, correct_answer = '', wrong_answers = ()):
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -23,7 +23,8 @@ def add_wrong_en_word(en, correct_answer, wrong_answers = ()):
         else:
             en_wong_word['wrong_times'] = 1
         # 正确答案
-        en_wong_word['correct_answer'] = correct_answer
+        if correct_answer == '':
+            en_wong_word['correct_answer'] = correct_answer
         # 错误答案
         if 'wrong_answers' in en_wong_word:
             en_wong_word['wrong_answers'] += wrong_answers
@@ -41,7 +42,7 @@ def add_wrong_en_word(en, correct_answer, wrong_answers = ()):
 
 
 # 添加错中文词，传入中文单词（str），正确答案（str），返回值是发生的错误
-def add_wrong_zh_word(zh, correct_answer):
+def add_wrong_zh_word(zh, correct_answer = ''):
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -55,7 +56,8 @@ def add_wrong_zh_word(zh, correct_answer):
             zh_wong_word['wrong_times'] += 1
         else:
             zh_wong_word['wrong_times'] = 1
-        zh_wong_word['correct_answer'] = correct_answer
+        if correct_answer == '':
+            zh_wong_word['correct_answer'] = correct_answer
         f = open(wrong_words_file, 'w', newline='', encoding=codec)
         json.dump(word_dict, f, ensure_ascii=False, indent=4)
         return None
@@ -71,7 +73,7 @@ def read_wrong_en_word(en):
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
-            return 'No such word', 0, '', []
+            return '找不到该词', 0, '', []
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
@@ -89,7 +91,7 @@ def read_wrong_zh_word(zh):
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
-            return 'No such word', 0, ''
+            return '找不到该词', 0, ''
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
@@ -102,12 +104,33 @@ def read_wrong_zh_word(zh):
             f.close()
 
 
+# 搜索错中文词，传入关键词，返回发生错误、可能匹配的错中文词列表
+def search_wrong_zh_word(keyword):
+    f = None
+    try:
+        if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
+            return '找不到该词', {}
+        else:
+            f = open(wrong_words_file, 'r', newline='', encoding=codec)
+            word_dict = json.load(f)
+            zh_list = []
+            for zh in word_dict['zh']:
+                if keyword in zh:
+                    zh_list += [zh]
+        return None, zh_list
+    except Exception as e:
+        return e, []
+    finally:
+        if f:
+            f.close()
+
+
 # 删除错英文词，传入单词，返回发生错误
 def delete_wrong_en_word(en):
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
-            return 'No such word'
+            return '找不到该词'
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
@@ -128,7 +151,7 @@ def delete_wrong_zh_word(zh):
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
-            return 'No such word'
+            return '找不到该词'
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
@@ -150,7 +173,7 @@ def get_all_wrong_en_words():
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
-            return None
+            return None, None
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
