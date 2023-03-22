@@ -10,7 +10,7 @@ from hashlib import md5
 
 # MD5处理用户名，防止多用户使用时文件冲突，防止用户名包含系统不支持的文件名导致保存失败
 codec = 'utf-8'
-wrong_words_file = f"{os.path.abspath('.')}/wrong_words_{md5(str(account.account_username).encode(encoding=codec)).hexdigest()}.json"
+wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.account_username).encode(encoding=codec)).hexdigest()}.json"
 
 # 添加错英文词，传入英文单词（str），正确答案（str），错误答案列表（list），返回值是发生的错误
 def add_wrong_en_word(en, correct_answer = '', wrong_answers = ()):

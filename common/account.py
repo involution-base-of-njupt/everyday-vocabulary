@@ -12,7 +12,7 @@ from hashlib import sha512
 from colorama import Fore
 
 # 用户文件路径和编码
-account_file = f"{os.path.abspath('.')}account.json"
+account_file = f"{os.path.abspath('.')}/data/account.json"
 codec = 'utf-8'
 
 # 用户名和用户类型
