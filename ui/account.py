@@ -245,15 +245,15 @@ class MyWindow(QWidget):
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
-        self.user_name_qwidget = self.ui.lineEdit_2  # 用户名输入框
-        self.password_qwidget = self.ui.lineEdit  # 密码输入框
+     #   self.user_name_qwidget = self.ui.lineEdit_2  # 用户名输入框
+      #  self.password_qwidget = self.ui.lineEdit  # 密码输入框
     #     self.login_btn = self.ui.pushButton_2  # 登陆按钮
     #     self.register_btn = self.ui.pushButton_3  # 注册按钮
     #     self.yes_btn = self.ui.pushButton  # 确认按钮
     #
-    # #
+    # 
     #     # 绑定信号与槽函数
-    #     self.login_btn.clicked.connect(self.login)
+     #   self.login_btn.clicked.connect(self.login)
     #
     #     def login(self):
     #           print(1111)

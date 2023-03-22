@@ -13,13 +13,16 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));</string>
+  </property>
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>90</y>
-     <width>551</width>
-     <height>192</height>
+     <x>10</x>
+     <y>60</y>
+     <width>581</width>
+     <height>271</height>
     </rect>
    </property>
   </widget>
@@ -27,15 +30,15 @@
    <property name="geometry">
     <rect>
      <x>530</x>
-     <y>350</y>
+     <y>370</y>
      <width>61</width>
      <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 22pt &quot;幼圆&quot;;
-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);</string>
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>提交</string>
@@ -44,8 +47,8 @@ background-color: rgb(0, 0, 0);</string>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>360</y>
+     <x>150</x>
+     <y>380</y>
      <width>351</width>
      <height>31</height>
     </rect>
@@ -55,13 +58,14 @@ background-color: rgb(0, 0, 0);</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>360</y>
+     <y>380</y>
      <width>111</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 16pt &quot;微软雅黑&quot;;</string>
+    <string notr="true">font: 16pt &quot;微软雅黑&quot;;
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>英文翻译是：</string>
