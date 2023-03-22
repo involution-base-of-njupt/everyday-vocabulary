@@ -4,12 +4,12 @@
 # 命令行交互模式菜单
 
 import recite_words
-import word_manage
-import youdao
-from shared import account
-import import_file
+from common import word_manage
+from common import youdao
+from common import account
+from common import import_file
+from common import wrong_words
 import os
-import wrong_words
 from colorama import Fore
 
 # 管理员菜单

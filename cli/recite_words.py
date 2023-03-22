@@ -5,9 +5,9 @@
 
 
 import random
-import word_manage
+from common import word_manage
+from common import wrong_words
 import time
-import wrong_words
 from colorama import Fore
 
 
