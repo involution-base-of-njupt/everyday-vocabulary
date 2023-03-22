@@ -3,11 +3,13 @@
 
 # 入口菜单
 
-from ui.account import show_window
+import ui.account_ui
 import account
 import menu
 import sys
+import signal
 from colorama import Fore
+
 
 # 命令行交互模式主函数，传入参数show_welcome（默认为True），控制是否显示欢迎信息
 def cli_main(show_welcome=True):
@@ -52,7 +54,7 @@ def cli_main(show_welcome=True):
                     print(Fore.RED, '未知账户类型！', Fore.RESET)
                     return
         elif choice == '3':
-            gui_main() # TODO: 启动图形界面后退出命令行
+            gui_main()
         elif choice == '4':
             exit()
         else:
@@ -62,10 +64,11 @@ def cli_main(show_welcome=True):
 
 # 图形界面主函数
 def gui_main():
-    show_window()
+    ui.account_ui.show()
 
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGINT, signal.SIG_DFL) # 使Ctrl+C可用
     if len(sys.argv) == 1 or sys.argv[0] == 'cli' or sys.argv[1] == 'cli': # 默认启动命令行交互模式
         cli_main()
     elif sys.argv[0] == 'gui' or sys.argv[1] == 'gui': # 启动图形界面

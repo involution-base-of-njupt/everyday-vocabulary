@@ -8,7 +8,7 @@
 import json
 import os
 
-word_file = 'words.json'
+word_file = f"{os.path.abspath('.')}/words.json"
 codec = 'utf-8'
 
 # 检查单词是否存在，返回两个值，第一个值表示发生的错误，第二个值表示单词是否存在

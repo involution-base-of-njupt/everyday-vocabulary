@@ -1,4 +1,5 @@
 import sys
+import os
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -11,7 +12,7 @@ class MyWindow(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi("./account.ui")
+        self.ui = uic.loadUi(f"{os.path.abspath('.')}/ui/account.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
