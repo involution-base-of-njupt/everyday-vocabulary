@@ -3,7 +3,7 @@
 
 import csv
 import json
-import word_manage
+from common import word_manage
 
 # csv文件转json文件，返回值是发生的错误
 def csv2json(csv_file, json_file, codec):

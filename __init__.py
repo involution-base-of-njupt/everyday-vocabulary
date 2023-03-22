@@ -4,9 +4,9 @@ __package__ = 'everyday_vocabulary'
 
 # 入口菜单
 
-from ui import account_ui
-from shared import account
-import menu
+from gui import account_ui
+from cli import menu
+from common import account
 import sys
 import signal
 from colorama import Fore
