@@ -1,7 +1,7 @@
 import sys
 import admin2_manage_words_ui
 import admin2_manage_user_ui
-# import account_ui
+import account_ui
 
 
 from PyQt5.QtWidgets import *
