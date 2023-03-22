@@ -14,66 +14,59 @@ from PyQt5 import uic
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-#
-#
-# class Ui_Form(object):
-#     def setupUi(self, Form):
-#         Form.setObjectName("Form")
-#         Form.resize(1444, 898)
-#         Form.setMaximumSize(QtCore.QSize(1444, 898))
-#         Form.setStyleSheet("font: 14pt \"微软雅黑\";")
-#         self.pushButton = QtWidgets.QPushButton(Form)
-#         self.pushButton.setGeometry(QtCore.QRect(350, 350, 321, 51))
-#         self.pushButton.setStyleSheet("\n"
-# "font: 20pt \"微软雅黑\";\n"
-# "background-color: rgb(0, 0, 0);\n"
-# "color: rgb(255, 255, 255);")
-#         self.pushButton.setObjectName("pushButton")
-#         self.textBrowser = QtWidgets.QTextBrowser(Form)
-#         self.textBrowser.setGeometry(QtCore.QRect(0, 0, 291, 451))
-#         self.textBrowser.setStyleSheet("background-image: url(:/icon/account.png);")
-#         self.textBrowser.setObjectName("textBrowser")
-#         self.lineEdit = QtWidgets.QLineEdit(Form)
-#         self.lineEdit.setGeometry(QtCore.QRect(420, 240, 261, 41))
-#         self.lineEdit.setObjectName("lineEdit")
-#         self.label = QtWidgets.QLabel(Form)
-#         self.label.setGeometry(QtCore.QRect(310, 160, 91, 41))
-#         self.label.setStyleSheet("font: 18pt \"微软雅黑\";")
-#         self.label.setObjectName("label")
-#         self.label_2 = QtWidgets.QLabel(Form)
-#         self.label_2.setGeometry(QtCore.QRect(320, 250, 61, 41))
-#         self.label_2.setStyleSheet("font: 18pt \"微软雅黑\";")
-#         self.label_2.setObjectName("label_2")
-#         self.lineEdit_2 = QtWidgets.QLineEdit(Form)
-#         self.lineEdit_2.setGeometry(QtCore.QRect(420, 160, 261, 41))
-#         self.lineEdit_2.setObjectName("lineEdit_2")
-#         self.pushButton_2 = QtWidgets.QPushButton(Form)
-#         self.pushButton_2.setGeometry(QtCore.QRect(380, 40, 81, 51))
-#         self.pushButton_2.setObjectName("pushButton_2")
-#         self.pushButton_3 = QtWidgets.QPushButton(Form)
-#         self.pushButton_3.setGeometry(QtCore.QRect(540, 40, 81, 51))
-#         self.pushButton_3.setObjectName("pushButton_3")
-#
-#         self.retranslateUi(Form)
-#         QtCore.QMetaObject.connectSlotsByName(Form)
-#
-#     def retranslateUi(self, Form):
-#         _translate = QtCore.QCoreApplication.translate
-#         Form.setWindowTitle(_translate("Form", "Form"))
-#         self.pushButton.setText(_translate("Form", "确定"))
-#         self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-# "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-# "p, li { white-space: pre-wrap; }\n"
-# "</style></head><body style=\" font-family:\'微软雅黑\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-# "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-#         self.label.setText(_translate("Form", "用户名"))
-#         self.label_2.setText(_translate("Form", "密码"))
-#         self.pushButton_2.setText(_translate("Form", "登陆"))
-#         self.pushButton_3.setText(_translate("Form", "注册"))
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(1444, 898)
+        Form.setMaximumSize(QtCore.QSize(1444, 898))
+        Form.setStyleSheet("font: 14pt \"微软雅黑\";")
+        self.pushButton = QtWidgets.QPushButton(Form)
+        self.pushButton.setGeometry(QtCore.QRect(350, 350, 321, 51))
+        self.pushButton.setStyleSheet("\n"
+"font: 20pt \"微软雅黑\";\n"
+"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);")
+        self.pushButton.setObjectName("pushButton")
+        self.textBrowser = QtWidgets.QTextBrowser(Form)
+        self.textBrowser.setGeometry(QtCore.QRect(0, 0, 291, 451))
+        self.textBrowser.setStyleSheet("background-image: url(:/icon/account.png);")
+        self.textBrowser.setObjectName("textBrowser")
+        self.lineEdit = QtWidgets.QLineEdit(Form)
+        self.lineEdit.setGeometry(QtCore.QRect(420, 240, 261, 41))
+        self.lineEdit.setObjectName("lineEdit")
+        self.label = QtWidgets.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(310, 160, 91, 41))
+        self.label.setStyleSheet("font: 18pt \"微软雅黑\";")
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2.setGeometry(QtCore.QRect(320, 250, 61, 41))
+        self.label_2.setStyleSheet("font: 18pt \"微软雅黑\";")
+        self.label_2.setObjectName("label_2")
+        self.lineEdit_2 = QtWidgets.QLineEdit(Form)
+        self.lineEdit_2.setGeometry(QtCore.QRect(420, 160, 261, 41))
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.pushButton_2 = QtWidgets.QPushButton(Form)
+        self.pushButton_2.setGeometry(QtCore.QRect(380, 40, 81, 51))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(Form)
+        self.pushButton_3.setGeometry(QtCore.QRect(540, 40, 81, 51))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
 
-
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.pushButton.setText(_translate("Form", "确定"))
+        self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'微软雅黑\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.label.setText(_translate("Form", "用户名"))
+        self.label_2.setText(_translate("Form", "密码"))
+        self.pushButton_2.setText(_translate("Form", "登陆"))
+        self.pushButton_3.setText(_translate("Form", "注册"))
 
 # 账户管理模块
 # 命令行界面和图形化界面都需要用到
@@ -239,7 +232,7 @@ def write(username, encrypted_password, usertype):
         if f:
             f.close()
 
-import account_picture_rc
+import ui.account_picture_rc
 
 class MyWindow(QWidget):
 
@@ -248,7 +241,7 @@ class MyWindow(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi("./account.ui")
+        self.ui = uic.loadUi(uifile='ui/account.ui')
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
@@ -275,15 +268,12 @@ class MyWindow(QWidget):
     #         self.textBrowser.repaint()
 
 
-if __name__ == '__main__':
+def show_window(): # 展示窗口
     app = QApplication(sys.argv)
-
     w = MyWindow()
-    # 展示窗口
-    w.ui.show()
-    w.ui.setWindowOpacity(0.9)
-    #
-    #
-    # 哈哈哈哈哈哈哈哈哈哈透明啦哈哈哈哈哈哈
-    #
-    app.exec()
+    w.show()
+    w.setWindowOpacity(0.9)
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    show_window()
