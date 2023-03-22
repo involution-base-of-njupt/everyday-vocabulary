@@ -64,6 +64,7 @@ def register():
         else: # 发生错误
             return
 
+
 # （命令行交互模式）用户登录
 def login():
     global account_type, account_username
@@ -87,6 +88,7 @@ def login():
         account_username = username
         account_type = check_result[2]
 
+
 # （命令行交互模式）修改密码
 def change_password():
     current_password = maskpass.askpass('请输入当前密码：')
@@ -106,26 +108,32 @@ def change_password():
     print(Fore.GREEN, '密码修改成功！', Fore.RESET)
     return False
 
-# 密码 SHA512 加密
-def encrypt(password):
-    return sha512(password.encode(codec)).hexdigest()
 
-# 检查密码是否正确以及用户权限，传入用户名和加密后的密码，返回值：0.错误信息，1. 密码是否正确，2.用户权限类型
-def check(username, encrypted_password):
+# 密码 SHA512 加密
+def encrypt(content):
+    return sha512(content.encode(codec)).hexdigest()
+
+
+# 检查密码是否正确以及用户权限，传入用户名，可选传入加密后的密码，返回值：0.错误信息，1. 密码是否正确（如果没有传入则返回None），2.用户权限类型
+def check(username, encrypted_password = ''):
     f = None
     try:
         f = open(account_file, 'r', encoding = codec)
         accounts = json.load(f)
-        if accounts[username]['password'] == encrypted_password: # 密码正确
-            return None, True, accounts[username]['type']
-        else: # 密码错误
-            return None, False, None
+        if encrypted_password: # 传入了加密后的密码，则检查
+            if accounts[username]['password'] == encrypted_password: # 密码正确
+                return None, True, accounts[username]['type']
+            else: # 密码错误
+                return None, False, None
+        else: # 没传入加密后的密码，则不检查
+            return None, None, accounts[username]['type']
     except Exception as e: # 发生错误
-        print(Fore.RED, '验证账户时出现问题：', e, Fore.RESET)
+        print(Fore.RED, '检查账户时出现问题：', e, Fore.RESET)
         return e, None, None
     finally:
         if f:
             f.close()
+
 
 # 检查用户名是否存在，传入用户名，返回错误信息和结果
 def exist(username):
@@ -144,8 +152,9 @@ def exist(username):
         if f:
             f.close()
 
+
 # 写入账户信息，传入用户名、加密后的密码、用户权限类型，返回错误信息
-def write(username, encrypted_password, usertype):
+def write(username, encrypted_password, usertype = ''):
     f = None
     try:
         if not os.path.isfile(account_file) or not os.path.getsize(account_file):
@@ -154,13 +163,53 @@ def write(username, encrypted_password, usertype):
             f = open(account_file, 'r', newline='', encoding=codec)
             accounts = json.load(f)
         accounts.setdefault(username, {})['password'] = encrypted_password
-        accounts.setdefault(username, {})['type'] = usertype
+        if usertype:
+            accounts.setdefault(username, {})['type'] = usertype
         f = open(account_file, 'w', newline='', encoding=codec)
         json.dump(accounts, f, ensure_ascii=False)
         return None
     except Exception as e:
         print(Fore.RED, '写入账户时出现问题：', e, Fore.RESET)
         return e
+    finally:
+        if f:
+            f.close()
+
+
+# 删除账户，传入用户名，返回错误信息
+def delete(username):
+    f = None
+    try:
+        f = open(account_file, 'r', newline='', encoding=codec)
+        accounts = json.load(f)
+        if username in accounts:
+            del accounts[username]
+            f = open(account_file, 'w', newline='', encoding=codec)
+            json.dump(accounts, f, ensure_ascii=False)
+            return None
+        else:
+            return None
+    except Exception as e:
+        print(Fore.RED, '删除账户时出现问题：', e, Fore.RESET)
+        return e
+    finally:
+        if f:
+            f.close()
+
+
+# 读取所有账户信息，返回值：0.错误信息，1.账户信息字典（用户名为键，用户类型为值）
+def read_all():
+    f = None
+    try:
+        f = open(account_file, 'r', newline='', encoding=codec)
+        accounts = json.load(f)
+        result = {}
+        for username in accounts:
+            result[username] = accounts[username]['type']
+        return None, result
+    except Exception as e:
+        print(Fore.RED, '读取账户时出现问题：', e, Fore.RESET)
+        return e, None
     finally:
         if f:
             f.close()
