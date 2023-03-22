@@ -46,16 +46,16 @@ class MyWindow(QWidget):
 
 
 
-    # def login(self):
-    #     """登录按钮的槽函数"""
-    #     user_name = self.user_name_qwidget.text()
-    #     password = self.password_qwidget.text()
-    #     if user_name == "admin" and password == "123456":
-    #         self.textBrowser.setText("欢迎%s" % user_name)
-    #         self.textBrowser.repaint()
-    #     else:
-    #         self.textBrowser.setText("用户名或密码错误....请重试")
-    #         self.textBrowser.repaint()
+    def textBrowser(self):
+        pass
+        # user_name = self.user_name_qwidget.text()
+        # password = self.password_qwidget.text()
+        # if user_name == "admin" and password == "123456":
+        #     self.textBrowser.setText("欢迎%s" % user_name)
+        #     self.textBrowser.repaint()
+        # else:
+        #     self.textBrowser.setText("用户名或密码错误....请重试")
+        #     self.textBrowser.repaint()
 
 
 if __name__ == '__main__':
