@@ -1,6 +1,7 @@
 import sys
 import admin1_ui
 import userlist_ui
+import add_change_user_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -41,10 +42,12 @@ class admin2_manage_user(QWidget):
 
     # TODO:
     def clickedadduser(self):
-        pass
+        self.add_change_user_window = add_change_user_ui.add_change_user()
+        self.add_change_user_window.ui.show()
 
     def clickedchangepassword(self):
-        pass
+        self.add_change_user_window = add_change_user_ui.add_change_user()
+        self.add_change_user_window.ui.show()
 
     def clickeddeleteuser(self):
         pass
