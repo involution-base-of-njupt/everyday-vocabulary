@@ -1,5 +1,6 @@
 import sys
 import admin1_ui
+import userlist_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -49,7 +50,8 @@ class admin2_manage_user(QWidget):
         pass
 
     def clickeduserlist(self):
-        pass
+        self.userlist_window = userlist_ui.userlist()
+        self.userlist_window.ui.show()
 
     def clickedexit(self):
         self.admin1_window = admin1_ui.admin1()
