@@ -43,8 +43,10 @@ def cli_main(show_welcome=True):
             account.register()
             if account.account_username:
                 if account.account_type == 'admin':
+                    print(Fore.GREEN, '成功以管理员身份注册，已自动登录！', Fore.RESET)
                     menu.admin_menu()
                 elif account.account_type == 'user':
+                    print(Fore.GREEN, '成功以用户身份注册，已自动登录！', Fore.RESET)
                     menu.user_menu()
                 else:
                     print(Fore.RED, '未知账户类型！', Fore.RESET)

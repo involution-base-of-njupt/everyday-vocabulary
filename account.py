@@ -61,7 +61,6 @@ def register():
             global account_username, account_type
             account_username = username
             account_type = 'user'
-            print(Fore.GREEN, '注册成功，已登录！', Fore.RESET)
         else: # 发生错误
             return
 
@@ -81,13 +80,12 @@ def login():
                 check_result = check(username, encrypt(password))
             elif check_result[1] == False: # 密码错误
                 print(Fore.RED, '密码错误，请重新输入密码：', Fore.RESET, end='')
-                password = maskpass.askpass()
+                password = maskpass.askpass('')
                 check_result = check(username, encrypt(password))
             else: # 没出错并且密码正确
                 break
         account_username = username
         account_type = check_result[2]
-        print(Fore.GREEN, '登录成功！', Fore.RESET)
 
 # （命令行交互模式）修改密码
 def change_password():
@@ -99,7 +97,7 @@ def change_password():
             check_result = check(account_username, encrypt(current_password))
         elif check_result[1] == False: # 密码错误
             print(Fore.RED, '密码错误，请重新输入密码：', Fore.RESET, end='')
-            current_password = maskpass.askpass()
+            current_password = maskpass.askpass('')
             check_result = check(account_username, encrypt(current_password))
         else: # 没出错并且密码正确
             break
