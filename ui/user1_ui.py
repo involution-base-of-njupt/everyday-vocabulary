@@ -4,6 +4,7 @@ import admin2_manage_words_ui
 import ec_ui
 import ce_ui
 import searchword_ui
+import wordlist_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -51,7 +52,8 @@ class user1(QWidget):
         self.searchword_window.ui.show()
 
     def clickedwordlist(self):
-        pass
+        self.wordlist_window = wordlist_ui.wordlist()
+        self.wordlist_window.ui.show()
 
     def clickedec(self):
         self.ec_window = ec_ui.ec()

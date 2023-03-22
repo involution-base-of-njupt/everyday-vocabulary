@@ -37,6 +37,13 @@
      <height>641</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:20px;
+background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+font: 26pt &quot;微软雅黑&quot;;
+border:3px solid #ffffff;</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
@@ -50,7 +57,8 @@
    <property name="styleSheet">
     <string notr="true">font: 22pt &quot;幼圆&quot;;
 color: rgb(0, 0, 0);
-background-color: rgb(255, 255, 255);</string>
+background-color: rgb(255, 255, 255);
+border-radius:20px;</string>
    </property>
    <property name="text">
     <string>提交</string>
@@ -65,6 +73,13 @@ background-color: rgb(255, 255, 255);</string>
      <height>61</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:20px;
+background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+font: 24pt &quot;Arial&quot;;
+border:3px solid #ffffff;</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -76,7 +91,7 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 16pt &quot;微软雅黑&quot;;
+    <string notr="true">font: 20pt &quot;微软雅黑&quot;;
 color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
