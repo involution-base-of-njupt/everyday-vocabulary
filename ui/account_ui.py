@@ -15,18 +15,24 @@ class MyWindow(QWidget):
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
+        self.user_name_qwidget = self.ui.lineEdit_2  # 用户名输入框
+        self.password_qwidget = self.ui.lineEdit  # 密码输入框
+        self.login_btn = self.ui.pushButton_2  # 登陆按钮
+        self.register_btn = self.ui.pushButton_3  # 注册按钮
 
-
-        self.answer_qwidget = self.ui.lineEdit  # 答案输入框
-        self.push_btn = self.ui.pushButton  # 提交
-        self.textBrowser = self.ui.textBrowser  # 文本显示区域
 
         # 绑定信号与槽函数
-        self.push_btn.clicked.connect(self.clickedpush)   #按了提交按钮后开始一个叫clickedpush的函数
+
+        self.login_btn.clicked.connect(self.clickedlogin)   #按了登陆按钮后开始一个叫函数
+        self.register_btn.clicked.connect(self.clickedregister)   #按了注册按钮后开始一个叫函数
+
 
 
     # TODO:
-    def clickedpush(self):
+    def clickedlogin(self):
+        pass
+
+    def clickedregister(self):
         pass
 
 
@@ -44,14 +50,17 @@ class MyWindow(QWidget):
 
 
 if __name__ == '__main__':
+
     app = QApplication(sys.argv)
 
     w = MyWindow()
     # 展示窗口
     w.ui.show()
 
-
+    # w.setWindowOpacity(0.9)
     app.exec()
+
+
 
 
 
