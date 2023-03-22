@@ -49,7 +49,7 @@ def cli_main(show_welcome=True):
                     print('未知账户类型！')
                     return
         elif choice == '3':
-            gui_main()
+            gui_main() # TODO: 启动图形界面后退出命令行
         elif choice == '4':
             exit()
         else:
