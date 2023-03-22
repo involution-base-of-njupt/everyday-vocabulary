@@ -10,6 +10,7 @@ import account
 import import_file
 import os
 import wrong_words
+from colorama import Fore
 
 # 管理员菜单
 # TODO: 用户管理菜单
@@ -46,7 +47,7 @@ def admin_menu():
         elif choice == '9':
             return
         else:
-            print('输入错误！')
+            print(Fore.RED, '输入错误！', Fore.RESET)
 
 # 用户菜单
 def user_menu():
@@ -79,7 +80,7 @@ def user_menu():
         elif choice == '8':
             return
         else:
-            print('输入错误！')
+            print(Fore.RED, '输入错误！', Fore.RESET)
 
 # 添加单词菜单，可选传入英文单词
 def add_menu(en = None):
@@ -95,10 +96,10 @@ def add_menu(en = None):
         zh = input_zh(en, False)
         result = word_manage.write(en, zh) # 强制写入
         if result[0] == None:
-            print('添加成功！')
+            print(Fore.GREEN, '添加成功！', Fore.RESET)
             return
         else:
-            print('添加失败：', result[0])
+            print(Fore.RED, '添加失败：', result[0], Fore.RESET)
             return
 
 # 删除单词菜单
@@ -122,7 +123,7 @@ def search_menu():
         print('此单词的中文含义是：' + result[1])
         return
     else:
-        print('此单词不存在！')
+        print(Fore.RED, '此单词不存在！', Fore.RESET)
         return
     
 
@@ -139,13 +140,13 @@ def change_menu():
             zh = input_zh(en, True)
             result = word_manage.change(en, zh)
             if result == None:
-                print('修改成功！')
+                print(Fore.GREEN, '修改成功！', Fore.RESET)
                 return
             else:
-                print('修改失败：', result)
+                print(Fore.RED, '修改失败：', result, Fore.RESET)
                 return
         else:# 如果不存在，询问是否添加
-            print('此单词不存在！')
+            print(Fore.RED, '此单词不存在！', Fore.RESET)
             choice = input('是否添加此单词(Y/N)？')
             if choice == 'Y' or choice == 'y':
                 add_menu(en)
@@ -165,7 +166,7 @@ def print_menu():
             print(word, '：', word_dict[word])
         return
     else:
-        print('发生错误：', result[0])
+        print(Fore.RED, '发生错误：', result[0], Fore.RESET)
 
 
 # 输入中文菜单
@@ -197,7 +198,7 @@ def input_zh(en, enable_compare):
             if not db_zh[0]:
                 print('数据库中的中文含义是：' + db_zh[1])
             else:
-                print('发生错误：', db_zh[0])
+                print(Fore.RED, '发生错误：', db_zh[0], Fore.RESET)
                 return input_zh(en, enable_compare)
             choice = input('是否保存有道翻译结果(Y/N)？')
             if choice == 'Y' or choice == 'y':
@@ -205,10 +206,10 @@ def input_zh(en, enable_compare):
             else:
                 return input_zh(en, enable_compare)
         else:
-            print('从有道获取中文含义失败：', youdao_zh[0])
+            print(Fore.RED, '从有道获取中文含义失败：', youdao_zh[0], Fore.RESET)
             return input_zh(en, enable_compare)
     else:
-        print('输入错误！')
+        print(Fore.RED, '输入错误！', Fore.RESET)
         return input_zh(en, enable_compare)
 
 
@@ -224,7 +225,7 @@ def import_menu(file_type):
         print('错误的文件类型：', file_type, '！')
         return
     while not os.path.isfile(file):
-        print('此文件不存在！')
+        print(Fore.RED, '此文件不存在！', Fore.RESET)
         return
     
     # 输入文件编码方式
@@ -240,7 +241,7 @@ def import_menu(file_type):
             overwrite = False
             break
         else:
-            print('输入错误！')
+            print(Fore.RED, '输入错误！', Fore.RESET)
     
     # 调用导入文件函数
     if file_type == 'csv':
@@ -248,14 +249,14 @@ def import_menu(file_type):
     elif file_type == 'json':
         import_result = import_file.json_import(file, codec, overwrite)
     else:
-        print('错误的文件类型：' + file_type + '！')
+        print(Fore.RED, '错误的文件类型：' + file_type + '！', Fore.RESET)
         return
     
     # 显示导入结果
     if import_result == None:
-        print('导入成功！')
+        print(Fore.GREEN, '导入成功！', Fore.RESET)
     else:
-        print('导入失败：', import_result)
+        print(Fore.RED, '导入失败：', import_result, Fore.RESET)
 
 
 # 英译中错词本菜单
@@ -277,7 +278,7 @@ def en2zh_wrong_words_menu():
                 for word, wrong_times in result[1]:
                     print(f'{word}：错误次数：{wrong_times}')
             else:
-                print('发生错误：', result[0])
+                print(Fore.RED, '发生错误：', result[0], Fore.RESET)
         
         elif choice == '2':
             en = input('请输入要搜索的英文单词：')
@@ -285,15 +286,15 @@ def en2zh_wrong_words_menu():
             if not result[0] == None:
                 print(f'错词次数：{result[1]}，正确中文含义：{result[2]}，错误中文含义：{result[3]}')
             else:
-                print('发生错误：', result[0])
+                print(Fore.RED, '发生错误：', result[0], Fore.RESET)
 
         elif choice == '3':
             en = input('请输入要搜索的英文单词：')
             result = wrong_words.delete_wrong_en_word(en)
             if not result == None:
-                print('发生错误：', result)
+                print(Fore.RED, '发生错误：', result, Fore.RESET)
             else:
-                print('删除成功！')
+                print(Fore.GREEN, '删除成功！', Fore.RESET)
         
         elif choice == '4':
             recite_words.english_translate_chinese_wrong()
@@ -302,7 +303,7 @@ def en2zh_wrong_words_menu():
             return
         
         else:
-            print('输入错误！')
+            print(Fore.RED, '输入错误！', Fore.RESET)
             continue
 
 
@@ -325,7 +326,7 @@ def zh2en_wrong_words_menu():
                 for word, wrong_times in result[1]:
                     print(f'{word}：错误次数：{wrong_times}')
             else:
-                print('发生错误：', result[0])
+                print(Fore.RED, '发生错误：', result[0], Fore.RESET)
         
         elif choice == '2':
             zh = input('请输入要搜索的中文释义：')
@@ -333,15 +334,15 @@ def zh2en_wrong_words_menu():
             if not result[0] == None:
                 print(f'错词次数：{result[1]}，正确英文单词：{result[2]}')
             else:
-                print('发生错误：', result[0])
+                print(Fore.RED, '发生错误：', result[0], Fore.RESET)
 
         elif choice == '3':
             zh = input('请输入要删除的中文释义：')
             result = wrong_words.delete_wrong_zh_word(zh)
             if not result == None:
-                print('发生错误：', result)
+                print(Fore.RED, '发生错误：', result, Fore.RESET)
             else:
-                print('删除成功！')
+                print(Fore.GREEN, '删除成功！', Fore.RESET)
 
         elif choice == '4':
             recite_words.chinese_translate_english_wrong()
@@ -350,5 +351,5 @@ def zh2en_wrong_words_menu():
             return
         
         else:
-            print('输入错误！')
+            print(Fore.RED, '输入错误！', Fore.RESET)
             continue

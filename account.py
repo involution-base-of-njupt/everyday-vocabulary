@@ -9,6 +9,7 @@ import os
 import json
 import maskpass
 from hashlib import sha512
+from colorama import Fore
 
 # 用户文件路径和编码
 account_file = 'account.json'
@@ -24,7 +25,7 @@ account_type = None
 def init():
     if not os.path.isfile(account_file) or not os.path.getsize(account_file): # 账户文件对应的路径不是文件（是文件夹或者不存在）或文件为空
         if os.path.isdir(account_file): # 账户文件对应的路径是文件夹
-            print('账户文件路径错误！')
+            print(Fore.RED, '账户文件路径错误！', Fore.RESET)
             exit()
         write('admin', encrypt('admin'), 'admin')
         return True
@@ -39,7 +40,7 @@ def init():
             else:
                 return False
         except Exception as e:
-            print('读取账户时发生错误：', e)
+            print(Fore.RED, '读取账户时发生错误：', e, Fore.RESET)
             exit()
         finally:
             if f:
@@ -50,7 +51,7 @@ def init():
 def register():
     username = input('请输入用户名：')
     if exist(username)[1]:
-        print('此用户名已被注册！')
+        print(Fore.RED, '此用户名已被注册！', Fore.RESET)
         register()
     else:
         password = maskpass.askpass('请输入密码：')
@@ -60,7 +61,7 @@ def register():
             global account_username, account_type
             account_username = username
             account_type = 'user'
-            print('注册成功，已登录！')
+            print(Fore.GREEN, '注册成功，已登录！', Fore.RESET)
         else: # 发生错误
             return
 
@@ -69,7 +70,7 @@ def login():
     global account_type, account_username
     username = input('请输入用户名：')
     if not exist(username)[1]:
-        print('此用户名不存在！')
+        print(Fore.RED, '此用户名不存在！', Fore.RESET)
         login()
     else:
         password = maskpass.askpass('请输入密码：')
@@ -79,13 +80,14 @@ def login():
                 password = maskpass.askpass('请重新输入密码：')
                 check_result = check(username, encrypt(password))
             elif check_result[1] == False: # 密码错误
-                password = maskpass.askpass('密码错误，请重新输入密码：')
+                print(Fore.RED, '密码错误，请重新输入密码：', Fore.RESET, end='')
+                password = maskpass.askpass()
                 check_result = check(username, encrypt(password))
             else: # 没出错并且密码正确
                 break
         account_username = username
         account_type = check_result[2]
-        print('登录成功！')
+        print(Fore.GREEN, '登录成功！', Fore.RESET)
 
 # （命令行交互模式）修改密码
 def change_password():
@@ -96,12 +98,14 @@ def change_password():
             current_password = maskpass.askpass('请重新输入密码：')
             check_result = check(account_username, encrypt(current_password))
         elif check_result[1] == False: # 密码错误
-            current_password = maskpass.askpass('密码错误，请重新输入密码：')
+            print(Fore.RED, '密码错误，请重新输入密码：', Fore.RESET, end='')
+            current_password = maskpass.askpass()
             check_result = check(account_username, encrypt(current_password))
         else: # 没出错并且密码正确
             break
     new_password = maskpass.askpass('请输入新密码：')
     write(account_username, encrypt(new_password), account_type)
+    print(Fore.GREEN, '密码修改成功！', Fore.RESET)
     return False
 
 # 密码 SHA512 加密
@@ -119,7 +123,7 @@ def check(username, encrypted_password):
         else: # 密码错误
             return None, False, None
     except Exception as e: # 发生错误
-        print('验证账户时出现问题：', e)
+        print(Fore.RED, '验证账户时出现问题：', e, Fore.RESET)
         return e, None, None
     finally:
         if f:
@@ -136,7 +140,7 @@ def exist(username):
         else:
             return None, False
     except Exception as e:
-        print('检查账户时出现问题：', e)
+        print(Fore.RED, '检查账户时出现问题：', e, Fore.RESET)
         return e, None
     finally:
         if f:
@@ -157,7 +161,7 @@ def write(username, encrypted_password, usertype):
         json.dump(accounts, f, ensure_ascii=False)
         return None
     except Exception as e:
-        print('写入账户时出现问题：', e)
+        print(Fore.RED, '写入账户时出现问题：', e, Fore.RESET)
         return e
     finally:
         if f:

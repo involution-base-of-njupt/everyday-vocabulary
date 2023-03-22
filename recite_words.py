@@ -15,6 +15,7 @@ import random
 import word_manage
 import time
 import wrong_words
+from colorama import Fore
 
 
 def get_dict():
@@ -37,12 +38,12 @@ def input_amount():
         try:
             amount = int(amount)
             if amount > amount_all or amount <= 0:
-                print(f'单词总数为{amount_all}，请重新输入')
+                print(Fore.RED, f'单词总数为{amount_all}，请重新输入', Fore.RESET)
                 continue
             else:
                 return amount
         except ValueError:
-            print('请输入整数数字')
+            print(Fore.RED, '请输入整数数字', Fore.RESET)
             continue
 
 
@@ -53,13 +54,13 @@ def input_option_num():
         try:
             option_num = int(option_num)
         except Exception as e:
-            print('发生错误：', e, '请重新输入')
+            print(Fore.RED, '发生错误：', e, '请重新输入', Fore.RESET)
             continue
         if option_num < 0:
-            print('请重新输入')
+            print(Fore.RED, '请重新输入', Fore.RESET)
             continue
         elif option_num < 2:
-            print('请重新输入')
+            print(Fore.RED, '请重新输入', Fore.RESET)
             continue
         elif 1 < option_num < 10:
             break
@@ -95,23 +96,23 @@ def english_translate_chinese():
                 try:
                     choice = int(choice)
                     if choice == correct_answer:
-                        print('回答正确')
+                        print(Fore.GREEN, '回答正确', Fore.RESET)
                         break
                     elif choice > option_num or choice <= 0:
-                        print('请重新输入')
+                        print(Fore.RED, '请重新输入', Fore.RESET)
                         continue
                     else:
-                        print('回答错误')
+                        print(Fore.RED, '回答错误', Fore.RESET)
                         wrong_words.add_wrong_en_word(en, option_list[correct_answer - 1], wrong_options)
                         break
                 except ValueError:
-                    print('请输入数字')
+                    print(Fore.RED, '请输入数字', Fore.RESET)
                     continue
                 except Exception as e:
-                    print('发生错误：', e)
+                    print(Fore.RED, '发生错误：', e, Fore.RESET)
                     continue
     else: # 数据库为空
-        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
+        print(Fore.RED, '数据库为空或错误，请检查数据库文件是否存在或是否正确', Fore.RESET)
         return
 
 
@@ -129,7 +130,7 @@ def english_translate_chinese_wrong():
         for en in test_words: # 遍历每个要背的单词
             word_data = wrong_words.read_wrong_en_word(en)
             if word_data[0]:
-                print('发生错误：', word_data[0])
+                print(Fore.RED, '发生错误：', word_data[0], Fore.RESET)
                 break
             option_num = len(word_data[3]) + 1 # 选项数量
             correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
@@ -149,27 +150,27 @@ def english_translate_chinese_wrong():
                 try:
                     choice = int(choice)
                     if choice == correct_answer:
-                        print('回答正确')
+                        print(Fore.GREEN, '回答正确', Fore.RESET)
                         break
                     elif choice > option_num or choice <= 0:
-                        print('请重新输入')
+                        print(Fore.RED, '请重新输入', Fore.RESET)
                         continue
                     else:
-                        print('回答错误')
+                        print(Fore.RED, '回答错误', Fore.RESET)
                         wrong_words.add_wrong_en_word(en)
                         break
                 except ValueError:
-                    print('请输入数字')
+                    print(Fore.RED, '请输入数字', Fore.RESET)
                     continue
                 except Exception as e:
-                    print('发生错误：', e)
+                    print(Fore.RED, '发生错误：', e, Fore.RESET)
                     continue
     else: # 数据库为空或出错
-        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
+        print(Fore.RED, '数据库为空或错误，请检查数据库文件是否存在或是否正确', Fore.RESET)
         if result[0]:
-            print('错误信息：', result[0])
+            print(Fore.RED, '错误信息：', result[0], Fore.RESET)
         if word_data[0]:
-            print('错误信息：', word_data[0])
+            print(Fore.RED, '错误信息：', word_data[0], Fore.RESET)
         return
 
 
@@ -200,12 +201,12 @@ def chinese_translate_english():
             print('\r', end='')
             user_answer = input("请输入答案，按回车确定：\n")
             if user_answer == word_dict_chinese_ver[zh]:
-                print('回答正确')
+                print(Fore.GREEN, '回答正确', Fore.RESET)
             else:
-                print("回答错误")
+                print(Fore.RED, "回答错误", Fore.RESET)
                 wrong_words.add_wrong_zh_word(zh, word_dict_chinese_ver[zh])
     else: # 数据库为空
-        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
+        print(Fore.RED, '数据库为空或错误，请检查数据库文件是否存在或是否正确', Fore.RESET)
         return
 
 
@@ -228,14 +229,14 @@ def chinese_translate_english_wrong():
             print(f'输入中文含义 {zh} 的正确英文单词，这个词之前错了 {word_data[1]} 次')
             answer = input('\n请输入你的答案：')
             if answer == word_data[2]:
-                print('回答正确')
+                print(Fore.GREEN, '回答正确', Fore.RESET)
             else:
-                print('回答错误')
+                print(Fore.RED, '回答错误', Fore.RESET)
                 wrong_words.add_wrong_zh_word(zh)
     else: # 数据库为空或出错
-        print('数据库为空或错误，请检查数据库文件是否存在或是否正确')
+        print(Fore.RED, '数据库为空或错误，请检查数据库文件是否存在或是否正确')
         if result[0]:
-            print('错误信息：', result[0])
+            print(Fore.RED, '错误信息：', result[0], Fore.RESET)
         if word_data[0]:
-            print('错误信息：', word_data[0])
+            print(Fore.RED, '错误信息：', word_data[0], Fore.RESET)
         return

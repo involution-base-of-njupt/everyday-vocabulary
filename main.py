@@ -3,10 +3,11 @@
 
 # 入口菜单
 
-from ui.account_u import show_window
+from ui.account import show_window
 import account
 import menu
 import sys
+from colorama import Fore
 
 # 命令行交互模式主函数，传入参数show_welcome（默认为True），控制是否显示欢迎信息
 def cli_main(show_welcome=True):
@@ -30,13 +31,13 @@ def cli_main(show_welcome=True):
             account.login()
             if account.account_username:
                 if account.account_type == 'admin':
-                    print('成功以管理员身份登录！')
+                    print(Fore.GREEN, '成功以管理员身份登录！', Fore.RESET)
                     menu.admin_menu()
                 elif account.account_type == 'user':
-                    print('成功以用户身份登录！')
+                    print(Fore.GREEN, '成功以用户身份登录！', Fore.RESET)
                     menu.user_menu()
                 else:
-                    print('未知账户类型！')
+                    print(Fore.RED, '未知账户类型！', Fore.RESET)
                     return
         elif choice == '2':
             account.register()
@@ -46,14 +47,14 @@ def cli_main(show_welcome=True):
                 elif account.account_type == 'user':
                     menu.user_menu()
                 else:
-                    print('未知账户类型！')
+                    print(Fore.RED, '未知账户类型！', Fore.RESET)
                     return
         elif choice == '3':
             gui_main() # TODO: 启动图形界面后退出命令行
         elif choice == '4':
             exit()
         else:
-            print('输入错误！')
+            print(Fore.RED, '输入错误！', Fore.RESET)
             cli_main(False)
 
 
@@ -68,5 +69,5 @@ if __name__ == '__main__':
     elif sys.argv[0] == 'gui' or sys.argv[1] == 'gui': # 启动图形界面
         gui_main()
     else: # 未知参数
-        print('未知参数：', sys.argv)
+        print(Fore.RED, '未知参数：', sys.argv, Fore.RESET)
         cli_main()
