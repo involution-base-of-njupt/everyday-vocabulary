@@ -13,7 +13,7 @@ class account(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi(f"{os.path.abspath('.')}/ui/account.ui")
+        self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/account.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
