@@ -19,7 +19,6 @@ class MyWindow(QWidget):
 
         self.answer_qwidget = self.ui.lineEdit  # 密码输入框
         self.push_btn = self.ui.pushButton  # 提交按钮
-        self.register_btn = self.ui.pushButton_3  # 注册按钮
         self.textBrowser = self.ui.textBrowser  # 文本显示区域
 
         # 绑定信号与槽函数
@@ -28,9 +27,9 @@ class MyWindow(QWidget):
 
     # TODO:
     def clickedpush(self):
-        pass
+        print('耶')
 
-  
+
     # def login(self):
     #     """登录按钮的槽函数"""
     #     user_name = self.user_name_qwidget.text()
