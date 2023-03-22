@@ -49,8 +49,7 @@ class MyWindow(QWidget):
     #         self.textBrowser.repaint()
 
 
-if __name__ == '__main__':
-
+def run():
     app = QApplication(sys.argv)
 
     w = MyWindow()
@@ -59,6 +58,11 @@ if __name__ == '__main__':
 
     # w.setWindowOpacity(0.9)
     app.exec()
+
+
+if __name__ == '__main__':
+    run()
+
 
 
 
