@@ -275,7 +275,7 @@ def en2zh_wrong_words_menu():
             if not result[0] == None:
                 # 逐个打印
                 for word, wrong_times in result[1]:
-                    print('{}：错误次数：{}'.format(word, wrong_times))
+                    print(f'{word}：错误次数：{wrong_times}')
             else:
                 print('发生错误：', result[0])
         
@@ -283,7 +283,7 @@ def en2zh_wrong_words_menu():
             en = input('请输入要搜索的英文单词：')
             result = wrong_words.read_wrong_en_word(en)
             if not result[0] == None:
-                print('错词次数：{}，正确中文含义：{}，错误中文含义：{}'.format(result[1], result[2], result[3]))
+                print(f'错词次数：{result[1]}，正确中文含义：{result[2]}，错误中文含义：{result[3]}')
             else:
                 print('发生错误：', result[0])
 
@@ -323,7 +323,7 @@ def zh2en_wrong_words_menu():
             if not result[0] == None:
                 # 逐个打印
                 for word, wrong_times in result[1]:
-                    print('{}：错误次数：{}'.format(word, wrong_times))
+                    print(f'{word}：错误次数：{wrong_times}')
             else:
                 print('发生错误：', result[0])
         
@@ -331,7 +331,7 @@ def zh2en_wrong_words_menu():
             zh = input('请输入要搜索的中文释义：')
             result = wrong_words.read_wrong_zh_word(zh)
             if not result[0] == None:
-                print('错词次数：{}，正确英文单词：{}'.format(result[1], result[2]))
+                print(f'错词次数：{result[1]}，正确英文单词：{result[2]}')
             else:
                 print('发生错误：', result[0])
 

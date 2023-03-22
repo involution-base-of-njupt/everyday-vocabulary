@@ -5,7 +5,7 @@ import json
 import os
 import account
 
-wrong_words_file = 'wrong_words_{}.json'.format(account.account_username)
+wrong_words_file = f'wrong_words_{account.account_username}.json'
 codec = 'utf-8'
 
 # 添加错英文词，传入英文单词（str），正确答案（str），错误答案列表（list），返回值是发生的错误

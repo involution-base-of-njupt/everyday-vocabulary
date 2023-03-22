@@ -37,7 +37,7 @@ def input_amount():
         try:
             amount = int(amount)
             if amount > amount_all or amount <= 0:
-                print('单词总数为%d，请重新输入' % amount_all)
+                print(f'单词总数为{amount_all}，请重新输入')
                 continue
             else:
                 return amount
@@ -73,7 +73,7 @@ def english_translate_chinese():
     if get_dict():
         word_amount = input_amount() # 要背的单词数量
         option_num = input_option_num() # 选项数量
-        print('你要背 {} 个单词，每个单词有 {} 个选项。\n'.format(word_amount, option_num))
+        print(f'你要背 {word_amount} 个单词，每个单词有 {option_num} 个选项。\n')
         test_words = random.sample(word_list, word_amount) # 抽取单词列表
         for en in test_words: # 遍历每个要背的单词
             correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
@@ -82,14 +82,14 @@ def english_translate_chinese():
             del word_dict_without_correct_answer[en] # 获得不包含正确答案的字典
             wrong_options = [] # 错误答案列表
             wrong_options += random.sample(list(word_dict_without_correct_answer.values()), option_num - 1) # 添加错误答案
-            print('请选择单词 {} 的正确中文含义：'.format(en))
+            print(f'请选择单词 {en} 的正确中文含义：')
             i = 0
             for option_no in range(option_num): # 遍历每个选项
                 if option_no not in option_list: # 如果此选项不是正确选项则设置错误答案
                     option_list[option_no] = wrong_options[i]
                     i += 1
-                print('''
-    {}. {}'''.format(option_no + 1, option_list[option_no])) # 打印选项
+                print(f'''
+    {option_no + 1}. {option_list[option_no]}''') # 打印选项
             while True:
                 choice = input('\n请输入你的答案：')
                 try:
@@ -124,7 +124,7 @@ def english_translate_chinese_wrong():
         global amount_all
         amount_all = len(wrong_en_words)
         word_amount = input_amount() # 要背的单词数量
-        print('你要背 {} 个单词。\n'.format(word_amount))
+        print(f'你要背 {word_amount} 个单词。\n')
         test_words = random.sample(list(wrong_en_words.keys()), word_amount) # 抽取单词列表
         for en in test_words: # 遍历每个要背的单词
             word_data = wrong_words.read_wrong_en_word(en)
@@ -135,15 +135,15 @@ def english_translate_chinese_wrong():
             correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
             option_list = { correct_answer - 1 : word_data[2] } # 选项字典，key为序号，value为选项内容，正确答案放入选项字典
             wrong_options = word_data[3] # 错误答案列表
-            print('请选择单词 {} 的正确中文含义：'.format(en))
-            print('这个词之前错了 {} 次'.format(word_data[1]))
+            print(f'请选择单词 {en} 的正确中文含义：')
+            print(f'这个词之前错了 {word_data[1]} 次')
             i = 0
             for option_no in range(option_num): # 遍历每个选项
                 if option_no not in option_list: # 如果此选项不是正确选项则设置错误答案
                     option_list[option_no] = wrong_options[i]
                     i += 1
-                print('''
-    {}. {}'''.format(option_no + 1, option_list[option_no])) # 打印选项
+                print(f'''
+    {option_no + 1}. {option_list[option_no]}''') # 打印选项
             while True:
                 choice = input('\n请输入你的答案：')
                 try:
@@ -218,14 +218,14 @@ def chinese_translate_english_wrong():
         global amount_all
         amount_all = len(wrong_zh_words)
         word_amount = input_amount() # 要背的单词数量
-        print('你要背 {} 个单词。\n'.format(word_amount))
+        print(f'你要背 {word_amount} 个单词。\n')
         test_words = random.sample(list(wrong_zh_words.keys()), word_amount) # 抽取单词列表
         for zh in test_words: # 遍历每个要背的单词
             word_data = wrong_words.read_wrong_zh_word(zh)
             if word_data[0]:
                 print('发生错误：', word_data[0])
                 continue
-            print('输入中文含义 {} 的正确英文单词，这个词之前错了 {} 次'.format(zh, word_data[1]))
+            print(f'输入中文含义 {zh} 的正确英文单词，这个词之前错了 {word_data[1]} 次')
             answer = input('\n请输入你的答案：')
             if answer == word_data[2]:
                 print('回答正确')

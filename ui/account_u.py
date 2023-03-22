@@ -273,7 +273,7 @@ def show_window(): # 展示窗口
     w = MyWindow()
     w.show()
     w.setWindowOpacity(0.9)
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 if __name__ == '__main__':
     show_window()
