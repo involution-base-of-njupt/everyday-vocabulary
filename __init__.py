@@ -5,7 +5,7 @@ __package__ = 'everyday_vocabulary'
 # 入口菜单
 
 from gui import account_ui
-from cli import menu
+from cli import menu, account_menu
 from common import account
 import sys
 import signal
@@ -31,24 +31,24 @@ def cli_main(show_welcome=True):
     ''')
         choice = input('请输入：')
         if choice == '1':
-            account.login()
-            if account.account_username:
-                if account.account_type == 'admin':
+            account_menu.login()
+            if account.username:
+                if account.usertype == 'admin':
                     print(Fore.GREEN, '成功以管理员身份登录！', Fore.RESET)
                     menu.admin_menu()
-                elif account.account_type == 'user':
+                elif account.usertype == 'user':
                     print(Fore.GREEN, '成功以用户身份登录！', Fore.RESET)
                     menu.user_menu()
                 else:
                     print(Fore.RED, '未知账户类型！', Fore.RESET)
                     return
         elif choice == '2':
-            account.register()
-            if account.account_username:
-                if account.account_type == 'admin':
+            account_menu.register()
+            if account.username:
+                if account.usertype == 'admin':
                     print(Fore.GREEN, '成功以管理员身份注册，已自动登录！', Fore.RESET)
                     menu.admin_menu()
-                elif account.account_type == 'user':
+                elif account.usertype == 'user':
                     print(Fore.GREEN, '成功以用户身份注册，已自动登录！', Fore.RESET)
                     menu.user_menu()
                 else:

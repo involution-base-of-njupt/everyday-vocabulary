@@ -4,6 +4,7 @@
 # 命令行交互模式菜单
 
 from cli import recite_words
+from cli import account_menu
 from common import word_manage
 from common import youdao
 from common import account
@@ -55,7 +56,7 @@ def admin_menu():
         elif choice == '3':
             import_menu('json')
         elif choice == '4':
-            account.change_password()
+            account_menu.change_password()
         elif choice == '5':
             while True:
                 print('''
@@ -110,7 +111,7 @@ def user_menu():
         elif choice == '6':
             zh2en_wrong_words_menu()
         elif choice == '7':
-            account.change_password()
+            account_menu.change_password()
         elif choice == '8':
             return
         else:
