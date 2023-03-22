@@ -181,6 +181,33 @@ font: 21pt &quot;Arial&quot;;</string>
     <string>退出</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>830</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;微软雅黑&quot;;
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>用户交互框：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>830</y>
+     <width>851</width>
+     <height>51</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

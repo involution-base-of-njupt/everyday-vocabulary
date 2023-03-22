@@ -23,6 +23,7 @@ class MyWindow(QWidget):
         self.C_btn = self.ui.pushButton_2  # C按钮
         self.D_btn = self.ui.pushButton  # D按钮
         self.textBrowser = self.ui.textBrowser  # 文本显示区域
+        self.user_qwidget = self.ui.lineEdit  # 密码输入框
 
         # 绑定信号与槽函数
         self.A_btn.clicked.connect(self.clickedA)   #按了A按钮后开始一个叫clickedA的函数
@@ -45,9 +46,9 @@ class MyWindow(QWidget):
         print('D')
 
 
-
     def textBrowser(self):
-        pass
+        user = self.user_qwidget.text()
+
         # user_name = self.user_name_qwidget.text()
         # password = self.password_qwidget.text()
         # if user_name == "admin" and password == "123456":
