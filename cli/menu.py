@@ -3,7 +3,7 @@
 
 # 命令行交互模式菜单
 
-import recite_words
+from cli import recite_words
 from common import word_manage
 from common import youdao
 from common import account
