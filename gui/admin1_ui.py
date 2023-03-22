@@ -1,5 +1,6 @@
 import sys
 import admin2_manage_words_ui
+import admin2_manage_user_ui
 # import account_ui
 
 
@@ -41,8 +42,8 @@ class admin1(QWidget):
 
     # TODO:
     def clickedmanageword(self):
-        self.manage_window = admin2_manage_words_ui.admin2_manage_words()
-        self.manage_window.ui.show()
+        self.admin2_manage_words_window = admin2_manage_words_ui.admin2_manage_words()
+        self.admin2_manage_words_window.ui.show()
 
     def clickedinCSV(self):
         pass
@@ -54,7 +55,8 @@ class admin1(QWidget):
         pass
 
     def clickedmanageuser(self):
-        pass
+        self.admin2_manage_user_window = admin2_manage_user_ui.admin2_manage_user()
+        self.admin2_manage_user_window.ui.show()
 
     def clickedexit(self):
         self.account_window = account_ui.account()
