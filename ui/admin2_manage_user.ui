@@ -31,7 +31,7 @@
      <x>0</x>
      <y>0</y>
      <width>401</width>
-     <height>151</height>
+     <height>181</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -44,16 +44,16 @@ border-radius:20px;
 </string>
    </property>
    <property name="text">
-    <string>添加单词</string>
+    <string>添加用户</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>150</y>
+     <y>180</y>
      <width>401</width>
-     <height>151</height>
+     <height>181</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -66,16 +66,16 @@ border-radius:20px;
 </string>
    </property>
    <property name="text">
-    <string>删除单词</string>
+    <string>修改普通用户密码</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>300</y>
+     <y>360</y>
      <width>401</width>
-     <height>151</height>
+     <height>181</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -88,16 +88,16 @@ border-radius:20px;
 </string>
    </property>
    <property name="text">
-    <string>修改单词</string>
+    <string>删除用户</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>450</y>
+     <y>540</y>
      <width>401</width>
-     <height>151</height>
+     <height>181</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -110,38 +110,16 @@ border-radius:20px;
 </string>
    </property>
    <property name="text">
-    <string>搜索单词</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>600</y>
-     <width>401</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
-   </property>
-   <property name="text">
-    <string>输出单词列表</string>
+    <string>查看用户列表</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>750</y>
+     <y>720</y>
      <width>401</width>
-     <height>151</height>
+     <height>181</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -172,7 +150,8 @@ border-color: rgb(255, 255, 255);
 background-color: rgb(0, 0, 0);
 font: 24pt &quot;幼圆&quot;;
 border:1px solid #ffffff;
-border-radius:20px;</string>
+border-radius:20px;
+</string>
    </property>
    <property name="html">
     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

@@ -1,5 +1,6 @@
 import sys
-import user1_ui
+import admin1_ui
+import searchword_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -8,14 +9,14 @@ from PyQt5 import uic
 
 
 
-class user2_manage_words(QWidget):
+class admin2_manage_words(QWidget):
 
     def __init__(self):
         super().__init__()
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi("./user2_manage_words.ui")
+        self.ui = uic.loadUi("./admin2_manage_words.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
@@ -23,9 +24,9 @@ class user2_manage_words(QWidget):
         self.addword_btn = self.ui.pushButton  # 添加单词
         self.deleteword_btn = self.ui.pushButton_2  # 删除单词
         self.changeword_btn = self.ui.pushButton_3  # 修改单词
-        self.searchword_btn = self.ui.pushButton_4  # 搜索单词
+        self.searchword_btn = self.ui.pushButton_4  # 搜索单词.
         self.showword_btn = self.ui.pushButton_5  # 输出单词列表
-        self.exit_btn = self.ui.pushButton_6  # 返回上级菜单
+        self.exit_btn = self.ui.pushButton_6  # 返回上级菜单.
 
 
          # 绑定信号与槽函数
@@ -51,14 +52,15 @@ class user2_manage_words(QWidget):
         pass
 
     def clickedsearchword(self):
-        pass
+        self.searchword_window = searchword_ui.searchword()
+        self.searchword_window.ui.show()
 
     def clickedshowword(self):
         pass
 
     def clickedexit(self):
-        self.user1_window = user1_ui.user1()
-        self.user1_window.ui.show()
+        self.admin1_window = admin1_ui.admin1()
+        self.admin1_window.ui.show()
 
 
     # def login(self):
@@ -76,7 +78,7 @@ class user2_manage_words(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = user2_manage_words()
+    w = admin2_manage_words()
     # 展示窗口
     w.ui.show()
 

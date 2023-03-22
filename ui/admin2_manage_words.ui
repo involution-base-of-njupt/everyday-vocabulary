@@ -31,7 +31,73 @@
      <x>0</x>
      <y>0</y>
      <width>401</width>
-     <height>114</height>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font: 24pt &quot;幼圆&quot;;
+border:1px solid #ffffff;
+border-radius:20px;
+</string>
+   </property>
+   <property name="text">
+    <string>添加单词</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>150</y>
+     <width>401</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font: 24pt &quot;幼圆&quot;;
+border:1px solid #ffffff;
+border-radius:20px;
+</string>
+   </property>
+   <property name="text">
+    <string>删除单词</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>300</y>
+     <width>401</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font: 24pt &quot;幼圆&quot;;
+border:1px solid #ffffff;
+border-radius:20px;
+</string>
+   </property>
+   <property name="text">
+    <string>修改单词</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>450</y>
+     <width>401</width>
+     <height>151</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -47,13 +113,13 @@ border-radius:20px;
     <string>搜索单词</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>110</y>
+     <y>600</y>
      <width>401</width>
-     <height>114</height>
+     <height>151</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -69,79 +135,13 @@ border-radius:20px;
     <string>输出单词列表</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>220</y>
-     <width>401</width>
-     <height>114</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
-   </property>
-   <property name="text">
-    <string>英译中测试</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_4">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>330</y>
-     <width>401</width>
-     <height>114</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
-   </property>
-   <property name="text">
-    <string>中译英测试</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>440</y>
-     <width>401</width>
-     <height>114</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
-   </property>
-   <property name="text">
-    <string>英译中错词本管理</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>550</y>
+     <y>750</y>
      <width>401</width>
-     <height>114</height>
+     <height>151</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -154,7 +154,7 @@ border-radius:20px;
 </string>
    </property>
    <property name="text">
-    <string>中译英错词本管理</string>
+    <string>返回上级菜单</string>
    </property>
   </widget>
   <widget class="QTextBrowser" name="textBrowser">
@@ -183,55 +183,11 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:131073;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:22pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:22pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:48pt; font-weight:600;&quot;&gt;亲爱的用户：&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:48pt; font-weight:600;&quot;&gt;尊敬的管理员：&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:48pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:48pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:48pt;&quot;&gt;请选择您想要的服务&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:48pt;&quot;&gt;请选择您想要的功能&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_7">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>660</y>
-     <width>401</width>
-     <height>114</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
-   </property>
-   <property name="text">
-    <string>修改密码</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_8">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>770</y>
-     <width>401</width>
-     <height>125</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
-   </property>
-   <property name="text">
-    <string>返回上级菜单</string>
    </property>
   </widget>
  </widget>

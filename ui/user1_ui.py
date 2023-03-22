@@ -1,5 +1,9 @@
 import sys
-import account_ui
+import admin2_manage_words_ui
+# import account_ui
+import ec_ui
+import ce_ui
+import searchword_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -17,40 +21,53 @@ class user1(QWidget):
 
         # 提取要操作的控件
 
-        self.manageword_btn = self.ui.pushButton  # 单词操作
-        self.inCSV_btn = self.ui.pushButton_2  # 导入CSV文件
-        self.inJSON_btn = self.ui.pushButton_3  # 导入JSON文件
-        self.changepassword_btn = self.ui.pushButton_4  # 修改密码
-        self.manageuser_btn = self.ui.pushButton_5  # 用户管理
-        self.exit_btn = self.ui.pushButton_6  # 返回上级菜单
+        self.searchword_btn = self.ui.pushButton  # 搜索单词.
+        self.wordlist_btn = self.ui.pushButton_2  # 输出单词列表
+        self.ec_btn = self.ui.pushButton_3  # 英译中测试.
+        self.ce_btn = self.ui.pushButton_4  # 中译英测试.
+        self.ecmanage_btn = self.ui.pushButton_5  # 英译中错词本管理
+        self.cemanage_btn = self.ui.pushButton_6  # 中译英错词本管理
+        self.changepassword_btn = self.ui.pushButton_7  # 修改密码
+        self.exit_btn = self.ui.pushButton_8  # 返回上级菜单.
 
 
          # 绑定信号与槽函数
 
-        self.manageword_btn.clicked.connect(self.clickedmanageword)   #按了单词操作按钮后开始一个函数
-        self.inCSV_btn.clicked.connect(self.clickedinCSV)   #按了导入CSV文件按钮后开始一个函数
-        self.inJSON_btn.clicked.connect(self.clickedinJSON)  # 按了导入JSON文件按钮后开始一个函数
-        self.changepassword_btn.clicked.connect(self.clickedchangepassword)  # 按了修改密码按钮后开始一个函数
-        self.manageuser_btn.clicked.connect(self.clickedmanageuser)  # 按了用户管理按钮后开始一个函数
-        self.exit_btn.clicked.connect(self.clickedexit)  # 按了返回上级菜单按钮后开始一个函数
+        self.searchword_btn.clicked.connect(self.clickedsearchword)   # 搜索单词
+        self.wordlist_btn.clicked.connect(self.clickedwordlist)   # 输出单词列表
+        self.ec_btn.clicked.connect(self.clickedec)  # 英译中测试
+        self.ce_btn.clicked.connect(self.clickedce)  # 中译英测试
+        self.ecmanage_btn.clicked.connect(self.clickedecmanage)  # 英译中错词本管理
+        self.cemanage_btn.clicked.connect(self.clickedcemanage)  # 中译英错词本管理
+        self.changepassword_btn.clicked.connect(self.clickedchangepassword) # 修改密码
+        self.exit_btn.clicked.connect(self.clickedexit)  # 返回上级菜单
 
-          # 定义以上6个函数
+          # 定义以上8个函数
 
 
     # TODO:
-    def clickedmanageword(self):
+    def clickedsearchword(self):
+        self.searchword_window = searchword_ui.searchword()
+        self.searchword_window.ui.show()
+
+    def clickedwordlist(self):
         pass
 
-    def clickedinCSV(self):
+    def clickedec(self):
+        self.ec_window = ec_ui.ec()
+        self.ec_window.ui.show()
+
+    def clickedce(self):
+        self.ce_window = ce_ui.ce()
+        self.ce_window.ui.show()
+
+    def clickedecmanage(self):
         pass
 
-    def clickedinJSON(self):
+    def clickedcemanage(self):
         pass
 
     def clickedchangepassword(self):
-        pass
-
-    def clickedmanageuser(self):
         pass
 
     def clickedexit(self):

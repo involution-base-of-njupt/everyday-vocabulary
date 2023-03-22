@@ -4,14 +4,14 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-class MyWindow(QWidget):
+class ce(QWidget):
 
     def __init__(self):
         super().__init__()
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi("./C-E.ui")
+        self.ui = uic.loadUi("./ce.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
@@ -45,7 +45,7 @@ class MyWindow(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = MyWindow()
+    w = ce()
     # 展示窗口
     w.ui.show()
 
