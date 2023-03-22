@@ -3,6 +3,7 @@
 
 # 单词管理模块
 # 命令行交互和图形界面都用
+# TODO: 模糊搜索（fuzzyfinder模块）
 
 import json
 import os
