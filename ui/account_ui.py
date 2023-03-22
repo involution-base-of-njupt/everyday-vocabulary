@@ -1,5 +1,6 @@
 import sys
 import os
+from .. import account
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -31,23 +32,27 @@ class MyWindow(QWidget):
 
     # TODO:
     def clickedlogin(self):
-        pass
+        username = self.user_name_qwidget.text()
+        password = self.password_qwidget.text()
+        check_result = account.check(username, account.encrypt(password))
+        while True:
+            if check_result[0]: # 发生错误
+                self.textBrowser.setText("检查用户时出错，请重试")
+            elif check_result[1] == False: # 密码错误
+                self.textBrowser.setText("用户名或密码错误，请重试")
+            else: # 没出错并且密码正确
+                break
+        global account_username, account_type
+        account_username = username
+        account_type = check_result[2]
+        if account_type == 'admin':
+            self.textBrowser.setText(f"欢迎管理员 {account_username}！")
+        elif account_type == 'user':
+            self.textBrowser.setText(f"欢迎用户 {account_username}！")
+
 
     def clickedregister(self):
         pass
-
-
-
-    # def login(self):
-    #     """登录按钮的槽函数"""
-    #     user_name = self.user_name_qwidget.text()
-    #     password = self.password_qwidget.text()
-    #     if user_name == "admin" and password == "123456":
-    #         self.textBrowser.setText("欢迎%s" % user_name)
-    #         self.textBrowser.repaint()
-    #     else:
-    #         self.textBrowser.setText("用户名或密码错误....请重试")
-    #         self.textBrowser.repaint()
 
 
 def show():
