@@ -5,7 +5,7 @@
 
 import json
 import os
-import account
+from shared import account
 from hashlib import md5
 
 # MD5处理用户名，防止多用户使用时文件冲突，防止用户名包含系统不支持的文件名导致保存失败

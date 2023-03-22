@@ -6,7 +6,7 @@
 import recite_words
 import word_manage
 import youdao
-import account
+from shared import account
 import import_file
 import os
 import wrong_words

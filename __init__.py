@@ -4,8 +4,9 @@ __package__ = 'everyday_vocabulary'
 
 # 入口菜单
 
-import ui.account_ui
-from . import account, menu
+from ui import account_ui
+from shared import account
+import menu
 import sys
 import signal
 from colorama import Fore
@@ -64,7 +65,7 @@ def cli_main(show_welcome=True):
 
 # 图形界面主函数
 def gui_main():
-    ui.account_ui.show()
+    account_ui.show()
 
 
 if __name__ == '__main__':
