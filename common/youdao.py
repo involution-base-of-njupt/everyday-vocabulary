@@ -11,12 +11,14 @@ def translate(en):
     form_data['i'] = en
     form_data['doctype'] = 'json'
     form_data['type'] = 'EN2ZH_CN'
+    r = None
     try:
         r = requests.post(request_url, data=form_data)
     except Exception as e:
         return e, None
     finally:
-        r.close()
+        if r:
+            r.close()
     result = json.loads(r.text)
     if not result['translateResult']:
         return '有道翻译错误', None
