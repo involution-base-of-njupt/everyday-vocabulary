@@ -1,5 +1,4 @@
 import sys
-import admin2_manage_words_ui
 # import account_ui
 import ec_ui
 import ce_ui
