@@ -17,34 +17,68 @@ from colorama import Fore
 def admin_menu():
     while True:
         print('''
+    1. 单词操作
+    2. 导入CSV文件
+    3. 导入JSON文件
+    4. 修改密码
+    5. 用户管理
+    6. 返回上级菜单
+    ''')
+        choice = input('请输入：')
+        if choice == '1':
+            while True:
+                print('''
     1. 添加单词
     2. 删除单词
     3. 修改单词
     4. 搜索单词
     5. 输出单词列表
-    6. 导入CSV文件
-    7. 导入JSON文件
-    8. 修改密码
-    9. 返回上级菜单
+    6. 返回上级菜单
     ''')
-        choice = input('请输入：')
-        if choice == '1':
-            add_menu()
+                choice_word = input('请输入：')
+                if choice_word == '1':
+                    add_menu()
+                elif choice_word == '2':
+                    delete_menu()
+                elif choice_word == '3':
+                    change_menu()
+                elif choice_word == '4':
+                    search_menu()
+                elif choice_word == '5':
+                    print_menu()
+                elif choice_word == '6':
+                    break
+                else:
+                    print(Fore.RED, '输入错误！', Fore.RESET)
         elif choice == '2':
-            delete_menu()
-        elif choice == '3':
-            change_menu()
-        elif choice == '4':
-            search_menu()
-        elif choice == '5':
-            print_menu()
-        elif choice == '6':
             import_menu('csv')
-        elif choice == '7':
+        elif choice == '3':
             import_menu('json')
-        elif choice == '8':
+        elif choice == '4':
             account.change_password()
-        elif choice == '9':
+        elif choice == '5':
+            while True:
+                print('''
+    1. 添加用户
+    2. 修改普通用户密码
+    3. 删除用户
+    4. 查看用户列表
+    5. 返回上级菜单
+    ''')
+                choice_account = input('请输入：')
+                if choice_account == '1':
+                    add_user_menu()
+                elif choice_account == '2':
+                    change_user_menu()
+                elif choice_account == '3':
+                    delete_user_menu()
+                elif choice_account == '4':
+                    show_user_menu()
+                elif choice_account == '5':
+                    break
+                else:
+                    print(Fore.RED, '输入错误！', Fore.RESET)
+        elif choice == '6':
             return
         else:
             print(Fore.RED, '输入错误！', Fore.RESET)
@@ -163,7 +197,7 @@ def print_menu():
     if word_dict:
         # 逐个打印
         for word in word_dict:
-            print(word, '：', word_dict[word])
+            print(word, '\t', word_dict[word])
         return
     else:
         print(Fore.RED, '发生错误：', result[0], Fore.RESET)
@@ -353,3 +387,90 @@ def zh2en_wrong_words_menu():
         else:
             print(Fore.RED, '输入错误！', Fore.RESET)
             continue
+
+
+# 添加用户菜单（管理员用）
+def add_user_menu():
+    while True:
+        username = input('请输入用户名：')
+        if account.exist(username)[1]:
+            print(Fore.RED, '此用户名已存在！', Fore.RESET)
+            continue
+        else:
+            break
+    password = input('请输入密码：')
+    while True:
+        choice = input('请输入用户类型（1：普通用户，2：管理员）：')
+        if choice == '1':
+            account_type = 'user'
+            break
+        elif choice == '2':
+            account_type = 'admin'
+            break
+        else:
+            print(Fore.RED, '输入错误！', Fore.RESET)
+            continue
+    result = account.write(username, account.encrypt(password), account_type)
+    if result == None:
+        print(Fore.GREEN, '添加成功！', Fore.RESET)
+        return
+    else:
+        print(Fore.RED, '添加失败：', result, Fore.RESET)
+        return
+
+
+# 删除用户菜单（管理员用）
+def delete_user_menu():
+    while True:
+        username = input('请输入要删除的用户名：')
+        if not account.exist(username)[1]:
+            print(Fore.RED, '此用户不存在！', Fore.RESET)
+            continue
+        elif account.check(username)[2] == 'user':
+            break
+        else:
+            print(Fore.RED, '你只能删除普通用户', Fore.RESET)
+            continue
+    result = account.delete(username)
+    if result == None:
+        print(Fore.GREEN, '删除成功！', Fore.RESET)
+        return
+    else:
+        print(Fore.RED, '删除失败：', result, Fore.RESET)
+        return
+
+
+# 修改用户密码菜单（管理员用）
+def change_user_menu():
+    while True:
+        username = input('请输入用户名：')
+        if not account.exist(username):
+            print(Fore.RED, '此用户名不存在！', Fore.RESET)
+            continue
+        elif account.check(username)[2] == 'user':
+            break
+        else:
+            print(Fore.RED, '你只能更改普通用户的密码', Fore.RESET)
+            continue
+    password = input('请输入新密码：')
+    result = account.write(username, account.encrypt(password))
+    if result == None:
+        print(Fore.GREEN, '修改成功！', Fore.RESET)
+        return
+    else:
+        print(Fore.RED, '修改失败：', result, Fore.RESET)
+        return
+
+
+# 查看用户列表菜单（管理员用）
+def show_user_menu():
+    result = account.read_all()
+    if result[0] == None:
+        if not result[1] == {}:
+            for username in result[1]:
+                print(f'用户名：{username}，\t用户类型：{result[1][username]}')
+        else:
+            print(Fore.RED, '没有用户！', Fore.RESET)
+    else:
+        print(Fore.RED, '发生错误：', result[0], Fore.RESET)
+    return
