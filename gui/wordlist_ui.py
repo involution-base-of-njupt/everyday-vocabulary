@@ -1,5 +1,5 @@
 import sys
-import menu
+# import menu
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic

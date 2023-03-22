@@ -1,5 +1,5 @@
 import sys
-import account
+# import account
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic

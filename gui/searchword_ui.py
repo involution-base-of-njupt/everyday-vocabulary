@@ -1,5 +1,5 @@
 import sys
-import admin1_ui
+
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
