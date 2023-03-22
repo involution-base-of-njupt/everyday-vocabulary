@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>744</width>
-    <height>511</height>
+    <width>1444</width>
+    <height>898</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1444</width>
+    <height>898</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1444</width>
+    <height>898</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -19,10 +31,10 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>380</y>
-     <width>721</width>
-     <height>80</height>
+     <x>70</x>
+     <y>670</y>
+     <width>1281</width>
+     <height>121</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -146,24 +158,24 @@ font: 11pt &quot;Arial&quot;;</string>
     <rect>
      <x>50</x>
      <y>30</y>
-     <width>641</width>
-     <height>321</height>
+     <width>1321</width>
+     <height>601</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>480</y>
-     <width>75</width>
-     <height>23</height>
+     <x>1180</x>
+     <y>830</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);
-font: 11pt &quot;Arial&quot;;</string>
+font: 21pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
     <string>退出</string>
