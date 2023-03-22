@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
+__package__ = 'everyday_vocabulary'
 
 # 入口菜单
 
 import ui.account_ui
-import account
-import menu
+from . import account, menu
 import sys
 import signal
 from colorama import Fore
