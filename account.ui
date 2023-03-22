@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>994</width>
+    <width>1115</width>
     <height>647</height>
    </rect>
   </property>
@@ -22,36 +22,17 @@
   <property name="styleSheet">
    <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>490</y>
-     <width>491</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-font: 24pt &quot;微软雅黑&quot;;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>确定</string>
-   </property>
-  </widget>
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>371</width>
-     <height>641</height>
+     <width>381</width>
+     <height>661</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/icon/account.png);</string>
+    <string notr="true">background-image: url(:/icon/account_picture.png);</string>
    </property>
    <property name="html">
     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -64,9 +45,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>560</x>
-     <y>320</y>
-     <width>421</width>
+     <x>580</x>
+     <y>270</y>
+     <width>461</width>
      <height>61</height>
     </rect>
    </property>
@@ -75,7 +56,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>180</y>
+     <y>110</y>
      <width>151</width>
      <height>71</height>
     </rect>
@@ -90,8 +71,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>310</y>
+     <x>400</x>
+     <y>270</y>
      <width>131</width>
      <height>81</height>
     </rect>
@@ -106,9 +87,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>560</x>
-     <y>190</y>
-     <width>421</width>
+     <x>580</x>
+     <y>120</y>
+     <width>461</width>
      <height>61</height>
     </rect>
    </property>
@@ -116,14 +97,16 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>40</y>
-     <width>231</width>
+     <x>430</x>
+     <y>490</y>
+     <width>271</width>
      <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 20pt &quot;幼圆&quot;;</string>
+    <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+font: 20pt &quot;幼圆&quot;;</string>
    </property>
    <property name="text">
     <string>登陆</string>
@@ -132,14 +115,16 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>710</x>
-     <y>40</y>
-     <width>231</width>
+     <x>840</x>
+     <y>490</y>
+     <width>261</width>
      <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 20pt &quot;幼圆&quot;;</string>
+    <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+font: 20pt &quot;幼圆&quot;;</string>
    </property>
    <property name="text">
     <string>注册</string>
@@ -147,7 +132,7 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <resources>
-  <include location="account_picture.qrc"/>
+  <include location="ui/account_picture.qrc"/>
  </resources>
  <connections/>
 </ui>

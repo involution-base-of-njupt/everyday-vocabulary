@@ -36,7 +36,7 @@ class Ui_Form(object):
         self.textBrowser = QTextBrowser(Form)
         self.textBrowser.setObjectName(u"textBrowser")
         self.textBrowser.setGeometry(QRect(0, 0, 371, 641))
-        self.textBrowser.setStyleSheet(u"background-image: url(:/icon/account.png);")
+        self.textBrowser.setStyleSheet(u"background-image: url(:./ui/account.png);")
         self.lineEdit = QLineEdit(Form)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setGeometry(QRect(560, 320, 421, 61))
