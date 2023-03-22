@@ -2,6 +2,7 @@ import sys
 import admin1_ui
 import searchword_ui
 import wordlist_ui
+import add_change_word_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -44,13 +45,15 @@ class admin2_manage_words(QWidget):
 
     # TODO:
     def clickedaddword(self):
-        pass
+        self.add_change_word_window = add_change_word_ui.add_change_word()
+        self.add_change_word_window.ui.show()
 
     def clickeddeleteword(self):
         pass
 
     def clickedchangeword(self):
-        pass
+        self.add_change_word_window = add_change_word_ui.add_change_word()
+        self.add_change_word_window.ui.show()
 
     def clickedsearchword(self):
         self.searchword_window = searchword_ui.searchword()
