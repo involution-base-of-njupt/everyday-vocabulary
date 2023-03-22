@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-class MyWindow(QWidget):
+class account(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -58,7 +58,7 @@ class MyWindow(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = MyWindow()
+    w = account()
     # 展示窗口
     w.ui.show()
 

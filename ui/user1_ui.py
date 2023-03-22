@@ -1,10 +1,11 @@
 import sys
+import account_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-class MyWindow(QWidget):
+class user1(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -53,7 +54,8 @@ class MyWindow(QWidget):
         pass
 
     def clickedexit(self):
-        pass
+        self.account_window = account_ui.account()
+        self.account_window.ui.show()
 
 
 
@@ -73,7 +75,7 @@ class MyWindow(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = MyWindow()
+    w = user1()
     # 展示窗口
     w.ui.show()
 
