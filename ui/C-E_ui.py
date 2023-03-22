@@ -16,26 +16,21 @@ class MyWindow(QWidget):
 
         # 提取要操作的控件
 
-    #     self.user_name_qwidget = self.ui.lineEdit_2  # 用户名输入框
-    #     self.password_qwidget = self.ui.lineEdit  # 密码输入框
-    #     self.login_btn = self.ui.pushButton_2  # 登陆按钮
-    #     self.register_btn = self.ui.pushButton_3  # 注册按钮
-    #
-    #
-    #     # 绑定信号与槽函数
-    #     self.login_btn.clicked.connect(self.clickedlogin)   #按了登陆按钮后开始一个叫clickedlogin的函数
-    #     self.register_btn.clicked.connect(self.clickedregister)  # 按了zhuce按钮后开始一个叫clickedregister的函数
-    #
-    # # TODO:
-    # def clickedlogin(self):
-    #     pass
-    #
-    # # TODO:
-    # def clickedregister(self):
-    #     pass
-    #
-    # # TODO: lineEdit  密码输入变成  ******
 
+        self.answer_qwidget = self.ui.lineEdit  # 密码输入框
+        self.push_btn = self.ui.pushButton  # 提交按钮
+        self.register_btn = self.ui.pushButton_3  # 注册按钮
+        self.textBrowser = self.ui.textBrowser  # 文本显示区域
+
+        # 绑定信号与槽函数
+        self.push_btn.clicked.connect(self.clickedpush)   #按了提交按钮后开始一个叫clickedpush的函数
+
+
+    # TODO:
+    def clickedpush(self):
+        pass
+
+  
     # def login(self):
     #     """登录按钮的槽函数"""
     #     user_name = self.user_name_qwidget.text()
