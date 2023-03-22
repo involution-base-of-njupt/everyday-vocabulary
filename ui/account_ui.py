@@ -49,7 +49,7 @@ class MyWindow(QWidget):
     #         self.textBrowser.repaint()
 
 
-def run():
+def show():
     app = QApplication(sys.argv)
 
     w = MyWindow()
@@ -61,7 +61,7 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    show()
 
 
 
