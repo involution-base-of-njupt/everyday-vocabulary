@@ -55,7 +55,7 @@ def add_wrong_zh_word(zh, correct_answer = ''):
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
-            zh_wong_word = word_dict.setdefault('zh', {}).setdefault(zh, {})
+        zh_wong_word = word_dict.setdefault('zh', {}).setdefault(zh, {})
         # 错误次数
         if 'wrong_times' in zh_wong_word:
             zh_wong_word['wrong_times'] += 1

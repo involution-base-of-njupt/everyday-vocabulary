@@ -14,7 +14,6 @@ import os
 from colorama import Fore
 
 # 管理员菜单
-# TODO: 用户管理菜单
 def admin_menu():
     while True:
         print('''

@@ -5,9 +5,21 @@
 import sys, os, time, random
 from common import word, wrong_words
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5 import uic
 
+class TimerThread(QThread):
+    time_signal = pyqtSignal(int)
+
+    def __init__(self, time_left):
+        super().__init__()
+        self.time_left = time_left
+
+    def run(self):
+        while self.time_left > 0:
+            time.sleep(1)
+            self.time_left -= 1
+            self.time_signal.emit(self.time_left)
 
 class ce(QWidget):
 
@@ -92,25 +104,36 @@ class ce(QWidget):
         # TODO: 单独一个线程防止主线程阻塞
         self.answer_qwidget.enable = False
         self.current_word = self.words_test.pop()
-        time_left = self.time_show
         self.label.setText('请记住英文')
-        while time_left > 0:
-            self.textBrowser.setText(f'''
-    请记住单词的英文，时间到后单词会消失，之后请根据中文含义输入英文：
-    单词：{self.word_dict_chinese_ver[self.current_word]}
-    中文含义：{self.current_word}
-    倒计时：{time_left}s
-    ''')
-            time.sleep(1)
-            time_left -= 1
         self.textBrowser.setText(f'''
-    请根据中文含义
-    {self.current_word}
-    输入英文：
-    ''')
-        self.label.setText('请输入英文：')
-        self.answer_qwidget.enable = True
-        self.push_btn_func = 'check_answer'
+请记住单词的英文，时间到后单词会消失，之后请根据中文含义输入英文：
+单词：{self.word_dict_chinese_ver[self.current_word]}
+中文含义：{self.current_word}
+倒计时：{self.time_show}s
+''')
+        self.timer_thread = TimerThread(self.time_show)
+        self.timer_thread.time_signal.connect(self.update_time_left)
+        self.timer_thread.start()
+
+
+
+    # 更新倒计时
+    def update_time_left(self, time_left):
+        self.textBrowser.setText(f'''
+请记住单词的英文，时间到后单词会消失，之后请根据中文含义输入英文：
+单词：{self.word_dict_chinese_ver[self.current_word]}
+中文含义：{self.current_word}
+倒计时：{time_left}s
+''')
+        if time_left <= 0:
+            self.textBrowser.setText(f'''
+请根据中文含义
+{self.current_word}
+输入英文：
+''')
+            self.label.setText('请输入英文：')
+            self.answer_qwidget.enable = True
+            self.push_btn_func = 'check_answer'
 
 
     # 确认按钮
@@ -150,19 +173,19 @@ class ce(QWidget):
                 self.answer_qwidget.setText("请输入大于 0 的整数")
                 self.set_time()
         elif self.push_btn_func == 'check_answer':
-            if len(self.words_test) <=0:
+            if self.answer_qwidget.text() == self.word_dict_chinese_ver[self.current_word]:
+                self.textBrowser.setText('回答正确')
+            else:
+                self.textBrowser.setText(f'回答错误，正确答案是：{self.word_dict_chinese_ver[self.current_word]}')
+                wrong_words.add_wrong_zh_word(self.current_word, self.word_dict_chinese_ver[self.current_word])
+            if len(self.words_test) <= 0:
                 self.textBrowser.setText('背单词结束')
                 self.label.setVisible(False)
                 self.answer_qwidget.setVisible(False)
                 self.push_btn.setText('继续背单词')
                 self.push_btn_func = 'prepare_set_amount'
-            if self.answer_qwidget.text() == self.word_dict_chinese_ver[self.current_word]:
-                self.textBrowser.setText('回答正确')
-                self.push_btn.setText('下一个')
-                self.push_btn_func = 'next_word'
             else:
-                self.textBrowser.setText(f'回答错误，正确答案是：{self.word_dict_chinese_ver[self.current_word]}')
-                wrong_words.add_wrong_zh_word(self.current_word, self.word_dict_chinese_ver[self.current_word])
+                self.textBrowser.setText(f'{self.textBrowser.text()}\n下一个')
                 self.push_btn.setText('下一个')
                 self.push_btn_func = 'next_word'
         elif self.push_btn_func == 'next_word':
