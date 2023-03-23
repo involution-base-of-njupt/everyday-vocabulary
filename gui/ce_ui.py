@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+# 背单词汉译英
 import sys, os
-
+from common import word_manage
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
@@ -10,6 +11,17 @@ class ce(QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        # 获取字典
+        get_dict_result = word_manage.get_all()
+        if not get_dict_result[0]: # 没出错
+            word_dict = get_dict_result[1]  # 所有单词的字典
+            amount_all = len(word_dict)  # 单词总数
+            word_list = list(word_dict)  # 所有单词的列表，仅英文
+        else: # 出错
+            word_dict = {}
+            amount_all = 0
+            word_list = []
+
 
     def init_ui(self):
         self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/ce.ui")
