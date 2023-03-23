@@ -40,13 +40,15 @@ jobs:
 
       # Build python script into a stand-alone exe
       - uses: Nuitka/Nuitka-Action@main
+        timeout-minutes: 30
         with:
           script-name: __init__.py
-          #access-token: ${{ secrets.NUITKA_COMMERCIAL_ACCESS_TOKEN }}
+          # access-token: ${{ secrets.NUITKA_COMMERCIAL_ACCESS_TOKEN }}
           onefile: true
           enable-plugins: pyqt5
           disable-console: false
-          windows-icon-from-ico: resources/app.ico
+          # TODO: 图标设置
+          # windows-icon-from-ico: resources/app.ico
           
       # Uploads artifact
       - name: Upload Artifacts
