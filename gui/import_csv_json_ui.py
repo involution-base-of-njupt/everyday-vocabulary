@@ -52,13 +52,16 @@ class import_csv_json(QWidget):
 
 def show():
     app = QApplication(sys.argv)
-
-    w = import_csv_json()
-    # 展示窗口
-    w.ui.show()
-
-
-    app.exec()
+    try:
+        w = import_csv_json()
+        # 展示窗口
+        w.ui.show()
+        app.exec()
+    except Exception as e:
+        print(e)
+    finally:
+        # 在应用程序关闭之前停止Qt对象的运行
+        app.quit()
 
 if __name__ == '__main__':
     show()

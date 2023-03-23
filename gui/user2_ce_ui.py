@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 管理员单词操作菜单
+# 用户错汉译英单词操作菜单
 import sys, os
 from gui import user1_ui
 
@@ -70,13 +70,16 @@ class user2_ce(QWidget):
 
 def show():
     app = QApplication(sys.argv)
-
-    w = user2_ce()
-    # 展示窗口
-    w.ui.show()
-
-    # w.setWindowOpacity(0.9)
-    app.exec()
+    try:
+        w = user2_ce()
+        # 展示窗口
+        w.ui.show()
+        app.exec()
+    except Exception as e:
+        print(e)
+    finally:
+        # 在应用程序关闭之前停止Qt对象的运行
+        app.quit()
 
 
 if __name__ == '__main__':

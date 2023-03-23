@@ -115,14 +115,16 @@ class account_ui(QWidget):
 
 def show():
     app = QApplication(sys.argv)
-
-    w = account_ui()
-    # 展示窗口
-    w.ui.show()
-
-    # w.setWindowOpacity(0.9)
-    app.exec()
-
+    try:
+        w = account_ui()
+        # 展示窗口
+        w.ui.show()
+        app.exec()
+    except Exception as e:
+        print(e)
+    finally:
+        # 在应用程序关闭之前停止Qt对象的运行
+        app.quit()
 
 if __name__ == '__main__':
     show()
