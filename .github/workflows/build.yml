@@ -26,6 +26,9 @@ jobs:
     
       # Check-out repository
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
       
       # Setup Python
       - uses: actions/setup-python@v4
@@ -41,7 +44,7 @@ jobs:
 
       # Build python script into a stand-alone exe
       - run: |
-          python -m nuitka --onefile --standalone --enable-plugin=pyqt5 --output-dir=build .\__init__.py
+          python -m nuitka --onefile --standalone --enable-plugin=pyqt5 --output-dir=build __init__.py
         timeout-minutes: 30
           # TODO: 图标设置
           # windows-icon-from-ico: resources/app.ico

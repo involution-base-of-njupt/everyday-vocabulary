@@ -28,8 +28,11 @@ User --> 错词本测试
 错词本测试 --> d[单词删除]
 ```
 
-## 账号管理
+## 自行构建
 
-账号文件保存于 `account.csv`，初次运行检测不到该文件将会创建，并写入默认管理员用户名和密码（`admin`, `admin`）
-
-密码使用 SHA512 加密保存
+```shell
+python -m pip install --upgrade pip
+pip install -r requirements.txt # 安装依赖
+pip install nuitka # 安装nuitka来构建
+python -m nuitka --onefile --standalone --enable-plugin=pyqt5 --output-dir=build __init__.py # 构建
+```
