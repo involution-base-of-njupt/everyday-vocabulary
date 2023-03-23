@@ -20,25 +20,17 @@ class ce(QWidget):
 
         self.answer_qwidget = self.ui.lineEdit  # 密码输入框
         self.push_btn = self.ui.pushButton  # 提交按钮
-        self.new_btn = self.ui.pushButton_2  # 背新题按钮
-        self.old_btn = self.ui.pushButton_3  # 背错题按钮
         self.textBrowser = self.ui.textBrowser  # 文本显示区域
 
         # 绑定信号与槽函数
         self.push_btn.clicked.connect(self.clickedpush)   #按了提交按钮后开始一个叫clickedpush的函数
 
-        self.old_btn.clicked.connect(self.clickedold)
-        self.new_btn.clicked.connect(self.clickednew)
+
 
     # TODO:
     def clickedpush(self):
         print('耶')
 
-    def clickedold(self):
-        pass
-
-    def clickednew(self):
-        pass
 
     # def login(self):
     #     """登录按钮的槽函数"""
