@@ -30,7 +30,7 @@ class account_ui(QWidget):
         self.register_btn.clicked.connect(self.clickedregister)   #按了注册按钮后开始一个叫函数
 
 
-
+    # 登录按钮
     def clickedlogin(self):
         username = self.user_name_qwidget.text()
         password = self.password_qwidget.text()
@@ -38,8 +38,10 @@ class account_ui(QWidget):
         while True:
             if check_result[0]: # 发生错误
                 self.textBrowser.setText("检查用户时出错，请重试")
+                return
             elif check_result[1] == False: # 密码错误
                 self.textBrowser.setText("用户名或密码错误，请重试")
+                return
             else: # 没出错并且密码正确
                 break
         account.username = username
@@ -52,11 +54,38 @@ class account_ui(QWidget):
             # TODO: 跳转到用户界面
         else:
             self.textBrowser.setText("未知账户类型！")
+            return
 
 
-    # TODO: 注册
+    # 注册按钮
     def clickedregister(self):
-        pass
+        username = self.user_name_qwidget.text()
+        exist_result = account.exist(username)
+        if exist_result[0]:
+            self.textBrowser.setText("检查用户时出错，请重试")
+            return
+        elif exist_result[1]:
+            self.textBrowser.setText("用户名已存在，请重试")
+            return
+        else:
+            password = self.password_qwidget.text()
+            write_result = account.write(username, account.encrypt(password), 'user')
+            while True:
+                if write_result[0]: # 发生错误
+                    self.textBrowser.setText(f"写入用户时出错：{write_result[0]}，请重试")
+                    return
+                else: # 没出错
+                    break
+            account.username = username
+            account.usertype = 'user'
+            if account.usertype == 'admin':
+                self.textBrowser.setText(f"注册成功，欢迎管理员 {username}！")
+                # TODO: 跳转到管理员界面
+            elif account.usertype == 'user':
+                self.textBrowser.setText(f"注册成功，欢迎用户 {username}！")
+                # TODO: 跳转到用户界面
+            else:
+                self.textBrowser.setText("未知账户类型！")
 
 
 def show():
