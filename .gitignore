@@ -131,6 +131,7 @@ dmypy.json
 # IDE files
 .idea
 .vscode
+gui/ui*
 
 # account file
 account.csv
