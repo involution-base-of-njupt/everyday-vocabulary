@@ -3,6 +3,8 @@ import sys, os
 from gui import admin1_ui
 from gui import userlist_ui
 from gui import add_change_user_ui
+from gui import delect_user_ui
+
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -51,7 +53,9 @@ class admin2_manage_user(QWidget):
         self.add_change_user_window.ui.show()
 
     def clickeddeleteuser(self):
-        pass
+        self.delect_user_window = delect_user_ui.delect_user()
+        self.delect_user_window.ui.show()
+
 
     def clickeduserlist(self):
         self.userlist_window = userlist_ui.userlist()
