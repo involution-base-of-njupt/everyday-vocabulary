@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-
+# ||||大改
 
 
 class admin2_manage_words(QWidget):
