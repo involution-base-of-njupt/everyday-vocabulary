@@ -6,6 +6,7 @@ from gui import ec_ui
 from gui import ce_ui
 from gui import searchword_ui
 from gui import wordlist_ui
+from gui import user_change_password_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -71,7 +72,8 @@ class user1(QWidget):
         pass
 
     def clickedchangepassword(self):
-        pass
+        self.user_change_password_window = user_change_password_ui.user_change_password()
+        self.user_change_password_window.ui.show()
 
     def clickedexit(self):
         self.account_window = account_ui.account()
