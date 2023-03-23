@@ -26,6 +26,7 @@ jobs:
     
       # Check-out repository
       - uses: actions/checkout@v3
+        timeout-minutes: 10
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -41,6 +42,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install nuitka
+        timeout-minutes: 10
 
       # Build python script into a stand-alone exe
       - run: |
@@ -52,6 +54,7 @@ jobs:
       # Uploads artifact
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
+        timeout-minutes: 10
         with:
           name: ${{ runner.os }} Build
           path: |
