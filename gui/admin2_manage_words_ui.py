@@ -13,7 +13,7 @@ from PyQt5 import uic
 
 
 
-
+# ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 class admin2_manage_words(QWidget):
 

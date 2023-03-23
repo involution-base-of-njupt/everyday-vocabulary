@@ -7,7 +7,7 @@ from common import word
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-
+#||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 class add_change_word(QWidget):
 
     def __init__(self):

@@ -7,7 +7,7 @@ from common import account
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-
+# ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 class add_change_user(QWidget):
 
     def __init__(self):

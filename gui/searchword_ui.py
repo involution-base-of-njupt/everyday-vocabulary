@@ -8,7 +8,7 @@ from PyQt5 import uic
 
 
 
-
+#||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 class searchword(QWidget):
 

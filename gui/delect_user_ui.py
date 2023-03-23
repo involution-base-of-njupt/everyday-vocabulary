@@ -7,7 +7,7 @@ import os
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-
+# ||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 class delect_user(QWidget):
 
     def __init__(self):
