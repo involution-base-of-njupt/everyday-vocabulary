@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 用户列表界面（管理员用）
 import sys, os
 # import account
 

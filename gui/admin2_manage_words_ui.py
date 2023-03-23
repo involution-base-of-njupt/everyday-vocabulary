@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 管理员单词操作菜单
 import sys, os
 from gui import admin1_ui
 from gui import searchword_ui

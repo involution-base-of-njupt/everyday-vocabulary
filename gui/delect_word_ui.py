@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 删除单词界面（管理员用）
 import sys
 import os
 

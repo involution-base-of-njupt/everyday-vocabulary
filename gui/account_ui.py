@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 登录注册界面
 import sys
 import os
 from common import account

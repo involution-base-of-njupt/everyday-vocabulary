@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# 修改自身密码
 import sys, os
 from common import account
 

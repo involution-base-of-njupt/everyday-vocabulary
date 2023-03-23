@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 管理员主菜单
 import sys, os
 from gui import admin2_manage_words_ui
 from gui import admin2_manage_user_ui
