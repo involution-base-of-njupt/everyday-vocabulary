@@ -27,6 +27,14 @@ class account_ui(QWidget):
         self.register_btn = self.ui.pushButton_3  # 注册按钮
         self.textBrowser = self.ui.textBrowser # 显示框
 
+        init_result = account.init()
+        if init_result: # 是初始化
+            self.textBrowser.setText('''
+    这是你第一次使用天天背单词！
+    默认管理员账号：admin
+    默认管理员密码：admin
+    ''')
+
 
         # 绑定信号与槽函数
 
