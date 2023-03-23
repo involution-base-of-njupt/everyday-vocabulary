@@ -85,10 +85,12 @@ class account_ui(QWidget):
             account.usertype = 'user'
             if account.usertype == 'admin':
                 self.textBrowser.setText(f"注册成功，欢迎管理员 {username}！")
-                # TODO: 跳转到管理员界面
+                self.admin1_window = admin1_ui.admin1()
+                self.admin1_window.ui.show()
             elif account.usertype == 'user':
                 self.textBrowser.setText(f"注册成功，欢迎用户 {username}！")
-                # TODO: 跳转到用户界面
+                self.user1_window = user1_ui.user1()
+                self.user1_window.ui.show()
             else:
                 self.textBrowser.setText("未知账户类型！")
 
