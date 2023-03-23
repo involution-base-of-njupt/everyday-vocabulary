@@ -48,10 +48,10 @@ border:3px solid #ffffff;</string>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>990</x>
-     <y>740</y>
-     <width>351</width>
-     <height>101</height>
+     <x>1010</x>
+     <y>710</y>
+     <width>331</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -67,9 +67,9 @@ border-radius:20px;</string>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>760</y>
-     <width>571</width>
+     <x>70</x>
+     <y>780</y>
+     <width>911</width>
      <height>61</height>
     </rect>
    </property>
@@ -84,10 +84,10 @@ border:3px solid #ffffff;</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>720</y>
-     <width>231</width>
-     <height>161</height>
+     <x>70</x>
+     <y>700</y>
+     <width>901</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">

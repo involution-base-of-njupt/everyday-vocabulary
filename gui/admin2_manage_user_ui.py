@@ -2,7 +2,7 @@
 # 管理员用户管理菜单
 import sys, os
 from gui import admin1_ui
-from gui import userlist_ui
+#from gui import userlist_ui
 from gui import add_change_user_ui
 from gui import delect_user_ui
 

@@ -3,7 +3,7 @@
 import sys, os
 from gui import admin1_ui
 from gui import searchword_ui
-from gui import wordlist_ui
+#from gui import wordlist_ui
 from gui import add_change_word_ui
 from gui import delect_word_ui
 
