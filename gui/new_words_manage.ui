@@ -132,7 +132,7 @@ border-radius:20px;
 </string>
    </property>
    <property name="text">
-    <string>输出单词列表</string>
+    <string>读取单词列表</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_6">
@@ -179,17 +179,18 @@ border-radius:20px;
     <number>0</number>
    </property>
    <property name="columnCount">
-    <number>2</number>
+    <number>3</number>
    </property>
    <attribute name="horizontalHeaderVisible">
     <bool>true</bool>
    </attribute>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>500</number>
+    <number>330</number>
    </attribute>
    <attribute name="verticalHeaderVisible">
     <bool>true</bool>
    </attribute>
+   <column/>
    <column/>
    <column/>
   </widget>
@@ -273,7 +274,7 @@ border-radius:20px;
     </font>
    </property>
    <property name="text">
-    <string>确认</string>
+    <string>保存修改</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">

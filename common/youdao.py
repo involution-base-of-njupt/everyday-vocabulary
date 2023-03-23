@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import json
-import requests
+from requests import post
 
 # 有道翻译，返回值为发生的错误和翻译结果
 def translate(en):
@@ -13,7 +13,7 @@ def translate(en):
     form_data['type'] = 'EN2ZH_CN'
     r = None
     try:
-        r = requests.post(request_url, data=form_data)
+        r = post(request_url, data=form_data)
     except Exception as e:
         return e, None
     finally:

@@ -104,7 +104,7 @@ def change(en,zh):
     else:
         return '单词不存在'
 
-# 获取所有单词，返回是否发生错误和获取的字典
+# 获取所有单词，返回发生的错误和获取的字典
 def get_all():
     f = None
     try:
@@ -112,6 +112,20 @@ def get_all():
         return None, json.load(f)
     except Exception as e:
         return e, None
+    finally:
+        if f:
+            f.close()
+
+
+# 写入所有单词（抛弃已有数据），传入字典，返回发生的错误
+def save_all(word_dict):
+    f = None
+    try:
+        f = open(word_file, 'w', newline='', encoding=codec)
+        json.dump(word_dict, f, ensure_ascii=False, indent=4)
+        return None
+    except Exception as e:
+        return e
     finally:
         if f:
             f.close()
