@@ -2,7 +2,7 @@
 # 增加或修改单词
 import sys
 import os
-from common import word_manage
+from common import word
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -37,23 +37,23 @@ class add_change_word(QWidget):
     def clickedyes(self):
         en = self.en_qwidget.text()
         zh = self.cn_qwidget.text()
-        exist_result = word_manage.exist(en)
+        exist_result = word.exist(en)
         if exist_result[0]: # 发生错误
             self.textBrowser.setText("检查单词时出错，请重试")
             return
         elif exist_result[1]:
-            read_result = word_manage.read(en)
+            read_result = word.read(en)
             if read_result[0]: # 发生错误
                 self.textBrowser.setText("读取单词时出错，请重试")
                 return
             else: # 没出错，修改
-                change_result = word_manage.change(en, zh)
+                change_result = word.change(en, zh)
                 if change_result: # 出错
                     self.textBrowser.setText("修改单词时出错，请重试")
                 else:
                     self.textBrowser.setText(f"修改 {en} 的中文含义为 {zh} 成功")
         else: # 单词不存在
-            add_result = word_manage.add(en, zh)
+            add_result = word.add(en, zh)
             if add_result[0]: # 出错
                 self.textBrowser.setText("添加单词时出错，请重试")
             else:

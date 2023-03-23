@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # 背单词汉译英
-import sys, os
-from common import word_manage
+import sys, os, time, random
+from common import word, wrong_words
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 

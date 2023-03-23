@@ -5,7 +5,7 @@
 
 
 import random
-from common import word_manage
+from common import word
 from common import wrong_words
 import time
 from colorama import Fore
@@ -13,7 +13,7 @@ from colorama import Fore
 
 def get_dict():
     global word_dict, amount_all, word_list
-    get_dict_result = word_manage.get_all()
+    get_dict_result = word.get_all()
     if not get_dict_result[0]: # 没出错
         word_dict = get_dict_result[1]  # 所有单词的字典
         amount_all = len(word_dict)  # 单词总数

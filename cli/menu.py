@@ -5,7 +5,7 @@
 
 from cli import recite_words
 from cli import account_menu
-from common import word_manage
+from common import word
 from common import youdao
 from common import account
 from common import import_file
@@ -121,7 +121,7 @@ def user_menu():
 def add_menu(en = None):
     if en == None:
         en = input('请输入英文单词：')
-    exist_query = word_manage.exist(en)
+    exist_query = word.exist(en)
     if exist_query[0]: # 查询失败，重新尝试添加
         add_menu(en)
     else: # 查询成功
@@ -129,7 +129,7 @@ def add_menu(en = None):
             print('此单词已存在！')
             add_menu()
         zh = input_zh(en, False)
-        result = word_manage.write(en, zh) # 强制写入
+        result = word.write(en, zh) # 强制写入
         if result[0] == None:
             print(Fore.GREEN, '添加成功！', Fore.RESET)
             return
@@ -140,7 +140,7 @@ def add_menu(en = None):
 # 删除单词菜单
 def delete_menu():
     en = input('请输入英文单词：')
-    result = word_manage.delete(en)
+    result = word.delete(en)
     if result == None:
         print('删除成功！')
         return
@@ -153,7 +153,7 @@ def delete_menu():
 # 搜索单词菜单
 def search_menu():
     en = input('请输入英文单词：')
-    result = word_manage.read(en)
+    result = word.read(en)
     if not result[0]:
         print('此单词的中文含义是：' + result[1])
         return
@@ -169,11 +169,11 @@ def change_menu():
     en = input('请输入英文单词：')
     
     # 查询单词是否存在
-    exist_query = word_manage.exist(en)
+    exist_query = word.exist(en)
     if not exist_query[0]: # 查询成功
         if exist_query[1]:# 如果存在，询问是否修改
             zh = input_zh(en, True)
-            result = word_manage.change(en, zh)
+            result = word.change(en, zh)
             if result == None:
                 print(Fore.GREEN, '修改成功！', Fore.RESET)
                 return
@@ -193,7 +193,7 @@ def change_menu():
 
 # 展示单词菜单
 def print_menu():
-    result = word_manage.get_all()
+    result = word.get_all()
     word_dict = result[1]
     if word_dict:
         # 逐个打印
@@ -229,7 +229,7 @@ def input_zh(en, enable_compare):
         youdao_zh = youdao.translate(en)
         if youdao_zh[1]:
             print('有道翻译的中文含义是：' + youdao_zh[1])
-            db_zh = word_manage.read(en)
+            db_zh = word.read(en)
             if not db_zh[0]:
                 print('数据库中的中文含义是：' + db_zh[1])
             else:

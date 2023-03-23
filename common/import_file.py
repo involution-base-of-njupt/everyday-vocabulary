@@ -3,7 +3,7 @@
 
 import csv
 import json
-from common import word_manage
+from common import word
 
 # csv文件转json文件，返回值是发生的错误
 def csv2json(csv_file, json_file, codec):
@@ -30,7 +30,7 @@ def csv_import(file, codec, mode):
         f = open(file, 'r', newline='',encoding=codec)
         reader = csv.reader(f)
         for row in reader:
-            word_manage.write(row[0], row[1], mode)
+            word.write(row[0], row[1], mode)
         return None
     except Exception as e:
         return e
@@ -45,7 +45,7 @@ def json_import(file, codec, overwrite):
         f = open(file, 'r', newline='',encoding=codec)
         word_dict = json.load(f)
         for en in word_dict:
-            word_manage.write(en, word_dict[en], overwrite)
+            word.write(en, word_dict[en], overwrite)
         return None
     except Exception as e:
         return e
