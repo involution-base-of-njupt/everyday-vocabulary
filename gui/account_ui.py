@@ -45,30 +45,38 @@ class account_ui(QWidget):
     # 登录按钮
     def clickedlogin(self):
         username = self.user_name_qwidget.text()
-        password = self.password_qwidget.text()
-        check_result = account.check(username, account.encrypt(password))
-        while True:
-            if check_result[0]: # 发生错误
-                self.textBrowser.setText(f"检查用户时出错：{check_result[0]}请重试")
-                return
-            elif check_result[1] == False: # 密码错误
-                self.textBrowser.setText("用户名或密码错误，请重试")
-                return
-            else: # 没出错并且密码正确
-                break
-        account.username = username
-        account.usertype = check_result[2]
-        if account.usertype == 'admin':
-            self.ui.textBrowser.setText(f"欢迎管理员 {username}！")
-            self.admin1_window = admin1_ui.admin1()
-            self.admin1_window.ui.show()
-        elif account.usertype == 'user':
-            self.ui.textBrowser.setText(f"欢迎用户 {username}！")
-            self.user1_window = user1_ui.user1()
-            self.user1_window.ui.show()
-        else:
-            self.textBrowser.setText(f"未知账户类型：{account.usertype}")
+        exist_result = account.exist(username)
+        if exist_result[0]:
+            self.textBrowser.setText(f"检查用户时出错：{exist_result[0]}请重试")
             return
+        elif not exist_result[1]:
+            self.textBrowser.setText("用户名不存在，请重试")
+            return
+        else:
+            password = self.password_qwidget.text()
+            check_result = account.check(username, account.encrypt(password))
+            while True:
+                if check_result[0]: # 发生错误
+                    self.textBrowser.setText(f"检查用户时出错：{check_result[0]}请重试")
+                    return
+                elif check_result[1] == False: # 密码错误
+                    self.textBrowser.setText("用户名或密码错误，请重试")
+                    return
+                else: # 没出错并且密码正确
+                    break
+            account.username = username
+            account.usertype = check_result[2]
+            if account.usertype == 'admin':
+                self.ui.textBrowser.setText(f"欢迎管理员 {username}！")
+                self.admin1_window = admin1_ui.admin1()
+                self.admin1_window.ui.show()
+            elif account.usertype == 'user':
+                self.ui.textBrowser.setText(f"欢迎用户 {username}！")
+                self.user1_window = user1_ui.user1()
+                self.user1_window.ui.show()
+            else:
+                self.textBrowser.setText(f"未知账户类型：{account.usertype}")
+                return
 
 
     # 注册按钮
@@ -86,7 +94,7 @@ class account_ui(QWidget):
             write_result = account.write(username, account.encrypt(password), 'user')
             while True:
                 if write_result: # 发生错误
-                    self.textBrowser.setText(f"写入用户时出错：{write_result[0]}，请重试")
+                    self.textBrowser.setText(f"写入用户时出错：{write_result}，请重试")
                     return
                 else: # 没出错
                     break
