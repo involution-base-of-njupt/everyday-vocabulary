@@ -80,7 +80,7 @@ class user1(QWidget):
         self.change_password_window.ui.show()
 
     def clickedexit(self):
-        self.account_window = account_ui.account()
+        self.account_window = account_ui.account_ui()
         self.account_window.ui.show()
 
 
