@@ -35,7 +35,7 @@ class import_csv_json(QWidget):
     def clickedno(self):
         pass
 
-   
+
     # def login(self):
     #     """登录按钮的槽函数"""
     #     user_name = self.user_name_qwidget.text()

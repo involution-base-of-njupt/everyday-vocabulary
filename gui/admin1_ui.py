@@ -5,6 +5,7 @@ from gui import admin2_manage_words_ui
 from gui import admin2_manage_user_ui
 from gui import account_ui
 from gui import change_password_ui
+from gui import import_csv_json_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -48,10 +49,12 @@ class admin1(QWidget):
         self.admin2_manage_words_window.ui.show()
 
     def clickedinCSV(self):
-        pass
+        self.import_csv_json_window = import_csv_json_ui.import_csv_json()
+        self.import_csv_json_window.ui.show()
 
     def clickedinJSON(self):
-        pass
+        self.import_csv_json_window = import_csv_json_ui.import_csv_json()
+        self.import_csv_json_window.ui.show()
 
     def clickedchangepassword(self):
         self.change_password_ui_window = change_password_ui.change_password()
