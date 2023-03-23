@@ -42,11 +42,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install nuitka
+          return 1
         timeout-minutes: 10
 
       # Build python script into a stand-alone exe
       - run: |
           python -m nuitka --onefile --standalone --enable-plugin=pyqt5 --output-dir=build __init__.py
+          return 1
         timeout-minutes: 30
           # TODO: 图标设置
           # windows-icon-from-ico: resources/app.ico
