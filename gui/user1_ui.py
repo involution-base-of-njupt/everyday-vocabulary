@@ -5,7 +5,7 @@ from gui import account_ui
 import os
 from gui import ec_ui
 from gui import ce_ui
-from gui import searchword_ui
+from gui import new_words_manage_ui
 from gui import user2_ce_ui
 from gui import user2_ec_ui
 from gui import change_password_ui
@@ -53,11 +53,12 @@ class user1(QWidget):
 
     # TODO:
     def clickedsearchword(self):
-        self.searchword_window = searchword_ui.searchword()
-        self.searchword_window.ui.show()
+        self.new_words_manage_window = new_words_manage_ui.new_words_manage()
+        self.new_words_manage_window.ui.show()
 
     def clickedwordlist(self):
-        pass
+        self.new_words_manage_window = new_words_manage_ui.new_words_manage()
+        self.new_words_manage_window.ui.show()
 
     def clickedec(self):
         self.ec_window = ec_ui.ec()

@@ -11,7 +11,7 @@ from PyQt5 import uic
 
 
 
-class admin2_manage_words(QWidget):
+class user2_ce(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -71,7 +71,7 @@ class admin2_manage_words(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = admin2_manage_words()
+    w = user2_ce()
     # 展示窗口
     w.ui.show()
 

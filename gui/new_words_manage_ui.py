@@ -21,7 +21,7 @@ class new_words_manage(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/new_words_manage_words.ui")
+        self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/new_words_manage.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
@@ -63,8 +63,9 @@ class new_words_manage(QWidget):
         pass
 
     def clickedexit(self):
-        self.admin1_window = admin1_ui.admin1()
-        self.admin1_window.ui.show()
+        pass
+        # self.admin1_window = admin1_ui.admin1()
+        # self.admin1_window.ui.show()
 
 
     # def login(self):
