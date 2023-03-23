@@ -49,7 +49,6 @@ class account_ui(QWidget):
         account.username = username
         account.usertype = check_result[2]
         if account.usertype == 'admin':
-<<<<<<< HEAD
             self.ui.textBrowser.setText(f"欢迎管理员 {username}！")
             self.admin1_window = admin1_ui.admin1()
             self.admin1_window.ui.show()
@@ -57,13 +56,6 @@ class account_ui(QWidget):
             self.ui.textBrowser.setText(f"欢迎用户 {username}！")
             self.user1_window = user1_ui.user1()
             self.user1_window.ui.show()
-=======
-            self.textBrowser.setText(f"欢迎管理员 {username}！")
-            # TODO: 跳转到管理员界面
-        elif account.usertype == 'user':
-            self.textBrowser.setText(f"欢迎用户 {username}！")
-            # TODO: 跳转到用户界面
->>>>>>> 6f512b3df303a83ab0a20a51b494d5afaa2ff194
         else:
             self.textBrowser.setText("未知账户类型！")
             return
