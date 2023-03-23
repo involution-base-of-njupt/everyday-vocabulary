@@ -48,9 +48,9 @@ border:3px solid #ffffff;</string>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>1220</x>
+     <x>990</x>
      <y>740</y>
-     <width>121</width>
+     <width>351</width>
      <height>101</height>
     </rect>
    </property>
@@ -61,7 +61,7 @@ background-color: rgb(255, 255, 255);
 border-radius:20px;</string>
    </property>
    <property name="text">
-    <string>提交</string>
+    <string>确认</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
@@ -69,7 +69,7 @@ border-radius:20px;</string>
     <rect>
      <x>360</x>
      <y>760</y>
-     <width>751</width>
+     <width>571</width>
      <height>61</height>
     </rect>
    </property>
