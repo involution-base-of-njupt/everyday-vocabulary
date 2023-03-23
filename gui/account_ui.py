@@ -41,7 +41,7 @@ class account_ui(QWidget):
         check_result = account.check(username, account.encrypt(password))
         while True:
             if check_result[0]: # 发生错误
-                self.textBrowser.setText("检查用户时出错，请重试")
+                self.textBrowser.setText(f"检查用户时出错：{check_result[0]}请重试")
                 return
             elif check_result[1] == False: # 密码错误
                 self.textBrowser.setText("用户名或密码错误，请重试")
@@ -59,7 +59,7 @@ class account_ui(QWidget):
             self.user1_window = user1_ui.user1()
             self.user1_window.ui.show()
         else:
-            self.textBrowser.setText("未知账户类型！")
+            self.textBrowser.setText(f"未知账户类型：{account.usertype}")
             return
 
 
@@ -68,7 +68,7 @@ class account_ui(QWidget):
         username = self.user_name_qwidget.text()
         exist_result = account.exist(username)
         if exist_result[0]:
-            self.textBrowser.setText("检查用户时出错，请重试")
+            self.textBrowser.setText(f"检查用户时出错：{exist_result[0]}请重试")
             return
         elif exist_result[1]:
             self.textBrowser.setText("用户名已存在，请重试")
@@ -93,7 +93,7 @@ class account_ui(QWidget):
                 self.user1_window = user1_ui.user1()
                 self.user1_window.ui.show()
             else:
-                self.textBrowser.setText("未知账户类型！")
+                self.textBrowser.setText(f"未知账户类型：{account.usertype}")
 
 
 def show():
