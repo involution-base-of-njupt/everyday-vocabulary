@@ -13,9 +13,15 @@ from colorama import Fore
 
 def get_dict():
     global word_dict, amount_all, word_list
-    word_dict = word_manage.get_all()[1]  # 所有单词的字典
-    amount_all = len(word_dict)  # 单词总数
-    word_list = list(word_dict)  # 所有单词的列表，仅英文
+    get_dict_result = word_manage.get_all()
+    if not get_dict_result[0]: # 没出错
+        word_dict = get_dict_result[1]  # 所有单词的字典
+        amount_all = len(word_dict)  # 单词总数
+        word_list = list(word_dict)  # 所有单词的列表，仅英文
+    else: # 出错
+        word_dict = {}
+        amount_all = 0
+        word_list = []
     if word_dict:
         return True
     else:
