@@ -20,26 +20,25 @@ class user_change_password(QWidget):
 
         # 提取要操作的控件
 
-        self.old_yes_btn = self.ui.pushButton  # 确认原始密码
-        self.new_yes_btn = self.ui.pushButton_2  # 确认新密码密码
+        self.yes_btn = self.ui.pushButton  # 确认
+
         self.oldpasssword_qwidget = self.ui.lineEdit  # 原密码输入框
         self.newpassword_qwidget = self.ui.lineEdit_2  # 新密码输入框
         self.textBrowser = self.ui.textBrowser  # 文本显示区域
 
          # 绑定信号与槽函数
 
-        self.old_yes_btn.clicked.connect(self.clickedold_yes)
-        self.new_yes_btn.clicked.connect(self.clickednew_yes)
+        self.yes_btn.clicked.connect(self.clickedyes)
+
 
 
 
 
 # TODO
-    def clickedold_yes(self):
+    def clickedyes(self):
         pass
 
-    def clickednew_yes(self):
-        pass
+
 
 
 
