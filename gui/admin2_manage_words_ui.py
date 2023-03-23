@@ -4,6 +4,8 @@ from gui import admin1_ui
 from gui import searchword_ui
 from gui import wordlist_ui
 from gui import add_change_word_ui
+from gui import delect_word_ui
+
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -50,7 +52,8 @@ class admin2_manage_words(QWidget):
         self.add_change_word_window.ui.show()
 
     def clickeddeleteword(self):
-        pass
+        self.delect_word_window = delect_word_ui.delect_word()
+        self.delect_word_window.ui.show()
 
     def clickedchangeword(self):
         self.add_change_word_window = add_change_word_ui.add_change_word()
