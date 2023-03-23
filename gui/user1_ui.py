@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 import sys
-# import account_ui
+from gui import account_ui
 import os
-import ec_ui
-import ce_ui
-import searchword_ui
-import wordlist_ui
+from gui import ec_ui
+from gui import ce_ui
+from gui import searchword_ui
+from gui import wordlist_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic

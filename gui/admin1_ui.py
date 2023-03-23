@@ -1,7 +1,8 @@
-import sys
-import admin2_manage_words_ui
-import admin2_manage_user_ui
-import account_ui
+# -*- coding: utf-8 -*-
+import sys, os
+from gui import admin2_manage_words_ui
+from gui import admin2_manage_user_ui
+from gui import account_ui
 
 
 from PyQt5.QtWidgets import *
@@ -15,7 +16,7 @@ class admin1(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi("./admin1.ui")
+        self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/admin1.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
