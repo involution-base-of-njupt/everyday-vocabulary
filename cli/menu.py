@@ -153,7 +153,7 @@ def delete_menu():
 # 搜索单词菜单
 def search_menu():
     en = input('请输入英文单词：')
-    result = word_manage.search(en)
+    result = word_manage.read(en)
     if not result[0]:
         print('此单词的中文含义是：' + result[1])
         return
@@ -229,7 +229,7 @@ def input_zh(en, enable_compare):
         youdao_zh = youdao.translate(en)
         if youdao_zh[1]:
             print('有道翻译的中文含义是：' + youdao_zh[1])
-            db_zh = word_manage.search(en)
+            db_zh = word_manage.read(en)
             if not db_zh[0]:
                 print('数据库中的中文含义是：' + db_zh[1])
             else:

@@ -81,8 +81,8 @@ def delete(en):
     else:
         return '单词不存在'
 
-# 搜索单词，返回两个值，第一个是发生的错误，第二个是中文意思
-def search(en):
+# 读取单词，返回两个值，第一个是发生的错误，第二个是中文意思
+def read(en):
     f = None
     try:
         f = open(word_file, 'r', newline='', encoding=codec)
