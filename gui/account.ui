@@ -25,8 +25,8 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>-10</x>
-     <y>130</y>
+     <x>10</x>
+     <y>120</y>
      <width>381</width>
      <height>441</height>
     </rect>
@@ -131,7 +131,7 @@ border:3px solid #ffffff;</string>
     <string notr="true">border-radius:20px;
 background-color: rgb(0, 0, 0);
 color: rgb(255, 255, 255);
-font: 26pt &quot;微软雅黑&quot;;
+font: 20pt &quot;微软雅黑&quot;;
 border:3px solid #ffffff;</string>
    </property>
    <property name="text">
@@ -139,8 +139,6 @@ border:3px solid #ffffff;</string>
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="account_picture.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
