@@ -21,6 +21,7 @@ class account_ui(QWidget):
         self.password_qwidget = self.ui.lineEdit  # 密码输入框
         self.login_btn = self.ui.pushButton_2  # 登陆按钮
         self.register_btn = self.ui.pushButton_3  # 注册按钮
+        self.textBrowser = self.ui.textBrowser # 显示框
 
 
         # 绑定信号与槽函数
@@ -36,21 +37,21 @@ class account_ui(QWidget):
         check_result = account.check(username, account.encrypt(password))
         while True:
             if check_result[0]: # 发生错误
-                self.ui.textBrowser.setText("检查用户时出错，请重试")
+                self.textBrowser.setText("检查用户时出错，请重试")
             elif check_result[1] == False: # 密码错误
-                self.ui.textBrowser.setText("用户名或密码错误，请重试")
+                self.textBrowser.setText("用户名或密码错误，请重试")
             else: # 没出错并且密码正确
                 break
         account.username = username
         account.usertype = check_result[2]
         if account.usertype == 'admin':
-            self.ui.textBrowser.setText(f"欢迎管理员 {username}！")
+            self.textBrowser.setText(f"欢迎管理员 {username}！")
             # TODO: 跳转到管理员界面
         elif account.usertype == 'user':
-            self.ui.textBrowser.setText(f"欢迎用户 {username}！")
+            self.textBrowser.setText(f"欢迎用户 {username}！")
             # TODO: 跳转到用户界面
         else:
-            self.ui.textBrowser.setText("未知账户类型！")
+            self.textBrowser.setText("未知账户类型！")
 
 
     # TODO: 注册
