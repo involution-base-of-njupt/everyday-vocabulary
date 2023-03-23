@@ -47,11 +47,18 @@ class add_change_user(QWidget):
             elif check_result[2] == 'admin':
                 self.textBrowser.setText(f"{username}是管理员，你不能修改他的的密码，请重试")
             else: # 没出错，修改密码
-                self.textBrowser.setText(f"修改 {username} 的密码成功")
+                password = self.password_qwidget.text()
+                if write_result: # 出错
+                    self.textBrowser.setText("写入用户时出错，请重试")
+                else:
+                    self.textBrowser.setText(f"修改 {username} 的密码成功")
         else: # 用户名不存在
             password = self.password_qwidget.text()
-            account.write(username, account.encrypt(password))
-            self.textBrowser.setText(f"用户名不存在，添加用户 {username} 成功")
+            write_result = account.write(username, account.encrypt(password))
+            if write_result: # 出错
+                self.textBrowser.setText("写入用户时出错，请重试")
+            else:
+                self.textBrowser.setText(f"用户名不存在，添加用户 {username} 成功")
 
 
 def show():
