@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-class account(QWidget):
+class account_ui(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -30,27 +30,30 @@ class account(QWidget):
 
 
 
-    # TODO:
     def clickedlogin(self):
         username = self.user_name_qwidget.text()
         password = self.password_qwidget.text()
         check_result = account.check(username, account.encrypt(password))
         while True:
             if check_result[0]: # 发生错误
-                self.textBrowser.setText("检查用户时出错，请重试")
+                self.ui.textBrowser.setText("检查用户时出错，请重试")
             elif check_result[1] == False: # 密码错误
-                self.textBrowser.setText("用户名或密码错误，请重试")
+                self.ui.textBrowser.setText("用户名或密码错误，请重试")
             else: # 没出错并且密码正确
                 break
-        global account_username, account_type
-        account_username = username
-        account_type = check_result[2]
-        if account_type == 'admin':
-            self.textBrowser.setText(f"欢迎管理员 {account_username}！")
-        elif account_type == 'user':
-            self.textBrowser.setText(f"欢迎用户 {account_username}！")
+        account.username = username
+        account.usertype = check_result[2]
+        if account.usertype == 'admin':
+            self.ui.textBrowser.setText(f"欢迎管理员 {username}！")
+            # TODO: 跳转到管理员界面
+        elif account.usertype == 'user':
+            self.ui.textBrowser.setText(f"欢迎用户 {username}！")
+            # TODO: 跳转到用户界面
+        else:
+            self.ui.textBrowser.setText("未知账户类型！")
 
 
+    # TODO: 注册
     def clickedregister(self):
         pass
 
@@ -58,7 +61,7 @@ class account(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = account()
+    w = account_ui()
     # 展示窗口
     w.ui.show()
 
