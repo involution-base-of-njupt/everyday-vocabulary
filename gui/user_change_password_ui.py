@@ -1,5 +1,5 @@
-import sys
-
+import sys, os
+from common import account
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -15,7 +15,7 @@ class user_change_password(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi("./user_change_password.ui")
+        self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/user_change_password.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
@@ -34,20 +34,19 @@ class user_change_password(QWidget):
 
 
 
-# TODO
+
+
     def clickedyes(self):
-        pass
-
-
-
-
-
-    #     oldpasssword = self.oldpasssword_qwidget.text()
-    #     newpassword = self.newpassword_qwidget.text()
-    #
-    #     self.textBrowser.setText(内容)
-    #     self.textBrowser.repaint()
-    #
+        oldpasssword = self.oldpasssword_qwidget.text()
+        check_result = account.check(account.username, account.encrypt(oldpasssword))
+        if check_result[0]: # 出错
+            self.textBrowser.setText(f'检查当前密码是否正确时发生错误：{check_result[0]}')
+        elif not check_result[1]: #密码错误
+            self.textBrowser.setText('当前密码错误，修改失败')
+        else: # 没出错并且密码正确
+            newpassword = self.newpassword_qwidget.text()
+            account.write(account.username, account.encrypt(newpassword))
+            self.textBrowser.setText('修改成功')
 def show():
     app = QApplication(sys.argv)
 
