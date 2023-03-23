@@ -85,7 +85,7 @@ class account_ui(QWidget):
             password = self.password_qwidget.text()
             write_result = account.write(username, account.encrypt(password), 'user')
             while True:
-                if write_result[0]: # 发生错误
+                if write_result: # 发生错误
                     self.textBrowser.setText(f"写入用户时出错：{write_result[0]}，请重试")
                     return
                 else: # 没出错
@@ -97,6 +97,7 @@ class account_ui(QWidget):
                 self.admin1_window = admin1_ui.admin1()
                 self.admin1_window.ui.show()
             elif account.usertype == 'user':
+                print('11111')
                 self.textBrowser.setText(f"注册成功，欢迎用户 {username}！")
                 self.user1_window = user1_ui.user1()
                 self.user1_window.ui.show()

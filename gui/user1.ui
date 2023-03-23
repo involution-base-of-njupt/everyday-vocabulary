@@ -239,7 +239,7 @@ border-radius:20px;
     <rect>
      <x>150</x>
      <y>300</y>
-     <width>121</width>
+     <width>211</width>
      <height>21</height>
     </rect>
    </property>
@@ -257,7 +257,7 @@ font: 9pt &quot;幼圆&quot;;</string>
     <rect>
      <x>150</x>
      <y>410</y>
-     <width>121</width>
+     <width>201</width>
      <height>16</height>
     </rect>
    </property>
