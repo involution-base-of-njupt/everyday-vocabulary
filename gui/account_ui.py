@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-class account(QWidget):
+class account_ui(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -107,7 +107,7 @@ class account(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = account()
+    w = account_ui()
     # 展示窗口
     w.ui.show()
 
