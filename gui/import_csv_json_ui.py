@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys, os
-
+from common import import_file
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
@@ -31,6 +31,8 @@ class import_csv_json(QWidget):
     # TODO:
     def clickedyes(self):
         print('耶')
+        file_path = self.locad_qwidget.text()
+        self.textBrowser.setText('xxxx')
 
     def clickedno(self):
         pass
