@@ -51,7 +51,7 @@ class user1(QWidget):
           # 定义以上8个函数
 
 
-    # TODO:
+    # TODO: 按钮改成单词菜单
     def clickedsearchword(self):
         self.new_words_manage_window = new_words_manage_ui.new_words_manage()
         self.new_words_manage_window.ui.show()
