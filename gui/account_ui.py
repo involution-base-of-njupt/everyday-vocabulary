@@ -1,6 +1,8 @@
 import sys
 import os
 from common import account
+from gui import admin1_ui
+from gui import user1_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -45,10 +47,12 @@ class account_ui(QWidget):
         account.usertype = check_result[2]
         if account.usertype == 'admin':
             self.ui.textBrowser.setText(f"欢迎管理员 {username}！")
-            # TODO: 跳转到管理员界面
+            self.admin1_window = admin1_ui.admin1()
+            self.admin1_window.ui.show()
         elif account.usertype == 'user':
             self.ui.textBrowser.setText(f"欢迎用户 {username}！")
-            # TODO: 跳转到用户界面
+            self.user1_window = user1_ui.user1()
+            self.user1_window.ui.show()
         else:
             self.ui.textBrowser.setText("未知账户类型！")
 
