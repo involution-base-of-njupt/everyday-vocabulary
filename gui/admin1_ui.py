@@ -6,6 +6,8 @@ from gui import admin2_manage_user_ui
 from gui import account_ui
 from gui import change_password_ui
 from gui import import_csv_json_ui
+from gui import new_user_manage_ui
+from gui import new_words_manage_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -45,8 +47,8 @@ class admin1(QWidget):
 
     # TODO:
     def clickedmanageword(self):
-        self.admin2_manage_words_window = admin2_manage_words_ui.admin2_manage_words()
-        self.admin2_manage_words_window.ui.show()
+        self.new_words_manage_window = new_words_manage_ui.new_words_manage()
+        self.new_words_manage_window.ui.show()
 
     def clickedinCSV(self):
         self.import_csv_json_window = import_csv_json_ui.import_csv_json()
@@ -61,8 +63,8 @@ class admin1(QWidget):
         self.change_password_window.ui.show()
 
     def clickedmanageuser(self):
-        self.admin2_manage_user_window = admin2_manage_user_ui.admin2_manage_user()
-        self.admin2_manage_user_window.ui.show()
+        self.new_user_manage_window = new_user_manage_ui.new_user_manage()
+        self.new_user_manage_window.ui.show()
 
     def clickedexit(self):
         self.account_window = account_ui.account()

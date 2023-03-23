@@ -6,7 +6,8 @@ import os
 from gui import ec_ui
 from gui import ce_ui
 from gui import searchword_ui
-from gui import wordlist_ui
+from gui import user2_ce_ui
+from gui import user2_ec_ui
 from gui import change_password_ui
 
 from PyQt5.QtWidgets import *
@@ -56,8 +57,7 @@ class user1(QWidget):
         self.searchword_window.ui.show()
 
     def clickedwordlist(self):
-        self.wordlist_window = wordlist_ui.wordlist()
-        self.wordlist_window.ui.show()
+        pass
 
     def clickedec(self):
         self.ec_window = ec_ui.ec()
@@ -68,10 +68,12 @@ class user1(QWidget):
         self.ce_window.ui.show()
 
     def clickedecmanage(self):
-        pass
+        self.user2_ec_window = user2_ec_ui.user2_ec()
+        self.user2_ec_window.ui.show()
 
     def clickedcemanage(self):
-        pass
+        self.user2_ce_window = user2_ce_ui.user2_ce()
+        self.user2_ce_window.ui.show()
 
     def clickedchangepassword(self):
         self.change_password_ui_window = change_password_ui.change_password()

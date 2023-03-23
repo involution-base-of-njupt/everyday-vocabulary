@@ -3,7 +3,6 @@
 import sys, os
 from gui import admin1_ui
 from gui import searchword_ui
-from gui import wordlist_ui
 from gui import add_change_word_ui
 from gui import delect_word_ui
 
@@ -15,7 +14,7 @@ from PyQt5 import uic
 
 
 
-class admin2_manage_words(QWidget):
+class new_words_manage(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -83,7 +82,7 @@ class admin2_manage_words(QWidget):
 def show():
     app = QApplication(sys.argv)
 
-    w = admin2_manage_words()
+    w = new_words_manage()
     # 展示窗口
     w.ui.show()
 
