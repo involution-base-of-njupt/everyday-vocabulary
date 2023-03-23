@@ -3,7 +3,7 @@ import sys, os
 from gui import admin2_manage_words_ui
 from gui import admin2_manage_user_ui
 from gui import account_ui
-
+from gui import change_password_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -53,7 +53,8 @@ class admin1(QWidget):
         pass
 
     def clickedchangepassword(self):
-        pass
+        self.change_password_ui_window = change_password_ui.change_password()
+        self.change_password_window.ui.show()
 
     def clickedmanageuser(self):
         self.admin2_manage_user_window = admin2_manage_user_ui.admin2_manage_user()
