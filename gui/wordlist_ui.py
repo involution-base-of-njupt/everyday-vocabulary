@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 单词列表界面
 import sys, os
 # import menu
 

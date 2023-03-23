@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 用户主菜单
 import sys
 from gui import account_ui
 import os

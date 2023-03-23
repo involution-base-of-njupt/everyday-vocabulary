@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 背单词英译中界面
 import sys, os
 
 from PyQt5.QtWidgets import *

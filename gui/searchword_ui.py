@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 搜索单词界面
 import sys
 import os
 
