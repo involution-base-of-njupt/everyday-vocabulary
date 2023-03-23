@@ -2,13 +2,13 @@
 # 管理员单词操作菜单
 import sys, os
 from gui import user1_ui
-from gui import wrong_ce_wordlist_ui
+
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-# ||||大改
+
 
 
 class admin2_manage_words(QWidget):
@@ -18,7 +18,7 @@ class admin2_manage_words(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/user_ce.ui")
+        self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/user2_ce.ui")
         # print(self.ui.__dict__)  # 查看ui文件中有哪些控件
 
         # 提取要操作的控件
@@ -40,8 +40,7 @@ class admin2_manage_words(QWidget):
 
     # TODO:
     def clickedwrongwordlist(self):
-        self.wrong_ce_wordlist_window = wrong_ce_wordlist_ui.wrong_ce_wordlist()
-        self.wrong_ce_wordlist_window.ui.show()
+        pass
 
     def clickedsearchwrongword(self):
         # self.delect_word_window = delect_word_ui.delect_word()
