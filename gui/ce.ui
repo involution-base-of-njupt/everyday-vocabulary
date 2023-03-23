@@ -31,9 +31,9 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>230</x>
      <y>40</y>
-     <width>1331</width>
+     <width>1141</width>
      <height>641</height>
     </rect>
    </property>
@@ -96,6 +96,46 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>英文翻译是：</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>191</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:20px;
+background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+font: 25pt &quot;微软雅黑&quot;;
+border:3px solid #ffffff;</string>
+   </property>
+   <property name="text">
+    <string>新题模式</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>420</y>
+     <width>191</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:20px;
+background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+font: 25pt &quot;微软雅黑&quot;;
+border:3px solid #ffffff;</string>
+   </property>
+   <property name="text">
+    <string>错题模式</string>
    </property>
   </widget>
  </widget>
