@@ -28,6 +28,14 @@ def init():
     if not os.path.isfile(account_file) or not os.path.getsize(account_file): # 账户文件对应的路径不是文件（是文件夹或者不存在）或文件为空
         if os.path.isdir(account_file): # 账户文件对应的路径是文件夹
             exit()
+        else:
+            # 创建data文件夹
+            try:
+                os.mkdir(os.path.dirname('data'))
+            except FileExistsError:
+                pass
+            except Exception as e:
+                exit(e)
         write('admin', encrypt('admin'), 'admin')
         return True
     else: # 账户文件对应的路径是文件
