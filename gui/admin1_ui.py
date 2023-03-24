@@ -4,7 +4,7 @@ import sys, os
 
 from gui import account_ui
 from gui import change_password_ui
-from gui import import_csv_json_ui
+#from gui import import_csv_json_ui
 from gui import new_user_manage_ui
 from gui import new_words_manage_ui
 
@@ -70,21 +70,9 @@ class admin1(QWidget):
         self.account_window.ui.show()
 
 
-
-
-    # def login(self):
-    #     """登录按钮的槽函数"""
-    #     user_name = self.user_name_qwidget.text()
-    #     password = self.password_qwidget.text()
-    #     if user_name == "admin" and password == "123456":
-    #         self.textBrowser.setText("欢迎%s" % user_name)
-    #         self.textBrowser.repaint()
-    #     else:
-    #         self.textBrowser.setText("用户名或密码错误....请重试")
-    #         self.textBrowser.repaint()
-
-
 def show():
+    #if previous_window:
+    #    previous_window.close()
     app = QApplication(sys.argv)
     try:
         w = admin1()
