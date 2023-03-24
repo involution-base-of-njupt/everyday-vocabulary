@@ -94,7 +94,7 @@
    <property name="font">
     <font>
      <family>幼圆</family>
-     <pointsize>24</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="rowCount">

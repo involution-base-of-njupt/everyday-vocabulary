@@ -173,11 +173,19 @@ border:3px solid #ffffff;</string>
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>1180</x>
-     <y>830</y>
-     <width>131</width>
-     <height>51</height>
+     <x>1140</x>
+     <y>800</y>
+     <width>291</width>
+     <height>91</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>22</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">border-radius:20px;
@@ -187,7 +195,7 @@ font: 22pt &quot;微软雅黑&quot;;
 border:3px solid #000000;</string>
    </property>
    <property name="text">
-    <string>退出</string>
+    <string>准备</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -226,22 +234,5 @@ border:3px solid #ffffff;</string>
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButton_5</sender>
-   <signal>clicked()</signal>
-   <receiver>Form</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>667</x>
-     <y>491</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>368</x>
-     <y>255</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
