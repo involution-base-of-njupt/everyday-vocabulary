@@ -43,7 +43,7 @@ class new_user_manage(QWidget):
           # 定义以上5个函数
 
 
-    # TODO:
+    # TODO: 功能函数
     def clickedadduser(self):
         pass
 

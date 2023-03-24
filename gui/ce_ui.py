@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # 背单词汉译英
 # TODO: 背错词模式
-# TODO: 进度和正确率显示
+# TODO: 正确率显示
+# FIXME: 错词的答案添加不正确
 import sys, os, time, random
 from common import word, wrong_words
 from PyQt5.QtWidgets import *
@@ -103,6 +104,7 @@ class ce(QWidget):
     # 背单词
     def recite(self):
         self.answer_qwidget.enable = False
+        self.push_btn.setVisible(False)
         self.current_word = self.words_test.pop()
         self.label.setText('请记住英文')
         self.textBrowser.setText(f'''
@@ -135,6 +137,8 @@ class ce(QWidget):
 输入英文：
 ''')
             self.label.setText('请输入英文：')
+            self.push_btn.setText('确认')
+            self.push_btn.setVisible(True)
             self.answer_qwidget.enable = True
             self.push_btn_func = 'check_answer'
 
@@ -179,8 +183,11 @@ class ce(QWidget):
             if self.answer_qwidget.text() == self.word_dict_chinese_ver[self.current_word]:
                 self.textBrowser.setText('回答正确')
             else:
-                self.textBrowser.setText(f'回答错误，正确答案是：{self.word_dict_chinese_ver[self.current_word]}')
-                wrong_words.add_wrong_zh_word(self.current_word, self.word_dict_chinese_ver[self.current_word])
+                add_wrong_result = wrong_words.add_wrong_zh_word(self.current_word, self.word_dict_chinese_ver[self.current_word])
+                if add_wrong_result: # 出错
+                    self.textBrowser.setText(f'回答错误，正确答案是：{self.word_dict_chinese_ver[self.current_word]}，添加到错题本失败：{add_wrong_result}')
+                else:
+                    self.textBrowser.setText(f'回答错误，正确答案是：{self.word_dict_chinese_ver[self.current_word]}，添加到错题本成功')
             if len(self.words_test) <= 0:
                 self.textBrowser.setText('背单词结束')
                 self.label.setVisible(False)
@@ -188,7 +195,7 @@ class ce(QWidget):
                 self.push_btn.setText('继续背单词')
                 self.push_btn_func = 'prepare_set_amount'
             else:
-                self.textBrowser.setText(f'{self.textBrowser.text()}\n下一个')
+                #self.textBrowser.setText(f'{self.textBrowser.text()}\n下一个')
                 self.push_btn.setText('下一个')
                 self.push_btn_func = 'next_word'
         elif self.push_btn_func == 'next_word':

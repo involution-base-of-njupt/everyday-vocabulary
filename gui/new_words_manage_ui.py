@@ -8,7 +8,6 @@ from gui import admin1_ui, user1_ui
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-from PyQt5.QtCore import Qt
 
 
 class new_words_manage(QWidget):
@@ -269,13 +268,14 @@ class new_words_manage(QWidget):
             #word = self.text_en.toPlainText()
         else:
             self.show_text.setText('此模式下不支持该搜索')
-        if word == '':
-            self.show_text.setText('输入不能为空')
-        else:
-            if word in self.word_dict:
-                self.show_text.setText(f'单词 {word} 的意思是：{self.word_dict[word]}')
+            en = self.text_en.toPlainText()
+            if en == '':
+                self.show_text.setText('输入不能为空')
             else:
-                self.show_text.setText(f'单词 {word} 不存在')
+                if en in self.word_dict:
+                    self.show_text.setText(f'单词 {en} 的意思是：{self.word_dict[en]}')
+                else:
+                    self.show_text.setText(f'单词 {en} 不存在')
     
 
     def cell_clicked(self):
@@ -313,7 +313,7 @@ class new_words_manage(QWidget):
         row = 0
         error_messages = ''
         if self.manage_mode == 'user_en_wrong_words':
-            for en in self.word_dict.items():
+            for en in self.word_dict.keys():
                 self.table.setRowCount(row + 1)
                 read_reault = wrong_words.read_wrong_en_word(en)
                 if read_reault[0]: # 出错
@@ -344,10 +344,10 @@ class new_words_manage(QWidget):
                 done_text += '\n' + error_messages
             self.show_text.setText(done_text)
         else:
-            for en, zh in self.word_dict.keys():
+            for en in self.word_dict.keys():
                 self.table.setRowCount(row + 1)
                 self.table.setItem(row,0,QTableWidgetItem(en))
-                self.table.setItem(row,1,QTableWidgetItem(zh))
+                self.table.setItem(row,1,QTableWidgetItem(self.word_dict[en]))
                 row += 1
             self.show_text.setText(f'读取完成，单词总数：{row}')
 

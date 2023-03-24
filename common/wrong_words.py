@@ -10,10 +10,11 @@ from hashlib import md5
 
 # MD5处理用户名，防止多用户使用时文件冲突，防止用户名包含系统不支持的文件名导致保存失败
 codec = 'utf-8'
-wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
+#wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
 
 # 添加错英文词，传入英文单词（str），正确答案（str），错误答案列表（list），返回值是发生的错误
 def add_wrong_en_word(en, correct_answer = '', wrong_answers = ()):
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -48,6 +49,7 @@ def add_wrong_en_word(en, correct_answer = '', wrong_answers = ()):
 
 # 添加错中文词，传入中文单词（str），正确答案（str），返回值是发生的错误
 def add_wrong_zh_word(zh, correct_answer = ''):
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -75,6 +77,7 @@ def add_wrong_zh_word(zh, correct_answer = ''):
 
 # 读取错英文词，传入单词，返回发生错误、错词次数、正确答案、错误答案
 def read_wrong_en_word(en):
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -93,6 +96,7 @@ def read_wrong_en_word(en):
 
 # 读取错中文词，传入单词，返回发生错误、错词次数、正确答案
 def read_wrong_zh_word(zh):
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -111,6 +115,7 @@ def read_wrong_zh_word(zh):
 
 # 搜索错中文词，传入关键词，返回发生错误、可能匹配的错中文词列表
 def search_wrong_zh_word(keyword):
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -132,6 +137,7 @@ def search_wrong_zh_word(keyword):
 
 # 删除错英文词，传入单词，返回发生错误
 def delete_wrong_en_word(en):
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -153,6 +159,7 @@ def delete_wrong_en_word(en):
 
 # 删除错中文词，传入单词，返回发生错误
 def delete_wrong_zh_word(zh):
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -175,6 +182,7 @@ def delete_wrong_zh_word(zh):
 
 # 获取所有错英文词，返回值是发生的错误、错词字典（key:单词，value:次数）
 def get_all_wrong_en_words():
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
@@ -195,6 +203,7 @@ def get_all_wrong_en_words():
 
 # 获取所有错中文词，返回值是发生的错误、错词字典（key:词，value:次数）
 def get_all_wrong_zh_words():
+    wrong_words_file = f"{os.path.abspath('.')}/data/wrong_words_{md5(str(account.username).encode(encoding=codec)).hexdigest()}.json"
     f = None
     try:
         if not os.path.isfile(wrong_words_file) or not os.path.getsize(wrong_words_file):
