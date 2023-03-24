@@ -8,8 +8,9 @@ from PyQt5 import uic
 
 class ec(QWidget):
 
-    def __init__(self):
+    def __init__(self, wrong_words_mode = False):
         super().__init__()
+        self.wrong_words_mode = wrong_words_mode
         self.init_ui()
 
     def init_ui(self):

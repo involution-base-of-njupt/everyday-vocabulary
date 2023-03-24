@@ -6,8 +6,6 @@ import os
 from gui import ec_ui
 from gui import ce_ui
 from gui import new_words_manage_ui
-from gui import user2_ce_ui
-from gui import user2_ec_ui
 from gui import change_password_ui
 
 from PyQt5.QtWidgets import *
@@ -27,10 +25,11 @@ class user1(QWidget):
 
         # 提取要操作的控件
 
-        self.searchword_btn = self.ui.pushButton  # 搜索单词.
-        self.wordlist_btn = self.ui.pushButton_2  # 输出单词列表
-        self.ec_btn = self.ui.pushButton_3  # 英译中测试.
-        self.ce_btn = self.ui.pushButton_4  # 中译英测试.
+        self.en_wrong_checkbox = self.ui.checkBox  # 英译中错词本
+        self.ch_wrong_checkbox = self.ui.checkBox_2  # 中译英错词本
+        self.words_btn = self.ui.pushButton_2  # 我的词库
+        self.ec_btn = self.ui.pushButton_3  # 英译中测试
+        self.ce_btn = self.ui.pushButton_4  # 中译英测试
         self.ecmanage_btn = self.ui.pushButton_5  # 英译中错词本管理
         self.cemanage_btn = self.ui.pushButton_6  # 中译英错词本管理
         self.changepassword_btn = self.ui.pushButton_7  # 修改密码
@@ -39,8 +38,7 @@ class user1(QWidget):
 
          # 绑定信号与槽函数
 
-        self.searchword_btn.clicked.connect(self.clickedsearchword)   # 搜索单词
-        self.wordlist_btn.clicked.connect(self.clickedwordlist)   # 输出单词列表
+        self.words_btn.clicked.connect(self.show_word_dict)   # 我的词库
         self.ec_btn.clicked.connect(self.clickedec)  # 英译中测试
         self.ce_btn.clicked.connect(self.clickedce)  # 中译英测试
         self.ecmanage_btn.clicked.connect(self.clickedecmanage)  # 英译中错词本管理
@@ -48,55 +46,42 @@ class user1(QWidget):
         self.changepassword_btn.clicked.connect(self.clickedchangepassword) # 修改密码
         self.exit_btn.clicked.connect(self.clickedexit)  # 返回上级菜单
 
-          # 定义以上8个函数
+          # 定义以上函数
 
 
-    # TODO: 按钮改成单词菜单
-    def clickedsearchword(self):
-        self.new_words_manage_window = new_words_manage_ui.new_words_manage()
-        self.new_words_manage_window.ui.show()
-
-    def clickedwordlist(self):
-        self.new_words_manage_window = new_words_manage_ui.new_words_manage()
+    def show_word_dict(self):
+        self.new_words_manage_window = new_words_manage_ui.new_words_manage('user_default')
         self.new_words_manage_window.ui.show()
 
     def clickedec(self):
-        self.ec_window = ec_ui.ec()
+        if self.en_wrong_checkbox.isChecked():
+            self.ec_window = ec_ui.ec(wrong_words_mode=True)
+        else:
+            self.ec_window = ec_ui.ec(wrong_words_mode=False)
         self.ec_window.ui.show()
 
     def clickedce(self):
-        self.ce_window = ce_ui.ce()
+        if self.ch_wrong_checkbox.isChecked():
+            self.ce_window = ce_ui.ce(wrong_words_mode=True)
+        else:
+            self.ce_window = ce_ui.ce(wrong_words_mode=False)
         self.ce_window.ui.show()
 
     def clickedecmanage(self):
-        self.user2_ec_window = user2_ec_ui.user2_ec()
-        self.user2_ec_window.ui.show()
+        self.new_words_manage_window = new_words_manage_ui.new_words_manage('user_en_wrong_words')
+        self.new_words_manage_window.ui.show()
 
     def clickedcemanage(self):
-        self.user2_ce_window = user2_ce_ui.user2_ce()
-        self.user2_ce_window.ui.show()
+        self.new_words_manage_window = new_words_manage_ui.new_words_manage('user_zh_wrong_words')
+        self.new_words_manage_window.ui.show()
 
     def clickedchangepassword(self):
-        self.change_password_ui_window = change_password_ui.change_password()
+        self.change_password_window = change_password_ui.change_password()
         self.change_password_window.ui.show()
 
     def clickedexit(self):
         self.account_window = account_ui.account_ui()
         self.account_window.ui.show()
-
-
-
-
-    # def login(self):
-    #     """登录按钮的槽函数"""
-    #     user_name = self.user_name_qwidget.text()
-    #     password = self.password_qwidget.text()
-    #     if user_name == "admin" and password == "123456":
-    #         self.textBrowser.setText("欢迎%s" % user_name)
-    #         self.textBrowser.repaint()
-    #     else:
-    #         self.textBrowser.setText("用户名或密码错误....请重试")
-    #         self.textBrowser.repaint()
 
 
 def show():

@@ -10,7 +10,7 @@ from PyQt5 import uic
 
 
 
-class user_change_password(QWidget):
+class change_password(QWidget):
 
     def __init__(self):
         super().__init__()
