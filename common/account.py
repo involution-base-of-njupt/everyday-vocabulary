@@ -31,7 +31,7 @@ def init():
         else:
             # 创建data文件夹
             try:
-                os.mkdir(os.path.dirname('data'))
+                os.mkdir(f"{os.path.abspath('.')}/data")
             except FileExistsError:
                 pass
             except Exception as e:
