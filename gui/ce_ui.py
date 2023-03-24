@@ -101,7 +101,6 @@ class ce(QWidget):
 
     # 背单词
     def recite(self):
-        # TODO: 单独一个线程防止主线程阻塞
         self.answer_qwidget.enable = False
         self.current_word = self.words_test.pop()
         self.label.setText('请记住英文')
