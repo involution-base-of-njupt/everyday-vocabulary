@@ -54,7 +54,7 @@ class change_password(QWidget):
 def show():
     app = QApplication(sys.argv)
     try:
-        w = user_change_password()
+        w = change_password()
         # 展示窗口
         w.ui.show()
         app.exec()
