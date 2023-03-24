@@ -28,11 +28,18 @@ User --> 错词本测试
 错词本测试 --> d[单词删除]
 ```
 
-## 自行构建
+## 运行
+
+```shell
+python -m pip install -r requirements.txt # 安装依赖
+python __init__.py
+```
+
+## 构建
 
 ```shell
 python -m pip install --upgrade pip
-pip install -r requirements.txt # 安装依赖
-pip install nuitka # 安装nuitka来构建
+python -m pip install -r requirements.txt # 安装依赖
+python -m pip install nuitka # 安装nuitka来构建
 python -m nuitka --onefile --standalone --enable-plugin=pyqt5 --output-dir=build __init__.py # 构建
 ```
