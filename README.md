@@ -5,8 +5,13 @@
 ```mermaid
 graph LR
 
-Sys(背单词系统) --> Admin[管理员菜单]
-Sys --> User[用户菜单]
+Sys(背单词系统) --> gui[图形化界面]
+Sys --> cli[命令行交互界面]
+cli --> gui
+gui --> Admin[管理员]
+gui --> User[用户]
+cli --> Admin[管理员]
+cli --> User[用户]
 
 Admin --> 文件导入
 Admin --> 单词添加
