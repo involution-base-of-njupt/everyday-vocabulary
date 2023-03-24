@@ -28,20 +28,17 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>401</width>
-     <height>151</height>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>111</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>添加单词</string>
@@ -50,20 +47,17 @@ border-radius:20px;
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>150</y>
-     <width>401</width>
-     <height>151</height>
+     <x>10</x>
+     <y>140</y>
+     <width>381</width>
+     <height>111</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>删除单词</string>
@@ -72,20 +66,17 @@ border-radius:20px;
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>300</y>
-     <width>401</width>
-     <height>151</height>
+     <x>10</x>
+     <y>270</y>
+     <width>381</width>
+     <height>111</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>修改单词</string>
@@ -94,20 +85,17 @@ border-radius:20px;
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>450</y>
-     <width>401</width>
-     <height>151</height>
+     <x>10</x>
+     <y>400</y>
+     <width>381</width>
+     <height>111</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>搜索单词</string>
@@ -116,20 +104,17 @@ border-radius:20px;
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>600</y>
-     <width>401</width>
-     <height>151</height>
+     <x>10</x>
+     <y>530</y>
+     <width>381</width>
+     <height>111</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>输出单词列表</string>
@@ -138,20 +123,17 @@ border-radius:20px;
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>750</y>
-     <width>401</width>
-     <height>151</height>
+     <x>10</x>
+     <y>660</y>
+     <width>381</width>
+     <height>111</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>返回上级菜单</string>
@@ -166,22 +148,162 @@ border-radius:20px;
      <height>741</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
    </property>
+   <property name="rowCount">
+    <number>0</number>
+   </property>
+   <property name="columnCount">
+    <number>2</number>
+   </property>
+   <attribute name="horizontalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>330</number>
+   </attribute>
+   <attribute name="verticalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <column/>
+   <column/>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>20</y>
-     <width>121</width>
+     <x>80</x>
+     <y>780</y>
+     <width>241</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>当前操作：</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>800</y>
+     <width>261</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>800</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>英文：</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>840</y>
+     <width>261</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_7">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>800</y>
+     <width>401</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>保存修改</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>840</y>
+     <width>61</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>中文：</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>900</y>
+     <width>401</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>幼圆</family>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>870</y>
+     <width>351</width>
      <height>111</height>
     </rect>
    </property>
@@ -215,6 +337,32 @@ font: 24pt &quot;幼圆&quot;;
 border:1px solid #ffffff;
 border-radius:20px;
 </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>730</x>
+     <y>800</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>搜索/下一个</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_9">
+   <property name="geometry">
+    <rect>
+     <x>730</x>
+     <y>840</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>搜索/下一个</string>
    </property>
   </widget>
  </widget>
