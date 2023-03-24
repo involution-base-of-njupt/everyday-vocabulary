@@ -1,6 +1,6 @@
 # 背单词系统
 
-## 流程图
+## 结构图
 
 ```mermaid
 graph LR
@@ -13,6 +13,7 @@ gui --> User[用户]
 cli --> Admin[管理员]
 cli --> User[用户]
 
+Admin --管理--> User
 Admin --> 文件导入
 Admin --> 单词添加
 Admin --> 单词删除
