@@ -25,13 +25,13 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>401</width>
-     <height>114</height>
+     <height>130</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -44,38 +44,16 @@ border-radius:20px;
 </string>
    </property>
    <property name="text">
-    <string>搜索单词</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>110</y>
-     <width>401</width>
-     <height>114</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font: 24pt &quot;幼圆&quot;;
-border:1px solid #ffffff;
-border-radius:20px;
-</string>
-   </property>
-   <property name="text">
-    <string>输出单词列表</string>
+    <string>我的词库</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>220</y>
+     <y>130</y>
      <width>401</width>
-     <height>114</height>
+     <height>130</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -95,9 +73,9 @@ border-radius:20px;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>330</y>
+     <y>260</y>
      <width>401</width>
-     <height>114</height>
+     <height>130</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -117,9 +95,9 @@ border-radius:20px;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>440</y>
+     <y>390</y>
      <width>401</width>
-     <height>114</height>
+     <height>130</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -139,9 +117,9 @@ border-radius:20px;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>550</y>
+     <y>520</y>
      <width>401</width>
-     <height>114</height>
+     <height>130</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -194,9 +172,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>660</y>
+     <y>650</y>
      <width>401</width>
-     <height>114</height>
+     <height>125</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -218,7 +196,7 @@ border-radius:20px;
      <x>0</x>
      <y>770</y>
      <width>401</width>
-     <height>125</height>
+     <height>123</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -237,8 +215,8 @@ border-radius:20px;
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>300</y>
+     <x>140</x>
+     <y>230</y>
      <width>211</width>
      <height>21</height>
     </rect>
@@ -255,8 +233,8 @@ font: 9pt &quot;幼圆&quot;;</string>
   <widget class="QCheckBox" name="checkBox_2">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>410</y>
+     <x>130</x>
+     <y>360</y>
      <width>201</width>
      <height>16</height>
     </rect>

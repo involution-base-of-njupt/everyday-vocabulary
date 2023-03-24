@@ -161,9 +161,50 @@ border-radius:20px;
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>0</y>
+     <y>160</y>
      <width>1051</width>
-     <height>901</height>
+     <height>741</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font: 24pt &quot;幼圆&quot;;
+border:1px solid #ffffff;
+border-radius:20px;
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>20</y>
+     <width>121</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font: 24pt &quot;幼圆&quot;;
+border:1px solid #ffffff;
+border-radius:20px;
+</string>
+   </property>
+   <property name="text">
+    <string>搜索</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>20</y>
+     <width>841</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="styleSheet">
