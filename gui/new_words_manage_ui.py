@@ -91,7 +91,7 @@ class new_words_manage(QWidget):
 
 
             self.secrch_en_btn.setVisible(True)
-            self.secrch_zh_btn.setVisible(True)
+            self.secrch_zh_btn.setVisible(False)
             self.secrch_zh_wrong_btn.setVisible(False)
 
             self.addword_btn.setVisible(False)
@@ -315,9 +315,9 @@ class new_words_manage(QWidget):
         if self.manage_mode == 'user_en_wrong_words':
             for en in self.word_dict.items():
                 self.table.setRowCount(row + 1)
-                read_reault = wrong_words.read_wrong_zh_word(en)
+                read_reault = wrong_words.read_wrong_en_word(en)
                 if read_reault[0]: # 出错
-                    error_messages += read_reault[0] + '\n'
+                    error_messages += str(read_reault[0]) + '\n'
                 else:
                     self.table.setItem(row,0,QTableWidgetItem(en))
                     self.table.setItem(row,1,QTableWidgetItem(str(self.word_dict[en])))
@@ -329,11 +329,11 @@ class new_words_manage(QWidget):
                 done_text += '\n' + error_messages
             self.show_text.setText(done_text)
         elif self.manage_mode == 'user_zh_wrong_words':
-            for zh in self.word_dict.items():
+            for zh in self.word_dict.keys():
                 self.table.setRowCount(row + 1)
                 read_reault = wrong_words.read_wrong_zh_word(zh)
                 if read_reault[0]: # 出错
-                    error_messages += read_reault[0] + '\n'
+                    error_messages += str(read_reault[0]) + '\n'
                 else:
                     self.table.setItem(row,0,QTableWidgetItem(zh))
                     self.table.setItem(row,1,QTableWidgetItem(str(self.word_dict[zh])))
@@ -344,7 +344,7 @@ class new_words_manage(QWidget):
                 done_text += '\n' + error_messages
             self.show_text.setText(done_text)
         else:
-            for en, zh in self.word_dict.items():
+            for en, zh in self.word_dict.keys():
                 self.table.setRowCount(row + 1)
                 self.table.setItem(row,0,QTableWidgetItem(en))
                 self.table.setItem(row,1,QTableWidgetItem(zh))
@@ -358,7 +358,7 @@ class new_words_manage(QWidget):
             empty_row = []
             new_word_dict = {}
             amount = 0
-            for row in range(1, row_num):
+            for row in range(row_num):
                 en = self.table.item(row, 0).text()
                 zh = self.table.item(row, 1).text()
                 if en == '' or zh == '':

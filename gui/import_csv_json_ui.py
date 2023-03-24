@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import sys, os
-from cli import menu
 from common import import_file
 
 from PyQt5.QtWidgets import *
@@ -33,9 +32,8 @@ class import_csv_json(QWidget):
 
 
     def clickedyes(self):
-        menu.import_menu(self.filetype)
 
-            # 输入文件位置
+        # 输入文件位置
         file = self.locad_qwidget.text()
         if self.filetype == 'csv':
 

@@ -23,8 +23,9 @@ class TimerThread(QThread):
 
 class ce(QWidget):
 
-    def __init__(self):
+    def __init__(self, wrong_words_mode = False):
         super().__init__()
+        self.wrong_words_mode = wrong_words_mode
         self.init_ui()
         
 
@@ -105,6 +106,7 @@ class ce(QWidget):
         self.current_word = self.words_test.pop()
         self.label.setText('请记住英文')
         self.textBrowser.setText(f'''
+你正在背第 {self.amount - len(self.words_test)} / {self.amount} 个单词
 请记住单词的英文，时间到后单词会消失，之后请根据中文含义输入英文：
 单词：{self.word_dict_chinese_ver[self.current_word]}
 中文含义：{self.current_word}
@@ -119,6 +121,7 @@ class ce(QWidget):
     # 更新倒计时
     def update_time_left(self, time_left):
         self.textBrowser.setText(f'''
+你正在背第 {self.amount - len(self.words_test)} / {self.amount} 个单词
 请记住单词的英文，时间到后单词会消失，之后请根据中文含义输入英文：
 单词：{self.word_dict_chinese_ver[self.current_word]}
 中文含义：{self.current_word}
@@ -126,6 +129,7 @@ class ce(QWidget):
 ''')
         if time_left <= 0:
             self.textBrowser.setText(f'''
+你正在背第 {self.amount - len(self.words_test)} / {self.amount} 个单词
 请根据中文含义
 {self.current_word}
 输入英文：
