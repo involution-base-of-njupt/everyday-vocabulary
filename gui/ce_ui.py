@@ -101,7 +101,6 @@ class ce(QWidget):
 
     # 背单词
     def recite(self):
-        # TODO: 单独一个线程防止主线程阻塞
         self.answer_qwidget.enable = False
         self.current_word = self.words_test.pop()
         self.label.setText('请记住英文')
@@ -194,13 +193,16 @@ class ce(QWidget):
 
 def show():
     app = QApplication(sys.argv)
-
-    w = ce()
-    # 展示窗口
-    w.ui.show()
-
-
-    app.exec()
+    try:
+        w = ce()
+        # 展示窗口
+        w.ui.show()
+        app.exec()
+    except Exception as e:
+        print(e)
+    finally:
+        # 在应用程序关闭之前停止Qt对象的运行
+        app.quit()
 
 if __name__ == '__main__':
     show()

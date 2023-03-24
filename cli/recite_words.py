@@ -11,6 +11,11 @@ import time
 from colorama import Fore
 
 
+def progress_bar(task_done, tasks_number):
+    percentage = round(task_done / tasks_number * 100)
+    print("背诵进度: {}% ".format(percentage))
+
+
 def get_dict():
     global word_dict, amount_all, word_list
     get_dict_result = word.get_all()
@@ -71,31 +76,36 @@ def input_option_num():
 # 英译中
 def english_translate_chinese():
     if get_dict():
-        word_amount = input_amount() # 要背的单词数量
-        option_num = input_option_num() # 选项数量
+        word_amount = input_amount()  # 要背的单词数量
+        option_num = input_option_num()  # 选项数量
         print(f'你要背 {word_amount} 个单词，每个单词有 {option_num} 个选项。\n')
-        test_words = random.sample(word_list, word_amount) # 抽取单词列表
-        for en in test_words: # 遍历每个要背的单词
-            correct_answer = random.randint(1, option_num) # 随机选择正确答案序号
-            option_list = { correct_answer - 1 : word_dict[en] } # 选项字典，key为序号，value为选项内容，正确答案放入选项字典
+        test_words = random.sample(word_list, word_amount)  # 抽取单词列表
+        j = 0  # j是已完成的单词数
+        k = 0  # k是正确的单词数
+        for en in test_words:  # 遍历每个要背的单词
+            correct_answer = random.randint(1, option_num)  # 随机选择正确答案序号
+            option_list = { correct_answer - 1 : word_dict[en] }  # 选项字典，key为序号，value为选项内容，正确答案放入选项字典
             word_dict_without_correct_answer = word_dict
-            del word_dict_without_correct_answer[en] # 获得不包含正确答案的字典
-            wrong_options = [] # 错误答案列表
-            wrong_options += random.sample(list(word_dict_without_correct_answer.values()), option_num - 1) # 添加错误答案
+            del word_dict_without_correct_answer[en]  # 获得不包含正确答案的字典
+            wrong_options = []  # 错误答案列表
+            wrong_options += random.sample(list(word_dict_without_correct_answer.values()), option_num - 1)  # 添加错误答案
+            progress_bar(j, word_amount)
             print(f'请选择单词 {en} 的正确中文含义：')
             i = 0
-            for option_no in range(option_num): # 遍历每个选项
-                if option_no not in option_list: # 如果此选项不是正确选项则设置错误答案
+            for option_no in range(option_num):  # 遍历每个选项
+                if option_no not in option_list:  # 如果此选项不是正确选项则设置错误答案
                     option_list[option_no] = wrong_options[i]
                     i += 1
                 print(f'''
-    {option_no + 1}. {option_list[option_no]}''') # 打印选项
+    {option_no + 1}. {option_list[option_no]}''')  # 打印选项
             while True:
                 choice = input('\n请输入你的答案：')
                 try:
                     choice = int(choice)
                     if choice == correct_answer:
                         print(Fore.GREEN, '回答正确', Fore.RESET)
+                        j += 1
+                        k += 1
                         break
                     elif choice > option_num or choice <= 0:
                         print(Fore.RED, '请重新输入', Fore.RESET)
@@ -103,6 +113,7 @@ def english_translate_chinese():
                     else:
                         print(Fore.RED, '回答错误', Fore.RESET)
                         wrong_words.add_wrong_en_word(en, option_list[correct_answer - 1], wrong_options)
+                        j += 1
                         break
                 except ValueError:
                     print(Fore.RED, '请输入数字', Fore.RESET)
@@ -113,6 +124,7 @@ def english_translate_chinese():
     else: # 数据库为空
         print(Fore.RED, '数据库为空或错误，请检查数据库文件是否存在或是否正确', Fore.RESET)
         return
+    print(f'你此次正确的单词数量是{k}个，总共背的单词数是{word_amount}个，正确率为{k*100.0/word_amount}%')
 
 
 # 英译中背错词
@@ -177,6 +189,8 @@ def english_translate_chinese_wrong():
 def chinese_translate_english():
     if get_dict():
         word_dict_chinese_ver = {v: k for k, v in word_dict.items()}  #生成一个key为中文，valve为英文的字典
+        j2 = 0 #j2为背诵数量
+        k2 = 0 #k2为正确数量
         print("汉译英测试会展示你选择的单词及其中文含义，时间到后单词会消失，之后请根据汉语意思输入英文")
         amount = input_amount()
         print("你选择了%d个单词" % amount)
@@ -190,6 +204,7 @@ def chinese_translate_english():
                 continue
         words_test = random.sample(list(word_dict.values()), amount)
         for zh in words_test:
+            progress_bar(j2, amount)
             print(zh, end='\n')
             time_real = time_left
             while time_real > 0:
@@ -201,9 +216,13 @@ def chinese_translate_english():
             user_answer = input("请输入答案，按回车确定：\n")
             if user_answer == word_dict_chinese_ver[zh]:
                 print(Fore.GREEN, '回答正确', Fore.RESET)
+                k2 += 1
+                j2 += 1
             else:
                 print(Fore.RED, "回答错误", Fore.RESET)
+                j2 += 1
                 wrong_words.add_wrong_zh_word(zh, word_dict_chinese_ver[zh])
+        print(f'你背诵了{amount}个单词，背诵正确的单词数量为{k2}个，正确率为{k2*100.0/amount}%')
     else: # 数据库为空
         print(Fore.RED, '数据库为空或错误，请检查数据库文件是否存在或是否正确', Fore.RESET)
         return
