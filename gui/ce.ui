@@ -26,7 +26,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));</string>
+   <string notr="true">background-color: rgb(226, 226, 226);</string>
   </property>
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
@@ -39,26 +39,27 @@
    </property>
    <property name="styleSheet">
     <string notr="true">border-radius:20px;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);
+background-color:rgb(255, 255, 255) ;
+color: rgb(0, 0, 0);
 font: 26pt &quot;微软雅黑&quot;;
-border:3px solid #ffffff;</string>
+border:3px solid #000000;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
      <x>1010</x>
-     <y>710</y>
+     <y>730</y>
      <width>331</width>
-     <height>131</height>
+     <height>111</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 22pt &quot;幼圆&quot;;
 color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);
-border-radius:20px;</string>
+border-radius:20px;
+border:3px solid #000000;</string>
    </property>
    <property name="text">
     <string>确认</string>
@@ -75,10 +76,10 @@ border-radius:20px;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border-radius:20px;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
 font: 24pt &quot;Arial&quot;;
-border:3px solid #ffffff;</string>
+border:3px solid #000000;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -92,7 +93,7 @@ border:3px solid #ffffff;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 20pt &quot;微软雅黑&quot;;
-color: rgb(255, 255, 255);</string>
+color: rgb(0，0，0);</string>
    </property>
    <property name="text">
     <string>英文翻译是：</string>

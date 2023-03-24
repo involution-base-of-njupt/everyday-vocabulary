@@ -14,6 +14,7 @@ from PyQt5 import uic
 
 class admin1(QWidget):
 
+
     def __init__(self):
         super().__init__()
         self.init_ui()

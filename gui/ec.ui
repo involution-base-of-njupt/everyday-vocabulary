@@ -26,7 +26,8 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true">
+background-color: rgb(214, 214, 214);</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
@@ -164,10 +165,10 @@ font: 11pt &quot;Arial&quot;;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border-radius:20px;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
 font: 26pt &quot;微软雅黑&quot;;
-border:3px solid #ffffff;</string>
+border:3px solid #000000;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_5">
@@ -183,6 +184,7 @@ border:3px solid #ffffff;</string>
     <font>
      <family>微软雅黑</family>
      <pointsize>22</pointsize>
+     <weight>50</weight>
      <italic>false</italic>
      <bold>false</bold>
     </font>
@@ -201,18 +203,18 @@ border:3px solid #000000;</string>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>830</y>
-     <width>851</width>
-     <height>51</height>
+     <x>90</x>
+     <y>820</y>
+     <width>961</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border-radius:20px;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
 font: 20pt &quot;微软雅黑&quot;;
-border:3px solid #ffffff;</string>
+border:3px solid #000000;</string>
    </property>
   </widget>
  </widget>

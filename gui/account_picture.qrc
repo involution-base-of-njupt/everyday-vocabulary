@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>account_1.jpg</file>
+    <file>account_2.jpg</file>
+<!--    <file>平台运行动态.png</file>-->
+<!--    <file>设置.png</file>-->
+<!--    <file>搜索.png</file>-->
+  </qresource>
+</RCC>
