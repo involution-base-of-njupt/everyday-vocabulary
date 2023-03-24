@@ -309,8 +309,8 @@ def en2zh_wrong_words_menu():
             result = wrong_words.get_all_wrong_en_words()
             if result[0] == None:
                 # 逐个打印
-                for word, wrong_times in result[1]:
-                    print(f'{word}：错误次数：{wrong_times}')
+                for word in result[1]:
+                    print(f'{word}：错误次数：\t{result[1][word]}')
             else:
                 print(Fore.RED, '发生错误：', result[0], Fore.RESET)
         
@@ -357,8 +357,8 @@ def zh2en_wrong_words_menu():
             result = wrong_words.get_all_wrong_zh_words()
             if result[0] == None:
                 # 逐个打印
-                for word, wrong_times in result[1]:
-                    print(f'{word}：错误次数：{wrong_times}')
+                for word in result[1]:
+                    print(f'{word}：错误次数：\t{result[1][word]}')
             else:
                 print(Fore.RED, '发生错误：', result[0], Fore.RESET)
         
