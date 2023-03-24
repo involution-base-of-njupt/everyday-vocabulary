@@ -182,6 +182,8 @@ def get_all_wrong_en_words():
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
+            if 'en' not in word_dict:
+                return None, {}
             en_wong_words = word_dict['en']
             result = {}
             for en in en_wong_words:
@@ -200,6 +202,8 @@ def get_all_wrong_zh_words():
         else:
             f = open(wrong_words_file, 'r', newline='', encoding=codec)
             word_dict = json.load(f)
+            if 'zh' not in word_dict:
+                return None, {}
             zh_wrong_words = word_dict['zh']
             result = {}
             for zh in zh_wrong_words:
