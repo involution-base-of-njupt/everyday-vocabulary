@@ -199,6 +199,9 @@ def get_all_wrong_en_words():
             return None, result
     except Exception as e:
         return e, {}
+    finally:
+        if f:
+            f.close()
 
 
 # 获取所有错中文词，返回值是发生的错误、错词字典（key:词，value:次数）
@@ -220,3 +223,6 @@ def get_all_wrong_zh_words():
             return None, result
     except Exception as e:
         return e, {}
+    finally:
+        if f:
+            f.close()
