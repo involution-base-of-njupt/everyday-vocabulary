@@ -50,11 +50,11 @@ class admin1(QWidget):
         self.new_words_manage_window.ui.show()
 
     def clickedinCSV(self):
-        self.import_csv_json_window = import_csv_json_ui.import_csv_json()
+        self.import_csv_json_window = import_csv_json_ui.import_csv_json('csv')
         self.import_csv_json_window.ui.show()
 
     def clickedinJSON(self):
-        self.import_csv_json_window = import_csv_json_ui.import_csv_json()
+        self.import_csv_json_window = import_csv_json_ui.import_csv_json('json')
         self.import_csv_json_window.ui.show()
 
     def clickedchangepassword(self):

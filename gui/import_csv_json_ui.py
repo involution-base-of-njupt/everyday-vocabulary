@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys, os
+from cli import menu
+from common import import_file
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -7,9 +9,10 @@ from PyQt5 import uic
 
 class import_csv_json(QWidget):
 
-    def __init__(self):
+    def __init__(self, filetype):
         super().__init__()
         self.init_ui()
+        self.filetype = filetype
 
     def init_ui(self):
         self.ui = uic.loadUi(f"{os.path.abspath('.')}/gui/import_csv_json.ui")
@@ -28,9 +31,53 @@ class import_csv_json(QWidget):
         self.yes_btn.clicked.connect(self.clickedyes)
         self.no_btn.clicked.connect(self.clickedno)
 
-    # TODO:
+
     def clickedyes(self):
-        print('耶')
+        menu.import_menu(self.filetype)
+
+            # 输入文件位置
+        file = self.locad_qwidget.text()
+        if self.filetype == 'csv':
+
+        elif self.filetype == 'json':
+
+        else:
+                print('错误的文件类型：', self.filetype, '！')
+        return
+        while not os.path.isfile(file):
+                print( '此文件不存在！')
+        return
+
+            # 输入文件编码方式
+    codec = self.answer_qwidget.text()
+
+            # 输入处理重复单词的方式
+        while True:
+            choice = input('覆盖重复单词中文含义(Y/N)？')
+            if choice == 'Y' or choice == 'y':
+                    overwrite = True
+                    break
+            elif choice == 'N' or choice == 'n':
+                    overwrite = False
+                    break
+            else:
+                    print( '输入错误！')
+
+            # 调用导入文件函数
+        if self.filetype == 'csv':
+                import_result = import_file.csv_import(file, codec, overwrite)
+        elif self.filetype == 'json':
+                import_result = import_file.json_import(file, codec, overwrite)
+        else:
+                print( '错误的文件类型：' + self.filetype + '！')
+            return
+
+            # 显示导入结果
+        if import_result == None:
+                print('导入成功！')
+        else:
+                print( '导入失败：', import_result)
+
 
     def clickedno(self):
         pass
