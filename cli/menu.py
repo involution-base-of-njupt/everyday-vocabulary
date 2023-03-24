@@ -307,7 +307,7 @@ def en2zh_wrong_words_menu():
         
         if choice == '1':
             result = wrong_words.get_all_wrong_en_words()
-            if not result[0] == None:
+            if result[0] == None:
                 # 逐个打印
                 for word, wrong_times in result[1]:
                     print(f'{word}：错误次数：{wrong_times}')
@@ -355,7 +355,7 @@ def zh2en_wrong_words_menu():
         
         if choice == '1':
             result = wrong_words.get_all_wrong_zh_words()
-            if not result[0] == None:
+            if result[0] == None:
                 # 逐个打印
                 for word, wrong_times in result[1]:
                     print(f'{word}：错误次数：{wrong_times}')
